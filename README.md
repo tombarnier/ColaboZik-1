@@ -1,4 +1,10 @@
-# ColaboZik
+```
+  ____      _       _          ______ _    
+ / ___|___ | | __ _| |__   ___|__  (_) | __
+| |   / _ \| |/ _` | '_ \ / _ \ / /| | |/ /
+| |__| (_) | | (_| | |_) | (_) / /_| |   < 
+ \____\___/|_|\__,_|_.__/ \___/____|_|_|\_\
+```
 
 ## Description
 
@@ -9,7 +15,7 @@
   - Gestion utilisateur
   - Création de groupe pour gérer une playlist
   - Gestion des votes
-  - Lecture de la playlist
+  - Lecture de playlists
   
 ## Choix techniques
 
