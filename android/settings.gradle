@@ -1,0 +1,3 @@
+rootProject.name = 'ColaboZik'
+
+include ':app'
