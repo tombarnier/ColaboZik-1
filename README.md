@@ -20,5 +20,6 @@
 ## Choix techniques
 
   - Redux
-  - 
+  - Styled-components
+  - React-navigation
   
