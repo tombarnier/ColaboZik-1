@@ -13,6 +13,14 @@ const ContentContainer = styled.View`
   justify-content: center;
   align-items: center;
 `
+const ParameterTouchableOpacity = styled.TouchableOpacity`
+  border: 5px solid black;
+  width: 200px;
+`
+
+const TextBouton = styled.Text`
+   justify-content: center;
+`
 
 export default class Home extends Component {
   static propTypes = {
@@ -22,7 +30,11 @@ export default class Home extends Component {
   render() {
     return (
       <BackgroundView>
-      
+        <ContentContainer>
+          <ParameterTouchableOpacity>
+            <TextBouton>Test</TextBouton>
+          </ParameterTouchableOpacity>
+        </ContentContainer>
       </BackgroundView>
     )
   }
