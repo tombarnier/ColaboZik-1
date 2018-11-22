@@ -63,6 +63,13 @@ export default class Room extends Component {
           onPress={() => navigation.navigate('AddTrack')}>
           <Icon name="add"/>
         </Fab>
+
+        <Fab
+          style={{backgroundColor: '#5067FF'}}
+          position="bottomLeft"
+          onPress={() => navigation.navigate('Player')}>
+          <Icon name="add"/>
+        </Fab>
       </View>
     )
   }
