@@ -1,13 +1,22 @@
 import React, {Component} from 'react'
 import {View} from 'react-native'
-import {Form, Item, Label, Input, Textarea} from 'native-base'
+import {Form, Button, Text} from 'native-base'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import RoomCard from '../components/roomCard'
+import InputLabeled from '../components/inputLabeled'
 
-const BodyHome = styled.View`
+const BackgroundView = styled.View`
+  flex: 1;
   padding: 10px;
+  background-color: ${props => props.theme.color.secondary};
+  justify-content: center;
+  align-items: center;
+`
+
+const Inputs = styled.View`
+  width: 100%;
+  margin-bottom: 40px;
 `
 
 export default class AddRoom extends Component {
@@ -15,24 +24,33 @@ export default class AddRoom extends Component {
     navigation: PropTypes.object
   }
 
+  state = {
+    name: '',
+    description: ''
+  }
+
+  _validLink = () => {
+    alert(`creation salon : ${this.state.name}`)
+    this.props.navigation.goBack()
+  }
+
   render() {
     const {navigation} = this.props
 
     return (
-      <View>
-        <BodyHome>
+      <BackgroundView>
+        <Inputs>
           <Form>
-            <Item floatingLabel>
-              <Label>Nom</Label>
-              <Input/>
-            </Item>
-            <Item floatingLabel>
-              <Label>Description</Label>
-              <Textarea rowSpan={5} bordered placeholder="Textarea" />
-            </Item>
+            <InputLabeled label='Nom'
+                          onChange={name => this.setState({name: name})} />
+            <InputLabeled label='Description'
+                          onChange={desc => this.setState({description: desc})} />
           </Form>
-        </BodyHome>
-      </View>
+        </Inputs>
+        <Button block success onPress={this._validLink}>
+          <Text>Ajouter</Text>
+        </Button>
+      </BackgroundView>
     )
   }
 }

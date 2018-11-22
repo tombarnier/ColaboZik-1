@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {View, FlatList} from 'react-native'
-import {Fab, Icon, List, ListItem} from 'native-base'
+import {Fab, Icon} from 'native-base'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
