@@ -44,11 +44,10 @@ class Home extends Component {
   }
 
   submit = () => {
-    const {email, pass} = this.state
-    const {actions} = this.props
-    console.log('on est au moins ds le submit')
-    actions.auth.login(email, pass).then((authenticated) => {
-      if (authenticated === true) this.props.navigation.navigate('ListRooms')
+    const { email, pass } = this.state
+    const { actions } = this.props
+    actions.auth.login(email,pass).then((authenticated) => {
+      if(authenticated === true) this.props.navigation.navigate('ListRooms')
       else window.alert('BIIIIIIIIPPPP')
     })
   }

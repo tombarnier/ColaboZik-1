@@ -10,13 +10,13 @@ export default class RoomCard extends Component {
 
   render() {
     const {navigation, room} = this.props
-    const {name, description} = room
+    const {title, description} = room
     return (
       <Card>
         <CardItem header bordered button onPress={() => navigation.navigate('Room', {
           room
         })}>
-          <Text>{name}</Text>
+          <Text>{title}</Text>
         </CardItem>
         <CardItem bordered>
           <Text>{description}</Text>
