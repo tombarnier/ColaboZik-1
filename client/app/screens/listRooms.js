@@ -18,11 +18,11 @@ export default class ListRooms extends Component {
   rooms = [{
     id: '1',
     name: 'Room #1',
-    description: 'Playlist pour la soirée chez Ronan.'
+    description: 'abc...'
   }, {
     id: '2',
     name: 'Room #2',
-    description: 'Super musique dans le style metal, heavy metal et grunge'
+    description: 'abc...'
   }, {
     id: '3',
     name: 'Room #3',

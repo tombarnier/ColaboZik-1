@@ -60,7 +60,7 @@ export default class Room extends Component {
         <Fab
           style={{backgroundColor: '#5067FF'}}
           position="bottomRight"
-          onPress={() => navigation.navigate('AddRoom')}>
+          onPress={() => navigation.navigate('AddTrack')}>
           <Icon name="add"/>
         </Fab>
       </View>

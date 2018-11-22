@@ -5,6 +5,7 @@ import Home from '../screens/home'
 import AddRoom from '../screens/addRoom'
 import ListRooms from '../screens/listRooms'
 import Room from '../screens/room'
+import AddTrack from '../screens/addTrack'
 
 const optionsGeneral = {
   mode: 'modal',
@@ -26,8 +27,16 @@ const LoggedUser = createStackNavigator({
   },
   Room: {
     screen: Room,
+    navigationOptions: ({navigation}) => {
+      return {
+        title: navigation.getParam('room', 'Salon').name,
+      }
+    }
+  },
+  AddTrack: {
+    screen: AddTrack,
     navigationOptions: {
-      title: 'Room'
+      title: 'Ajouter une piste'
     }
   }
 })
@@ -38,7 +47,7 @@ const DisconnectedUser = createStackNavigator ({
     navigationOptions: {
       title: appName
     }
-  }
+  },
 })
 
 export default createSwitchNavigator(
