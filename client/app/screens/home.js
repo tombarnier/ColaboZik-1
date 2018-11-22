@@ -3,6 +3,11 @@ import {View, TouchableOpacity} from 'react-native'
 import {Button, Form, H1, Input, Item, Label, Text, Textarea} from 'native-base'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
+
+import allTheActions from '../actions'
+import { login } from '../actions/auth'
 
 const BackgroundView = styled.View`
   flex: 1;
@@ -26,11 +31,26 @@ const TextBouton = styled.Text`
    justify-content: center;
 `
 
-export default class Home extends Component {
+class Home extends Component {
   static propTypes = {
-    navigation: PropTypes.object
+    navigation: PropTypes.object,
+    email: PropTypes.string,
+    pass: PropTypes.string
+  }
+  state = {
+    email: '',
+    pass: ''
   }
 
+  submit = () => {
+    const { email, pass } = this.state
+    const { actions } = this.props
+    console.log('on est au moins ds le submit')
+    actions.auth.login(email,pass).then((authenticated) => {
+      if(authenticated === true) this.props.navigation.navigate('ListRooms')
+      else window.alert('BIIIIIIIIPPPP')
+    })
+  }
   render() {
     const {navigation} = this.props
 
@@ -42,16 +62,15 @@ export default class Home extends Component {
           <Form>
             <Item floatingLabel>
               <Label>Pseudo</Label>
-              <Input/>
+              <Input onChangeText={email => this.setState({email: email})}/>
             </Item>
             <Item floatingLabel>
               <Label>Mot de passe</Label>
-              <Input secureTextEntry={true}/>
+              <Input secureTextEntry={true} onChangeText={pass => this.setState({pass: pass})}/>
             </Item>
           </Form>
         </Inputs>
-
-        <Button block info onPress={() => navigation.navigate('ListRooms')}>
+        <Button block info onPress={() => this.submit()}>
           <Text>Se connecter</Text>
         </Button>
 
@@ -59,3 +78,20 @@ export default class Home extends Component {
     )
   }
 }
+
+const mapDispatchToProps = dispatch => ({
+  actions: {
+    auth: bindActionCreators(allTheActions.auth,dispatch)
+  }
+})
+
+const mapStateToProps = state => {
+  return {
+    accessToken: state.user
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Home)
