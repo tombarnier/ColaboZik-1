@@ -1,10 +1,11 @@
 import {StackNavigator} from 'react-navigation'
 
-import {displayName as appName} from '../../app.json';
+import {displayName as appName} from '../../app.json'
 import Home from '../screens/home'
 import AddRoom from '../screens/addRoom'
 import ListRooms from '../screens/listRooms'
 import Room from '../screens/room'
+import AddTrack from '../screens/addTrack'
 
 const optionsGeneral = {
   mode: 'modal',
@@ -32,10 +33,18 @@ const HomeStack = StackNavigator({
   },
   Room: {
     screen: Room,
-    navigationOptions: {
-      title: `Room`
+    navigationOptions: ({navigation}) => {
+      return {
+        title: navigation.getParam('room', 'Salon').name,
+      }
     }
-  }
+  },
+  AddTrack: {
+    screen: AddTrack,
+    navigationOptions: {
+      title: 'Ajouter une piste'
+    }
+  },
 })
 
 export default StackNavigator(
