@@ -9,10 +9,13 @@ export default class RoomCard extends Component {
   }
 
   render() {
-    const {name, description} = this.props.room
+    const {navigation, room} = this.props
+    const {name, description} = room
     return (
       <Card>
-        <CardItem header bordered button onPress={() => alert('This is Card Body')}>
+        <CardItem header bordered button onPress={() => navigation.navigate('Room', {
+          room
+        })}>
           <Text>{name}</Text>
         </CardItem>
         <CardItem bordered>
