@@ -1,4 +1,4 @@
-package com.colabozik;
+package com.client2;
 
 import android.app.Application;
 

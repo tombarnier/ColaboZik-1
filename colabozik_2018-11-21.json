@@ -1,0 +1,399 @@
+{
+	"_type": "export",
+	"__export_format": 3,
+	"__export_date": "2018-11-21T16:13:47.646Z",
+	"__export_source": "insomnia.desktop.app:v6.2.0",
+	"resources": [
+		{
+			"_id": "wrk_92170181dbaa41b1b7ed30aba3cd9bc2",
+			"created": 1542814125470,
+			"description": "",
+			"modified": 1542814125470,
+			"name": "colabozik",
+			"parentId": null,
+			"_type": "workspace"
+		},
+		{
+			"_id": "env_1e5772bb09514523b194448fa722eb8b",
+			"color": null,
+			"created": 1542814125583,
+			"data": {
+				"acess_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6ImFjY2VzcyJ9.eyJ1c2VySWQiOiJRblNnYjJSZFBxVlRPaTk0IiwiaWF0IjoxNTQyODE1MDQ0LCJleHAiOjE1NDI5MDE0NDQsImF1ZCI6Imh0dHBzOi8veW91cmRvbWFpbi5jb20iLCJpc3MiOiJmZWF0aGVycyIsInN1YiI6ImFub255bW91cyIsImp0aSI6IjVkMDk3ZmE5LWUxN2UtNDExNi1hOThkLWRiN2E5ZTFmMjIyYSJ9.lGv_KRQqWXGo7xPSUglEAeUnxX4ZfF4zu5V6qFQumOs"
+			},
+			"isPrivate": false,
+			"metaSortKey": 1542814125583,
+			"modified": 1542815054233,
+			"name": "New Environment",
+			"parentId": "wrk_92170181dbaa41b1b7ed30aba3cd9bc2",
+			"_type": "environment"
+		},
+		{
+			"_id": "jar_0ec58016a2d9428db940d3203505a2c3",
+			"cookies": [],
+			"created": 1542814125586,
+			"modified": 1542814125586,
+			"name": "Default Jar",
+			"parentId": "wrk_92170181dbaa41b1b7ed30aba3cd9bc2",
+			"_type": "cookie_jar"
+		},
+		{
+			"_id": "fld_20eb97b6dfd141399923486ad8eec461",
+			"created": 1542814134550,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1542814134550,
+			"modified": 1542814134550,
+			"name": "Users",
+			"parentId": "wrk_92170181dbaa41b1b7ed30aba3cd9bc2",
+			"_type": "request_group"
+		},
+		{
+			"_id": "fld_5f156137e79e4060a4c014d061166f22",
+			"created": 1542815486515,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1540662700760.5,
+			"modified": 1542816307014,
+			"name": "playlists",
+			"parentId": "wrk_92170181dbaa41b1b7ed30aba3cd9bc2",
+			"_type": "request_group"
+		},
+		{
+			"_id": "fld_da8f1f0e6654488abc890f459d24466f",
+			"created": 1542816684331,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1539586983865.75,
+			"modified": 1542816698157,
+			"name": "musics",
+			"parentId": "wrk_92170181dbaa41b1b7ed30aba3cd9bc2",
+			"_type": "request_group"
+		},
+		{
+			"_id": "req_8cbf02cc697f406eb127557768250c28",
+			"authentication": {
+				"token": "{{acess_token}}",
+				"type": "bearer"
+			},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"email\": \"admin\",\n\t\"password\": \"admin\",\n\t\"groupe\": [],\n\t\"A_PAYER\": false\n}"
+			},
+			"created": 1542814141828,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_6a70f55ee73d4a298da70a9e1750af26",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1542814141828,
+			"method": "POST",
+			"modified": 1542814965906,
+			"name": "add user",
+			"parameters": [],
+			"parentId": "fld_20eb97b6dfd141399923486ad8eec461",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:3030/users",
+			"_type": "request"
+		},
+		{
+			"_id": "req_1f859c4cb3b04ee68b32909fa34deba8",
+			"authentication": {
+				"prefix": "",
+				"token": "{{acess_token}}",
+				"type": "bearer"
+			},
+			"body": {
+				"mimeType": "application/json",
+				"text": ""
+			},
+			"created": 1542814150047,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_4b0a10f03f254a4ab761361224fd2649",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1542814150047,
+			"method": "GET",
+			"modified": 1542815058392,
+			"name": "get users",
+			"parameters": [],
+			"parentId": "fld_20eb97b6dfd141399923486ad8eec461",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:3030/users",
+			"_type": "request"
+		},
+		{
+			"_id": "req_2b3ad26c2fb94635858016d04de2ac07",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"strategy\": \"local\",\n\t\"email\": \"admin\",\n\t\"password\": \"admin\"\n}"
+			},
+			"created": 1542814300573,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_6a70f55ee73d4a298da70a9e1750af26",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1542292099024,
+			"method": "POST",
+			"modified": 1542815054573,
+			"name": "authenticate",
+			"parameters": [],
+			"parentId": "fld_20eb97b6dfd141399923486ad8eec461",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:3030/authentication",
+			"_type": "request"
+		},
+		{
+			"_id": "req_e0dbbd9e798148678c00cdc9b9a09bfb",
+			"authentication": {
+				"prefix": "",
+				"token": "{{acess_token}}",
+				"type": "bearer"
+			},
+			"body": {},
+			"created": 1542814523964,
+			"description": "",
+			"headers": [],
+			"isPrivate": false,
+			"metaSortKey": -1542814145937.5,
+			"method": "DELETE",
+			"modified": 1542814552358,
+			"name": "delete user",
+			"parameters": [],
+			"parentId": "fld_20eb97b6dfd141399923486ad8eec461",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:3030/users",
+			"_type": "request"
+		},
+		{
+			"_id": "req_a56b444d4aa8444784b284880a1ecf25",
+			"authentication": {
+				"token": "{{acess_token}}",
+				"type": "bearer"
+			},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"nom\": \"La playlist de la honte\",\n\t\"tags\": [\"Disco\",\"Année 80\"],\n\t\"membres\": [\"admin\",\"woop\"],\n\t\"musics\":[\n\t\t{\n\t\t\t\"lien\":\"https://www.youtube.com/watch?v=BinWA0EenDY\",\n\t\t\t\"titre\":\"I'm blue\",\n\t\t\t\"artiste\":\"eifell 65\",\n\t\t\t\"upload\":\"woop\",\n\t\t\t\"vote\": 0\n\t\t},\n\t\t{\n\t\t\t\"lien\":\"https://www.youtube.com/watch?v=ZyhrYis509A\",\n\t\t\t\"titre\":\"Barbie girl\",\n\t\t\t\"artiste\":\"aqua\",\n\t\t\t\"upload\":\"woop\",\n\t\t\t\"vote\": 0\n\t\t}\n\t]\n}"
+			},
+			"created": 1542815486518,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_6a70f55ee73d4a298da70a9e1750af26",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1542814141828,
+			"method": "POST",
+			"modified": 1542816784253,
+			"name": "add playlist",
+			"parameters": [],
+			"parentId": "fld_5f156137e79e4060a4c014d061166f22",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:3030/playlist",
+			"_type": "request"
+		},
+		{
+			"_id": "req_0549076f3eeb4ce98879297a9ac81ab9",
+			"authentication": {
+				"prefix": "",
+				"token": "{{acess_token}}",
+				"type": "bearer"
+			},
+			"body": {
+				"mimeType": "application/json",
+				"text": ""
+			},
+			"created": 1542815486519,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_4b0a10f03f254a4ab761361224fd2649",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1542814150047,
+			"method": "GET",
+			"modified": 1542816313258,
+			"name": "get playlists",
+			"parameters": [],
+			"parentId": "fld_5f156137e79e4060a4c014d061166f22",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:3030/users",
+			"_type": "request"
+		},
+		{
+			"_id": "req_26f0754523b448d3a8ee25d3c2a770fd",
+			"authentication": {
+				"prefix": "",
+				"token": "{{acess_token}}",
+				"type": "bearer"
+			},
+			"body": {},
+			"created": 1542815486523,
+			"description": "",
+			"headers": [],
+			"isPrivate": false,
+			"metaSortKey": -1542814145937.5,
+			"method": "DELETE",
+			"modified": 1542816317868,
+			"name": "delete playlists",
+			"parameters": [],
+			"parentId": "fld_5f156137e79e4060a4c014d061166f22",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:3030/users",
+			"_type": "request"
+		},
+		{
+			"_id": "req_1f2227d2942d424aae4fb39c0d5fbb5b",
+			"authentication": {
+				"token": "{{acess_token}}",
+				"type": "bearer"
+			},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"lien\":\"https://www.youtube.com/watch?v=BinWA0EenDY\",\n\t\"upload\":\"woop\",\n\t\"playlist\":\"La playlist de la honte\"\n}\n\t\t"
+			},
+			"created": 1542816684333,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_6a70f55ee73d4a298da70a9e1750af26",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1542814141828,
+			"method": "POST",
+			"modified": 1542816793114,
+			"name": "add musics",
+			"parameters": [],
+			"parentId": "fld_da8f1f0e6654488abc890f459d24466f",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:3030/playlist",
+			"_type": "request"
+		},
+		{
+			"_id": "req_7cddd8d5d567418686dcc6c5485c8869",
+			"authentication": {
+				"prefix": "",
+				"token": "{{acess_token}}",
+				"type": "bearer"
+			},
+			"body": {
+				"mimeType": "application/json",
+				"text": ""
+			},
+			"created": 1542816684335,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_4b0a10f03f254a4ab761361224fd2649",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1542814150047,
+			"method": "GET",
+			"modified": 1542816707775,
+			"name": "get musics",
+			"parameters": [],
+			"parentId": "fld_da8f1f0e6654488abc890f459d24466f",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:3030/users",
+			"_type": "request"
+		},
+		{
+			"_id": "req_26ead01b2fcb43a98e7a968b40b18e21",
+			"authentication": {
+				"prefix": "",
+				"token": "{{acess_token}}",
+				"type": "bearer"
+			},
+			"body": {},
+			"created": 1542816684336,
+			"description": "",
+			"headers": [],
+			"isPrivate": false,
+			"metaSortKey": -1542814145937.5,
+			"method": "DELETE",
+			"modified": 1542816712742,
+			"name": "delete musics",
+			"parameters": [],
+			"parentId": "fld_da8f1f0e6654488abc890f459d24466f",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:3030/users",
+			"_type": "request"
+		}
+	]
+}

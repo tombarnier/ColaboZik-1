@@ -16,6 +16,25 @@ const Inputs = styled.View`
   margin: 40px 0;
 `
 
+const BackgroundView = styled.View`
+  flex: 1;
+`
+
+const ContentContainer = styled.View`
+  background-color: ${props => props.theme.color.primary};
+  flex: 5;
+  justify-content: center;
+  align-items: center;
+`
+const ParameterTouchableOpacity = styled.TouchableOpacity`
+  border: 5px solid black;
+  width: 200px;
+`
+
+const TextBouton = styled.Text`
+   justify-content: center;
+`
+
 export default class Home extends Component {
   static propTypes = {
     navigation: PropTypes.object
@@ -25,27 +44,35 @@ export default class Home extends Component {
     const {navigation} = this.props
 
     return (
-      <LoginView>
-        <H1>Connection</H1>
+      <BackgroundView>
+        <ContentContainer>
+          <LoginView>
+            <H1>Connection</H1>
 
-        <Inputs>
-          <Form>
-            <Item floatingLabel>
-              <Label>Pseudo</Label>
-              <Input/>
-            </Item>
-            <Item floatingLabel>
-              <Label>Mot de passe</Label>
-              <Input secureTextEntry={true}/>
-            </Item>
-          </Form>
-        </Inputs>
+            <Inputs>
+              <Form>
+                <Item floatingLabel>
+                  <Label>Pseudo</Label>
+                  <Input/>
+                </Item>
+                <Item floatingLabel>
+                  <Label>Mot de passe</Label>
+                  <Input secureTextEntry={true}/>
+                </Item>
+              </Form>
+            </Inputs>
 
-        <Button block info onPress={() => navigation.navigate('ListRooms')}>
-          <Text>Se connecter</Text>
-        </Button>
+            <Button block info onPress={() => navigation.navigate('ListRooms')}>
+              <Text>Se connecter</Text>
+            </Button>
 
-      </LoginView>
+          </LoginView>
+
+          <ParameterTouchableOpacity>
+            <TextBouton>Test</TextBouton>
+          </ParameterTouchableOpacity>
+        </ContentContainer>
+      </BackgroundView>
     )
   }
 }
