@@ -42,7 +42,6 @@ export const login = (email,pass) => dispatch => {
           payload: payload
         })
       )
-      return true
+      return payload.userId ? true : false
     }).catch(e => console.log(e))
 }
-
