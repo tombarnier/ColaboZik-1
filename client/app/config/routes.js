@@ -1,4 +1,4 @@
-import {StackNavigator} from 'react-navigation'
+import { createSwitchNavigator, createStackNavigator} from 'react-navigation'
 
 import {displayName as appName} from '../../app.json'
 import Home from '../screens/home'
@@ -12,13 +12,7 @@ const optionsGeneral = {
   headerMode: 'none'
 }
 
-const HomeStack = StackNavigator({
-  Home: {
-    screen: Home,
-    navigationOptions: {
-      title: appName
-    }
-  },
+const LoggedUser = createStackNavigator({
   ListRooms: {
     screen: ListRooms,
     navigationOptions: {
@@ -44,13 +38,25 @@ const HomeStack = StackNavigator({
     navigationOptions: {
       title: 'Ajouter une piste'
     }
+  }
+})
+
+const DisconnectedUser = createStackNavigator ({
+  Home: {
+    screen: Home,
+    navigationOptions: {
+      title: appName
+    }
   },
 })
 
-export default StackNavigator(
+export default createSwitchNavigator(
   {
+    Auth: {
+      screen: DisconnectedUser
+    },
     Home: {
-      screen: HomeStack
+      screen: LoggedUser
     }
   },
   optionsGeneral
