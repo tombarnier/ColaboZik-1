@@ -1,15 +1,17 @@
 import { AUTHENTICATE } from '../actions/auth'
-import axios from 'axios'
 
 const initialState = {
-  user:{}
+  user: {}
 }
 
 export default (state = initialState,action) => {
   switch (action.type) {
-    case AUTHENTICATE:
-      
-    default:
-      return state
+  case AUTHENTICATE:
+    return {
+      ...state,
+      user: action.payload
+    }
+  default:
+    return state
   }
 }

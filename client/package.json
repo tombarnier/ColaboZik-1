@@ -7,8 +7,11 @@
     "test": "jest"
   },
   "dependencies": {
-    "async-storage": "^0.1.0",
     "axios": "^0.18.0",
+    "feathers": "^2.2.4",
+    "feathers-authentication-client": "^0.3.3",
+    "feathers-hooks": "^2.1.2",
+    "feathers-socketio": "^2.0.1",
     "native-base": "^2.8.1",
     "prop-types": "^15.6.2",
     "react": "16.6.1",
@@ -16,6 +19,8 @@
     "react-navigation": "^2.18.2",
     "react-redux": "^5.1.1",
     "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
+    "socket.io-client": "^2.1.1",
     "styled-components": "^4.0.3"
   },
   "devDependencies": {
