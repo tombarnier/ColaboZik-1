@@ -29,7 +29,7 @@ const LoggedUser = createStackNavigator({
     screen: Room,
     navigationOptions: ({navigation}) => {
       return {
-        title: navigation.getParam('room', 'Salon').name,
+        title: navigation.getParam('room', 'Salon').title,
       }
     }
   },

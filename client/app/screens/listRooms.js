@@ -3,6 +3,11 @@ import {View, FlatList} from 'react-native'
 import {Fab, Icon, List, ListItem} from 'native-base'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
+
+import allTheActions from '../actions'
+import {app} from '../actions/auth'
 
 import RoomCard from '../components/roomCard'
 
@@ -10,39 +15,29 @@ const ScrollRooms = styled.ScrollView`
   padding: 10px;
 `
 
-export default class ListRooms extends Component {
+class ListRooms extends Component {
   static propTypes = {
-    navigation: PropTypes.object
+    navigation: PropTypes.object,
+    rooms: PropTypes.array
   }
 
-  rooms = [{
-    id: '1',
-    name: 'Room #1',
-    description: 'abc...'
-  }, {
-    id: '2',
-    name: 'Room #2',
-    description: 'abc...'
-  }, {
-    id: '3',
-    name: 'Room #3',
-    description: 'abc...'
-  }, {
-    id: '4',
-    name: 'Room #4',
-    description: 'abc...'
-  }, {
-    id: '5',
-    name: 'Room #5',
-    description: 'abc...'
-  }, {
-    id: '6',
-    name: 'Room #6',
-    description: 'abc...'
-  }]
+  state = {
+    rooms: []
+  }
 
   _roomCard = ({item}) =>
     <RoomCard room={item} navigation={this.props.navigation}/>
+
+  componentDidMount() {
+
+    const { actions } = this.props
+    actions.auth.getPlaylists().then((response) => {
+      console.log(response.data)
+      this.setState({
+        rooms: response.data
+      })
+    })
+  }
 
   render() {
     const {navigation} = this.props
@@ -50,9 +45,9 @@ export default class ListRooms extends Component {
     return (
       <View style={{flex: 1}}>
         <ScrollRooms>
-          <FlatList data={this.rooms}
+          <FlatList data={this.state.rooms}
                     renderItem={this._roomCard}
-                    keyExtractor={(item) => item.name}/>
+                    keyExtractor={(item) => item._id}/>
         </ScrollRooms>
 
         <Fab
@@ -65,3 +60,20 @@ export default class ListRooms extends Component {
     )
   }
 }
+
+const mapDispatchToProps = dispatch => ({
+  actions: {
+    auth: bindActionCreators(allTheActions.auth, dispatch)
+  }
+})
+
+const mapStateToProps = state => {
+  return {
+    accessToken: state.user
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ListRooms)
