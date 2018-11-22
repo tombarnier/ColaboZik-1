@@ -10,8 +10,8 @@ export default class App extends Component<Props> {
   render() {
     let currentTheme = {
       color: {
-        primary: 'red',
-        secondary: 'purple'
+        primary: '#FFF',
+        secondary: '#EAEAEA'
       }
     }
     return (
