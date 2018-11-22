@@ -8,7 +8,7 @@
 
 ## Description
 
-  Application permmetant de créer des playlist a plusieurs avec un systême de vote pour retirer les musiques.
+  Application mobile permettant de créer des playlists à plusieurs avec un système de vote pour retirer les musiques.
   
 ## Fonctionnalités
 
@@ -19,7 +19,34 @@
   
 ## Choix techniques
 
+### Client
+
+  - React Native
+  - React Navigation
   - Redux
-  - Styled-components
-  - React-navigation
+  - Styled Components
+  - Native Base
   
+### Serveur
+
+  - Feathers
+  - NeDB
+  
+## Licence
+
+```text
+Copyright (C) 2018 Brojob
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+```
