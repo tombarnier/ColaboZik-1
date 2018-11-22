@@ -68,7 +68,7 @@ export default class Room extends Component {
           style={{backgroundColor: '#5067FF'}}
           position="bottomLeft"
           onPress={() => navigation.navigate('Player')}>
-          <Icon name="add"/>
+          <Icon name="play"/>
         </Fab>
       </View>
     )
