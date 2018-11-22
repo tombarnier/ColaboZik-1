@@ -5,6 +5,7 @@ import Home from '../screens/home'
 import AddRoom from '../screens/addRoom'
 import ListRooms from '../screens/listRooms'
 import Room from '../screens/room'
+import Player from '../screens/player'
 import AddTrack from '../screens/addTrack'
 
 const optionsGeneral = {
@@ -37,6 +38,12 @@ const LoggedUser = createStackNavigator({
     screen: AddTrack,
     navigationOptions: {
       title: 'Ajouter une piste'
+    }
+  },
+  Player : {
+    screen: Player,
+    navigationOptions: {
+      title: 'Player'
     }
   }
 })

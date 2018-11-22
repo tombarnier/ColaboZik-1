@@ -1,12 +1,13 @@
 import React, {Component} from 'react'
 import {View} from 'react-native'
-import {H1, Form, Item, Label, Input, Text, Button} from 'native-base'
+import {Form, Text, Button} from 'native-base'
 import PropTypes from 'prop-types'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import styled from 'styled-components'
 
 import allTheActions from '../actions'
+import InputLabeled from '../components/inputLabeled'
 
 const BackgroundView = styled.View`
   flex: 1;
@@ -42,10 +43,8 @@ class AddTrack extends Component {
       <BackgroundView>
         <Inputs>
           <Form>
-            <Item floatingLabel>
-              <Label>Lien Youtube</Label>
-              <Input onChangeText={url => this.setState({url: url})}/>
-            </Item>
+            <InputLabeled label='Lien Youtube'
+                          onChange={url => this.setState({url: url})}/>
           </Form>
         </Inputs>
         <Button block success onPress={this._validLink}>

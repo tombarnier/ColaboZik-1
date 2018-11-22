@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {View, FlatList} from 'react-native'
-import {Fab, Icon, List, ListItem} from 'native-base'
+import {Fab, Icon} from 'native-base'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
@@ -62,6 +62,13 @@ export default class Room extends Component {
           position="bottomRight"
           onPress={() => navigation.navigate('AddTrack')}>
           <Icon name="add"/>
+        </Fab>
+
+        <Fab
+          style={{backgroundColor: '#5067FF'}}
+          position="bottomLeft"
+          onPress={() => navigation.navigate('Player')}>
+          <Icon name="play"/>
         </Fab>
       </View>
     )

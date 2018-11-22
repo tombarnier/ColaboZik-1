@@ -1,13 +1,14 @@
 import React, {Component} from 'react'
 import {View, TouchableOpacity} from 'react-native'
-import {Button, Form, H1, Input, Item, Label, Text, Textarea} from 'native-base'
+import {Button, Form, H1, Text} from 'native-base'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 
 import allTheActions from '../actions'
-import { login } from '../actions/auth'
+import {login} from '../actions/auth'
+import InputLabeled from '../components/inputLabeled'
 
 const BackgroundView = styled.View`
   flex: 1;
@@ -50,23 +51,21 @@ class Home extends Component {
       else window.alert('BIIIIIIIIPPPP')
     })
   }
+
   render() {
     const {navigation} = this.props
 
     return (
       <BackgroundView>
-        <H1>Connection</H1>
+        <H1>Connexion</H1>
 
         <Inputs>
           <Form>
-            <Item floatingLabel>
-              <Label>Pseudo</Label>
-              <Input onChangeText={email => this.setState({email: email})}/>
-            </Item>
-            <Item floatingLabel>
-              <Label>Mot de passe</Label>
-              <Input secureTextEntry={true} onChangeText={pass => this.setState({pass: pass})}/>
-            </Item>
+            <InputLabeled label='Adresse email'
+                          onChange={email => this.setState({email: email})}/>
+            <InputLabeled label='Mot de passe'
+                          isPassword
+                          onChange={pass => this.setState({pass: pass})}/>
           </Form>
         </Inputs>
         <Button block info onPress={() => this.submit()}>
@@ -80,7 +79,7 @@ class Home extends Component {
 
 const mapDispatchToProps = dispatch => ({
   actions: {
-    auth: bindActionCreators(allTheActions.auth,dispatch)
+    auth: bindActionCreators(allTheActions.auth, dispatch)
   }
 })
 

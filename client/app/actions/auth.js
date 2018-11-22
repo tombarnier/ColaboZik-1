@@ -5,7 +5,7 @@ import socketio from 'feathers-socketio/client'
 import authentication from 'feathers-authentication-client'
 import {AsyncStorage} from 'react-native'
 
-const API_URL = 'http://10.92.3.30:3030'
+const API_URL = 'http://localhost:3030'
 
 const options = {transports: ['websocket'], pingTimeout: 3000, pingInterval: 5000}
 
