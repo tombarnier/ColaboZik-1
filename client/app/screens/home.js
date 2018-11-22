@@ -3,6 +3,10 @@ import {View, TouchableOpacity} from 'react-native'
 import {Button, Form, H1, Input, Item, Label, Text, Textarea} from 'native-base'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
+
+import allTheActions from '../actions'
 
 const BackgroundView = styled.View`
   flex: 1;
@@ -26,11 +30,14 @@ const TextBouton = styled.Text`
    justify-content: center;
 `
 
-export default class Home extends Component {
+class Home extends Component {
   static propTypes = {
     navigation: PropTypes.object
   }
 
+  submit = () => {
+    const { emailValue, passValue } = this.state
+  }
   render() {
     const {navigation} = this.props
 
@@ -51,7 +58,7 @@ export default class Home extends Component {
           </Form>
         </Inputs>
 
-        <Button block info onPress={() => navigation.navigate('ListRooms')}>
+        <Button block info onPress={() => navigation.navigate('authLoading')}>
           <Text>Se connecter</Text>
         </Button>
 
@@ -59,3 +66,20 @@ export default class Home extends Component {
     )
   }
 }
+
+const mapDispatchToProps = dispatch => ({
+  actions: {
+    auth: bindActionCreators(allTheActions.auth,dispatch)
+  }
+})
+
+const mapStateToProps = state => {
+  return {
+    accessToken: state.user.accessToken
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Home)
