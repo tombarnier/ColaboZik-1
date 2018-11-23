@@ -2,6 +2,8 @@ const { authenticate } = require('@feathersjs/authentication').hooks;
 
 const createMusic = require('../../hooks/create-music');
 
+const addMusicPlaylist = require('../../hooks/add-music-playlist');
+
 module.exports = {
   before: {
     all: [ authenticate('jwt') ],
@@ -17,7 +19,7 @@ module.exports = {
     all: [],
     find: [],
     get: [],
-    create: [],
+    create: [addMusicPlaylist()],
     update: [],
     patch: [],
     remove: []

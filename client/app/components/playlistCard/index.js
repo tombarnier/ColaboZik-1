@@ -10,14 +10,15 @@ export default class PlaylistCard extends Component {
 
   render() {
     const {navigation, playlist} = this.props
-    const {title, description} = playlist
+    const {nom, tags} = playlist
+    console.log(playlist)
     return (
       <Card>
         <CardItem header bordered button onPress={() => navigation.navigate('Playlist', { playlist })}>
-          <Text>{title}</Text>
+          <Text>{nom}</Text>
         </CardItem>
         <CardItem bordered>
-          <Text>{description}</Text>
+          <Text>{tags}</Text>
         </CardItem>
       </Card>
     )

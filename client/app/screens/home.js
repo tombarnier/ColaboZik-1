@@ -34,8 +34,8 @@ class Home extends Component {
       <View style={{flex: 1}}>
         <ScrollPlaylists>
           <FlatList data={this.props.playlists}
-                    renderItem={this._playlistCard}
-                    keyExtractor={(item) => item._id}/>
+            renderItem={this._playlistCard}
+            keyExtractor={(item) => item._id}/>
         </ScrollPlaylists>
 
         <Fab
