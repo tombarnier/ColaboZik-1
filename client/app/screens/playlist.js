@@ -54,7 +54,7 @@ export default class Playlist extends Component {
         <ScrollMusic>
           <FlatList data={this.musics}
                     renderItem={this._musicCard}
-                    keyExtractor={(item) => item.thumbnail}/>
+                    keyExtractor={(item) => item._id}/>
         </ScrollMusic>
 
         <Fab

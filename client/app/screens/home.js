@@ -35,7 +35,7 @@ class Home extends Component {
         <ScrollPlaylists>
           <FlatList data={this.props.playlists}
             renderItem={this._playlistCard}
-            keyExtractor={(item) => item.name}/>
+            keyExtractor={(item) => item._id}/>
           <Text></Text>
         </ScrollPlaylists>
 
