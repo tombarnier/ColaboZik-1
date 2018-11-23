@@ -17,6 +17,9 @@ module.exports = function (options = {}) {
             });
             context.musics = musics; 
           });
+          let tags = data.tags.split(' ');
+          data.tags =[];
+          await tags.map((tag) => data.tags.push(tag));
           resolve();
         }
       });
