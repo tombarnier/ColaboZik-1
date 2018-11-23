@@ -67,6 +67,6 @@ export const login = (email, password) => dispatch => {
 }
 
 export const getPlaylists = (userId) => dispatch => {
-  const playlists = app.service('playlist').find()
+  const playlists = app.service('playlists').find()
   return playlists
 }
