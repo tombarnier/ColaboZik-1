@@ -7,7 +7,6 @@ import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 
 import allTheActions from '../actions'
-import {login} from '../actions/auth'
 import InputLabeled from '../components/inputLabeled'
 
 const BackgroundView = styled.View`

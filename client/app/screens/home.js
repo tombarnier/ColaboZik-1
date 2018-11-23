@@ -7,7 +7,6 @@ import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 
 import allTheActions from '../actions'
-import {app} from '../actions/auth'
 
 import PlaylistCard from '../components/playlistCard'
 
@@ -24,7 +23,7 @@ class Home extends Component {
     <PlaylistCard playlist={item} navigation={this.props.navigation}/>
 
   componentDidMount() {
-    const { actions } = this.props
+    const { actions, user } = this.props
     actions.playlists.loadPlaylists()
   }
 
@@ -52,14 +51,13 @@ class Home extends Component {
 
 const mapDispatchToProps = dispatch => ({
   actions: {
-    auth: bindActionCreators(allTheActions.auth, dispatch),
     playlists: bindActionCreators(allTheActions.playlists, dispatch),
   }
 })
 
 const mapStateToProps = state => {
   return {
-    user: state.auth.user,
+    user: state.feathers.user,
     playlists: state.playlists.playlists
   }
 }
