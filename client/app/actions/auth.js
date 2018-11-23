@@ -19,28 +19,10 @@ export const app = feathers()
   }))
 
 export const AUTHENTICATE = 'AUTHENTICATE'
-export const ADD_PLAYlISTS = 'ADD_PLAYlISTS'
-export const ADD_PLAYlIST = 'ADD_PLAYlIST'
-export const REMOVE_PLAYlIST = 'REMOVE_PLAYlIST'
 
 export const authenticate = payload => ({
   type: AUTHENTICATE,
   user: payload.user
-})
-
-export const addPlaylists = payload => ({
-  type: ADD_PLAYlISTS,
-  playlists: payload.playlists
-})
-
-export const addPlaylist = payload => ({
-  type: ADD_PLAYlIST,
-  playlist: payload.playlist
-})
-
-export const removePlaylist = payload => ({
-  type: REMOVE_PLAYlIST,
-  id: payload.id
 })
 
 export const reauthenticate = () => dispatch => {
@@ -86,28 +68,4 @@ export const login = (email, password) => dispatch => {
       // console.log('error:', e)
       return false
     })
-}
-
-export const getPlaylists = (userId) => dispatch => {
-  app.service('playlists').on('created', (playlist) => {
-    dispatch(
-      addPlaylist({
-        playlist: playlist
-      })
-    )
-  })
-  app.service('playlists').on('removed', (playlist) => {
-    dispatch(
-      removePlaylist({
-        id: playlist._id
-      })
-    )
-  })
-  return app.service('playlists').find().then((response) => {
-    dispatch(
-      addPlaylists({
-        playlists: response.data
-      })
-    )
-  })
 }
