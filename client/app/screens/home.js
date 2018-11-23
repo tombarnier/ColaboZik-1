@@ -18,24 +18,25 @@ const ScrollPlaylists = styled.ScrollView`
 class Home extends Component {
   static propTypes = {
     navigation: PropTypes.object,
-    playlists: PropTypes.array
+    // playlists: PropTypes.array
   }
 
-  state = {
-    playlists: []
-  }
+  // state = {
+  //   playlists: []
+  // }
 
   _playlistCard = ({item}) =>
     <PlaylistCard playlist={item} navigation={this.props.navigation}/>
 
   componentDidMount() {
     const { actions } = this.props
-    actions.auth.getPlaylists().then((response) => {
-      console.log(response.data)
-      this.setState({
-        playlists: response.data
-      })
-    })
+    // actions.auth.getPlaylists().then((response) => {
+    //   console.log(response.data)
+    //   this.setState({
+    //     playlists: response.data
+    //   })
+    // })
+    actions.auth.getPlaylists()
   }
 
   render() {
@@ -44,7 +45,7 @@ class Home extends Component {
     return (
       <View style={{flex: 1}}>
         <ScrollPlaylists>
-          <FlatList data={this.state.playlists}
+          <FlatList data={this.props.playlists}
                     renderItem={this._playlistCard}
                     keyExtractor={(item) => item._id}/>
         </ScrollPlaylists>
@@ -68,7 +69,8 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = state => {
   return {
-    accessToken: state.user
+    user: state.auth.user,
+    playlists: state.auth.playlists
   }
 }
 
