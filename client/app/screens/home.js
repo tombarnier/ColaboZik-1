@@ -1,91 +1,64 @@
 import React, {Component} from 'react'
-import {View, TouchableOpacity} from 'react-native'
-import {Button, Form, H1, Text} from 'native-base'
+import {View, FlatList} from 'react-native'
+import {Fab, Icon} from 'native-base'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 
 import allTheActions from '../actions'
-import {login} from '../actions/auth'
-import InputLabeled from '../components/inputLabeled'
 
-const BackgroundView = styled.View`
-  flex: 1;
+import PlaylistCard from '../components/playlistCard'
+
+const ScrollPlaylists = styled.ScrollView`
   padding: 10px;
-  background-color: ${props => props.theme.color.secondary};
-  justify-content: center;
-  align-items: center;
-`
-
-const Inputs = styled.View`
-  width: 100%;
-  margin: 40px 0;
-`
-
-const ParameterTouchableOpacity = styled.TouchableOpacity`
-  border: 5px solid black;
-  width: 200px;
-`
-
-const TextBouton = styled.Text`
-   justify-content: center;
 `
 
 class Home extends Component {
   static propTypes = {
     navigation: PropTypes.object,
-    email: PropTypes.string,
-    pass: PropTypes.string
-  }
-  state = {
-    email: '',
-    pass: ''
   }
 
-  submit = () => {
-    const { email, pass } = this.state
-    const { actions } = this.props
-    actions.auth.login(email,pass).then((authenticated) => {
-      if(authenticated === true) this.props.navigation.navigate('ListRooms')
-      else window.alert('BIIIIIIIIPPPP')
-    })
+  _playlistCard = ({item}) =>
+    <PlaylistCard playlist={item} navigation={this.props.navigation}/>
+
+  componentDidMount() {
+    const { actions, user } = this.props
+    actions.playlists.loadPlaylists()
   }
 
   render() {
     const {navigation} = this.props
 
     return (
-      <BackgroundView>
-        <H1>Connexion</H1>
+      <View style={{flex: 1}}>
+        <ScrollPlaylists>
+          <FlatList data={this.props.playlists}
+                    renderItem={this._playlistCard}
+                    keyExtractor={(item) => item._id}/>
+        </ScrollPlaylists>
 
-        <Inputs>
-          <Form>
-            <InputLabeled label='Adresse email' icon='mail'
-                          onChange={email => this.setState({email})}/>
-            <InputLabeled label='Mot de passe' icon='lock'
-                          isPassword
-                          onChange={pass => this.setState({pass})}/>
-          </Form>
-        </Inputs>
-        <Button block info onPress={() => this.submit()}>
-          <Text>Se connecter</Text>
-        </Button>
-
-      </BackgroundView>
+        <Fab
+          style={{backgroundColor: '#5067FF'}}
+          position="bottomRight"
+          onPress={() => navigation.navigate('AddPlaylist')}>
+          <Icon name="add"/>
+        </Fab>
+      </View>
     )
   }
 }
 
 const mapDispatchToProps = dispatch => ({
   actions: {
-    auth: bindActionCreators(allTheActions.auth, dispatch)
+    playlists: bindActionCreators(allTheActions.playlists, dispatch),
   }
 })
 
 const mapStateToProps = state => {
   return {
-    accessToken: state.user
+    user: state.feathers.user,
+    playlists: state.playlists.playlists
   }
 }
 

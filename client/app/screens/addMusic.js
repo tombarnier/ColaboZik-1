@@ -1,9 +1,12 @@
 import React, {Component} from 'react'
 import {View} from 'react-native'
-import {Form, Button, Text} from 'native-base'
+import {Form, Text, Button} from 'native-base'
 import PropTypes from 'prop-types'
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
 import styled from 'styled-components'
 
+import allTheActions from '../actions'
 import InputLabeled from '../components/inputLabeled'
 
 const BackgroundView = styled.View`
@@ -19,18 +22,17 @@ const Inputs = styled.View`
   margin-bottom: 40px;
 `
 
-export default class AddRoom extends Component {
+class AddMusic extends Component {
   static propTypes = {
     navigation: PropTypes.object
   }
 
   state = {
-    name: '',
-    description: ''
+    url: ''
   }
 
   _validLink = () => {
-    alert(`creation salon : ${this.state.name}`)
+    alert(`creation piste : ${this.state.url}`)
     this.props.navigation.goBack()
   }
 
@@ -41,10 +43,8 @@ export default class AddRoom extends Component {
       <BackgroundView>
         <Inputs>
           <Form>
-            <InputLabeled label='Nom'
-                          onChange={name => this.setState({name})}/>
-            <InputLabeled label='Description'
-                          onChange={description => this.setState({description})}/>
+            <InputLabeled label='Lien Youtube' icon='link'
+                          onChange={url => this.setState({url})}/>
           </Form>
         </Inputs>
         <Button block success onPress={this._validLink}>
@@ -54,3 +54,18 @@ export default class AddRoom extends Component {
     )
   }
 }
+
+const mapDispatchToProps = dispatch => ({
+  actions: {
+    // tracks: bindActionCreators(allTheActions.tracks, dispatch)
+  }
+})
+
+const mapStateToProps = state => {
+  return {}
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AddMusic)

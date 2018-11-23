@@ -2,20 +2,18 @@ import React, {Component} from 'react'
 import {Card, CardItem, Text} from 'native-base'
 import PropTypes from 'prop-types'
 
-export default class RoomCard extends Component {
+export default class PlaylistCard extends Component {
   static propTypes = {
-    room: PropTypes.object,
+    playlist: PropTypes.object,
     navigation: PropTypes.object
   }
 
   render() {
-    const {navigation, room} = this.props
-    const {title, description} = room
+    const {navigation, playlist} = this.props
+    const {title, description} = playlist
     return (
       <Card>
-        <CardItem header bordered button onPress={() => navigation.navigate('Room', {
-          room
-        })}>
+        <CardItem header bordered button onPress={() => navigation.navigate('Playlist', { playlist })}>
           <Text>{title}</Text>
         </CardItem>
         <CardItem bordered>

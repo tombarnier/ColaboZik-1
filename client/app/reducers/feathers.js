@@ -1,7 +1,8 @@
-import { AUTHENTICATE } from '../actions/auth'
+import { AUTHENTICATE } from '../actions/feathers'
 
 const initialState = {
-  user: {}
+  user: null,
+  playlists: []
 }
 
 export default (state = initialState,action) => {
@@ -9,7 +10,7 @@ export default (state = initialState,action) => {
   case AUTHENTICATE:
     return {
       ...state,
-      user: action.payload
+      user: action.user
     }
   default:
     return state
