@@ -9,20 +9,21 @@ module.exports = function (options = {}) {
           reject(new Error('playlist existante'));
         }
         else {
-          let musics =[];
-          await data.musics.map((music) => {
-            app.service('musics').find(music.id).then((res) =>{
-              if(res.total > 0) musics.push(res.data[0]._id);
-              else console.log('musique inexistante');
+          if (!data.musics){
+            let musics =[];
+            await data.musics.map((music) => {
+              app.service('musics').find(music.id).then((res) =>{
+                if(res.total > 0) musics.push(res.data[0]._id);
+                else console.log('musique inexistante');
+              });
+              context.musics = musics; 
             });
-            context.musics = musics; 
-          });
-          let tags = data.tags.split(' ');
-          data.tags =[];
-          await tags.map((tag) => data.tags.push(tag));
+          }
+          data.tags = data.tags.split(' ');
           resolve();
         }
-      });
+      })
+        .catch((err) => {throw err;});
     })
       .then(() => {return context;})
       .catch((err) => {throw err;});
