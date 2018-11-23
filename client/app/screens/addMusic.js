@@ -28,7 +28,7 @@ class AddMusic extends Component {
   }
 
   state = {
-    url: ''
+    link: ''
   }
 
   _validLink = () => {
@@ -44,7 +44,7 @@ class AddMusic extends Component {
         <Inputs>
           <Form>
             <InputLabeled label='Lien Youtube' icon='link'
-                          onChange={url => this.setState({url})}/>
+                          onChange={link => this.setState({link})}/>
           </Form>
         </Inputs>
         <Button block success onPress={this._validLink}>

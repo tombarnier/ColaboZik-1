@@ -26,7 +26,7 @@ export default class AddPlaylist extends Component {
 
   state = {
     name: '',
-    description: ''
+    tags: ''
   }
 
   _validLink = () => {
@@ -43,8 +43,8 @@ export default class AddPlaylist extends Component {
           <Form>
             <InputLabeled label='Nom'
                           onChange={name => this.setState({name})}/>
-            <InputLabeled label='Description'
-                          onChange={description => this.setState({description})}/>
+            <InputLabeled label='Tags'
+                          onChange={tags => this.setState({tags})}/>
           </Form>
         </Inputs>
         <Button block success onPress={this._validLink}>

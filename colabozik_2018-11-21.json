@@ -207,7 +207,7 @@
 			},
 			"body": {
 				"mimeType": "application/json",
-				"text": "{\n\t\"nom\": \"La playlist de la honte\",\n\t\"tags\": [\"Disco\",\"Année 80\"],\n\t\"membres\": [\"admin\",\"woop\"],\n\t\"musics\":[\n\t\t{\n\t\t\t\"lien\":\"https://www.youtube.com/watch?v=BinWA0EenDY\",\n\t\t\t\"titre\":\"I'm blue\",\n\t\t\t\"artiste\":\"eifell 65\",\n\t\t\t\"upload\":\"woop\",\n\t\t\t\"vote\": 0\n\t\t},\n\t\t{\n\t\t\t\"lien\":\"https://www.youtube.com/watch?v=ZyhrYis509A\",\n\t\t\t\"titre\":\"Barbie girl\",\n\t\t\t\"artiste\":\"aqua\",\n\t\t\t\"upload\":\"woop\",\n\t\t\t\"vote\": 0\n\t\t}\n\t]\n}"
+				"text": "{\n\t\"nom\": \"La playlist de la honte\",\n\t\"description\": [\"Disco\",\"Année 80\"],\n\t\"membres\": [\"admin\",\"woop\"],\n\t\"musics\":[\n\t\t{\n\t\t\t\"lien\":\"https://www.youtube.com/watch?v=BinWA0EenDY\",\n\t\t\t\"titre\":\"I'm blue\",\n\t\t\t\"artiste\":\"eifell 65\",\n\t\t\t\"upload\":\"woop\",\n\t\t\t\"vote\": 0\n\t\t},\n\t\t{\n\t\t\t\"lien\":\"https://www.youtube.com/watch?v=ZyhrYis509A\",\n\t\t\t\"titre\":\"Barbie girl\",\n\t\t\t\"artiste\":\"aqua\",\n\t\t\t\"upload\":\"woop\",\n\t\t\t\"vote\": 0\n\t\t}\n\t]\n}"
 			},
 			"created": 1542815486518,
 			"description": "",

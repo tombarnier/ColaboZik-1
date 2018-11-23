@@ -17,7 +17,7 @@ export default class Playlist extends Component {
 
   musics = [{
     id: '1',
-    title: 'Music #1',
+    title: 'Music #1 sdhv uhgo ',
     thumbnail: 'http://i3.ytimg.com/vi/erLk59H86ww/maxresdefault.jpg'
   }, {
     id: '2',

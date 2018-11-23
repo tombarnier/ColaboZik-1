@@ -1,6 +1,15 @@
 import React, {Component} from 'react'
-import {Card, CardItem, Text} from 'native-base'
+import {Card, CardItem, Text, Badge} from 'native-base'
 import PropTypes from 'prop-types'
+import {FlatList} from 'react-native'
+import styled from 'styled-components'
+import TagBadge from './TagBadge'
+
+const TagList = styled.FlatList`
+  flex: 1;
+  flex-direction: row;
+  flex-wrap: wrap;
+`
 
 export default class PlaylistCard extends Component {
   static propTypes = {
@@ -8,17 +17,22 @@ export default class PlaylistCard extends Component {
     navigation: PropTypes.object
   }
 
+  _tagBadge = ({item}) => <TagBadge tag={item}/>
+
+
   render() {
     const {navigation, playlist} = this.props
-    const {nom, tags} = playlist
+    const {name, tags} = playlist
     console.log(playlist)
     return (
       <Card>
         <CardItem header bordered button onPress={() => navigation.navigate('Playlist', { playlist })}>
-          <Text>{nom}</Text>
+          <Text>{name}</Text>
         </CardItem>
         <CardItem bordered>
-          <Text>{tags}</Text>
+          <TagList data={tags}
+                   renderItem={this._tagBadge}
+                   keyExtractor={(item) => item}/>
         </CardItem>
       </Card>
     )

@@ -1,6 +1,11 @@
 import React, {Component} from 'react'
 import {View, Card, CardItem, Text, Image, Left, Right, Body, Thumbnail, Icon, Button} from 'native-base'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
+
+const RightCard = styled.View`
+  align-items: center;
+`
 
 export default class MusicCard extends Component {
   static propTypes = {
@@ -15,16 +20,16 @@ export default class MusicCard extends Component {
       <Card>
         <CardItem>
           <Left>
-            <Thumbnail square large source={{uri: thumbnail}} />
+            <Thumbnail square large source={{uri: thumbnail}}/>
             <Body header>
               <Text>{title}</Text>
             </Body>
           </Left>
-          <Right>
+          <RightCard>
             <Button danger>
-              <Icon name="trash" />
+              <Icon name='trash' />
             </Button>
-          </Right>
+          </RightCard>
         </CardItem>
       </Card>
     )

@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {View, FlatList} from 'react-native'
+import {View, FlatList, Text} from 'react-native'
 import {Fab, Icon} from 'native-base'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
@@ -19,13 +19,13 @@ class Home extends Component {
     navigation: PropTypes.object,
   }
 
-  _playlistCard = ({item}) =>
-    <PlaylistCard playlist={item} navigation={this.props.navigation}/>
-
   componentDidMount() {
     const { actions, user } = this.props
     actions.playlists.loadPlaylists()
   }
+
+  _playlistCard = ({item}) =>
+    <PlaylistCard playlist={item} navigation={this.props.navigation}/>
 
   render() {
     const {navigation} = this.props
@@ -35,7 +35,8 @@ class Home extends Component {
         <ScrollPlaylists>
           <FlatList data={this.props.playlists}
             renderItem={this._playlistCard}
-            keyExtractor={(item) => item._id}/>
+            keyExtractor={(item) => item.name}/>
+          <Text></Text>
         </ScrollPlaylists>
 
         <Fab

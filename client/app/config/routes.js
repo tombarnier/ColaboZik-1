@@ -31,7 +31,7 @@ const LoggedUser = createStackNavigator({
     screen: Playlist,
     navigationOptions: ({navigation}) => {
       return {
-        title: navigation.getParam('playlist', 'Playlist').title,
+        title: navigation.getParam('playlist', 'Playlist').name,
       }
     }
   },
