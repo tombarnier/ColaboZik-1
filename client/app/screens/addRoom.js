@@ -42,9 +42,9 @@ export default class AddRoom extends Component {
         <Inputs>
           <Form>
             <InputLabeled label='Nom'
-                          onChange={name => this.setState({name: name})} />
+                          onChange={name => this.setState({name})}/>
             <InputLabeled label='Description'
-                          onChange={desc => this.setState({description: desc})} />
+                          onChange={description => this.setState({description})}/>
           </Form>
         </Inputs>
         <Button block success onPress={this._validLink}>

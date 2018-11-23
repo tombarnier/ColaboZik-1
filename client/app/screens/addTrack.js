@@ -44,7 +44,7 @@ class AddTrack extends Component {
         <Inputs>
           <Form>
             <InputLabeled label='Lien Youtube' icon='link'
-                          onChange={url => this.setState({url: url})}/>
+                          onChange={url => this.setState({url})}/>
           </Form>
         </Inputs>
         <Button block success onPress={this._validLink}>
