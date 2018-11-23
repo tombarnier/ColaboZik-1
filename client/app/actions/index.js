@@ -1,7 +1,7 @@
-import * as auth from './auth'
+import * as feathers from './feathers'
 import * as playlists from './playlists'
 
 export default {
-  auth,
+  feathers,
   playlists
 }

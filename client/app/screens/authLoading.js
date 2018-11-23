@@ -21,7 +21,7 @@ class AuthLoading extends React.Component {
 
   componentDidMount() {
     const { actions, navigation } = this.props
-    actions.auth.reauthenticate().then((authenticated) => {
+    actions.feathers.reauthenticate().then((authenticated) => {
       navigation.navigate(authenticated ? 'Connected' : 'Disconnected')
     })
   }
@@ -39,13 +39,13 @@ class AuthLoading extends React.Component {
 
 const mapDispatchToProps = dispatch => ({
   actions: {
-    auth: bindActionCreators(allTheActions.auth, dispatch)
+    feathers: bindActionCreators(allTheActions.feathers, dispatch)
   }
 })
 
 const mapStateToProps = state => {
   return {
-    accessToken: state.user
+    user: state.feathers.user
   }
 }
 

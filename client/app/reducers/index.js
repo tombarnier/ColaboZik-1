@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux'
 
-import auth from './auth'
+import feathers from './feathers'
 import playlists from './playlists'
 
 export default combineReducers({
-  auth,
+  feathers,
   playlists
 })
