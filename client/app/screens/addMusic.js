@@ -43,7 +43,7 @@ class AddMusic extends Component {
       <BackgroundView>
         <Inputs>
           <Form>
-            <InputLabeled label='Lien Youtube'
+            <InputLabeled label='Lien Youtube' icon='link'
                           onChange={url => this.setState({url: url})}/>
           </Form>
         </Inputs>

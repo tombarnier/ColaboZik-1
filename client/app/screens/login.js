@@ -61,9 +61,9 @@ class Login extends Component {
 
         <Inputs>
           <Form>
-            <InputLabeled label='Adresse email'
+            <InputLabeled label='Adresse email' icon='mail'
                           onChange={email => this.setState({email})}/>
-            <InputLabeled label='Mot de passe'
+            <InputLabeled label='Mot de passe' icon='lock'
                           isPassword
                           onChange={password => this.setState({password})}/>
           </Form>
