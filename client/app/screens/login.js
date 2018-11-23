@@ -46,7 +46,7 @@ class Login extends Component {
   submit = () => {
     const { email, password } = this.state
     const { actions } = this.props
-    actions.auth.login(email, password).then((authenticated) => {
+    actions.feathers.login(email, password).then((authenticated) => {
       if(authenticated === true) this.props.navigation.navigate('Home')
       else window.alert('Invalid credentials')
     })
@@ -79,13 +79,13 @@ class Login extends Component {
 
 const mapDispatchToProps = dispatch => ({
   actions: {
-    auth: bindActionCreators(allTheActions.auth, dispatch)
+    feathers: bindActionCreators(allTheActions.feathers, dispatch)
   }
 })
 
 const mapStateToProps = state => {
   return {
-    accessToken: state.user
+    user: state.feathers.user
   }
 }
 
