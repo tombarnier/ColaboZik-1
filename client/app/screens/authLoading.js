@@ -1,4 +1,5 @@
-import { ActivityIndicator, AsyncStorage, StatusBar } from 'react-native'
+import {ActivityIndicator, AsyncStorage, StatusBar} from 'react-native'
+import {Spinner} from 'native-base'
 import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
@@ -20,7 +21,7 @@ class AuthLoading extends React.Component {
   }
 
   componentDidMount() {
-    const { actions, navigation } = this.props
+    const {actions, navigation} = this.props
     actions.feathers.reauthenticate().then((authenticated) => {
       navigation.navigate(authenticated ? 'Connected' : 'Disconnected')
     })
@@ -29,8 +30,8 @@ class AuthLoading extends React.Component {
   render() {
     return (
       <AuthLoadingContainer>
-        <ActivityIndicator />
-        <StatusBar barStyle="default" />
+        <Spinner color='blue'/>
+        <StatusBar barStyle="default"/>
       </AuthLoadingContainer>
     )
   }

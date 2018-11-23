@@ -38,7 +38,7 @@ export const reauthenticate = () => dispatch => {
           })
         )
       })
-      return payload.userId ? true : false
+      return !!payload.userId
     }).catch((e) => {
       // console.log('error:', e)
       return false
@@ -63,7 +63,7 @@ export const login = (email, password) => dispatch => {
           })
         )
       })
-      return payload.userId ? true : false
+      return !!payload.userId
     }).catch((e) => {
       // console.log('error:', e)
       return false
