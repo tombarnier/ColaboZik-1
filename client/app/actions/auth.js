@@ -25,6 +25,24 @@ export const authenticate = user => ({
   user: user
 })
 
+export const reauthenticate = () => dispatch => {
+  return app.authenticate()
+    .then(response => {
+      return app.passport.verifyJWT(response.accessToken)
+    })
+    .then(payload => {
+      dispatch(
+        authenticate({
+          payload: payload
+        })
+      )
+      return payload.userId ? true : false
+    }).catch((e) => {
+      // console.log('error:', e)
+      return false
+    })
+}
+
 export const login = (email,pass) => dispatch => {
   const payload = {
     strategy: 'local',
@@ -42,7 +60,10 @@ export const login = (email,pass) => dispatch => {
         })
       )
       return payload.userId ? true : false
-    }).catch(console.log)
+    }).catch((e) => {
+      // console.log('error:', e)
+      return false
+    })
 }
 
 export const getPlaylists = (userId) => dispatch => {

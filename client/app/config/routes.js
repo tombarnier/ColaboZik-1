@@ -1,6 +1,7 @@
 import { createSwitchNavigator, createStackNavigator} from 'react-navigation'
 
 import {displayName as appName} from '../../app.json'
+import AuthLoading from '../screens/authLoading'
 import Home from '../screens/home'
 import AddRoom from '../screens/addRoom'
 import ListRooms from '../screens/listRooms'
@@ -10,7 +11,8 @@ import AddTrack from '../screens/addTrack'
 
 const optionsGeneral = {
   mode: 'modal',
-  headerMode: 'none'
+  headerMode: 'none',
+  initialRouteName: 'AuthLoading'
 }
 
 const LoggedUser = createStackNavigator({
@@ -59,11 +61,17 @@ const DisconnectedUser = createStackNavigator ({
 
 export default createSwitchNavigator(
   {
-    Auth: {
-      screen: DisconnectedUser
+    AuthLoading: {
+      screen: AuthLoading,
+      navigationOptions: {
+        title: appName
+      }
     },
-    Home: {
+    Connected: {
       screen: LoggedUser
+    },
+    Disconnected: {
+      screen: DisconnectedUser
     }
   },
   optionsGeneral
