@@ -20,9 +20,9 @@ export const app = feathers()
 
 export const AUTHENTICATE = 'AUTHENTICATE'
 
-export const authenticate = user => ({
+export const authenticate = payload => ({
   type: AUTHENTICATE,
-  user: user
+  user: payload.user
 })
 
 export const reauthenticate = () => dispatch => {
@@ -31,11 +31,13 @@ export const reauthenticate = () => dispatch => {
       return app.passport.verifyJWT(response.accessToken)
     })
     .then(payload => {
-      dispatch(
-        authenticate({
-          payload
-        })
-      )
+      app.service('users').get(payload.userId).then((user) => {
+        dispatch(
+          authenticate({
+            user
+          })
+        )
+      })
       return payload.userId ? true : false
     }).catch((e) => {
       // console.log('error:', e)
@@ -54,11 +56,13 @@ export const login = (email, password) => dispatch => {
       return app.passport.verifyJWT(response.accessToken)
     })
     .then(payload => {
-      dispatch(
-        authenticate({
-          payload
-        })
-      )
+      app.service('users').get(payload.userId).then((user) => {
+        dispatch(
+          authenticate({
+            user
+          })
+        )
+      })
       return payload.userId ? true : false
     }).catch((e) => {
       // console.log('error:', e)

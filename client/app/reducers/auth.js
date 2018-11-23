@@ -1,7 +1,7 @@
 import { AUTHENTICATE } from '../actions/auth'
 
 const initialState = {
-  user: {}
+  user: null,
 }
 
 export default (state = initialState,action) => {
@@ -9,7 +9,7 @@ export default (state = initialState,action) => {
   case AUTHENTICATE:
     return {
       ...state,
-      user: action.payload
+      user: action.user
     }
   default:
     return state
