@@ -1,7 +1,7 @@
-// Initializes the `playlist` service on path `/playlist`
+// Initializes the `playlists` service on path `/playlists`
 const createService = require('feathers-nedb');
-const createModel = require('../../models/playlist.model');
-const hooks = require('./playlist.hooks');
+const createModel = require('../../models/playlists.model');
+const hooks = require('./playlists.hooks');
 
 module.exports = function (app) {
   const Model = createModel(app);
@@ -13,10 +13,10 @@ module.exports = function (app) {
   };
 
   // Initialize our service with any options it requires
-  app.use('/playlist', createService(options));
+  app.use('/playlists', createService(options));
 
   // Get our initialized service so that we can register hooks
-  const service = app.service('playlist');
+  const service = app.service('playlists');
 
   service.hooks(hooks);
 };

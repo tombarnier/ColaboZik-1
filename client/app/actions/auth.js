@@ -5,7 +5,7 @@ import socketio from 'feathers-socketio/client'
 import authentication from 'feathers-authentication-client'
 import {AsyncStorage} from 'react-native'
 
-const API_URL = 'http://localhost:3030'
+import {API_URL} from '../../config'
 
 const options = {transports: ['websocket'], pingTimeout: 3000, pingInterval: 5000}
 
@@ -19,33 +19,95 @@ export const app = feathers()
   }))
 
 export const AUTHENTICATE = 'AUTHENTICATE'
+export const ADD_PLAYlISTS = 'ADD_PLAYlISTS'
+export const ADD_PLAYlIST = 'ADD_PLAYlIST'
+export const REMOVE_PLAYlIST = 'REMOVE_PLAYlIST'
 
-export const authenticate = user => ({
+export const authenticate = payload => ({
   type: AUTHENTICATE,
-  user: user
+  user: payload.user
 })
 
-export const login = (email,pass) => dispatch => {
+export const addPlaylists = payload => ({
+  type: ADD_PLAYlISTS,
+  playlists: payload.playlists
+})
+
+export const addPlaylist = payload => ({
+  type: ADD_PLAYlIST,
+  playlist: payload.playlist
+})
+
+export const removePlaylist = payload => ({
+  type: REMOVE_PLAYlIST,
+  id: payload.id
+})
+
+export const reauthenticate = () => dispatch => {
+  return app.authenticate()
+    .then(response => {
+      return app.passport.verifyJWT(response.accessToken)
+    })
+    .then(payload => {
+      app.service('users').get(payload.userId).then((user) => {
+        dispatch(
+          authenticate({
+            user
+          })
+        )
+      })
+      return payload.userId ? true : false
+    }).catch((e) => {
+      // console.log('error:', e)
+      return false
+    })
+}
+
+export const login = (email, password) => dispatch => {
   const payload = {
     strategy: 'local',
-    email: email,
-    password: pass
+    email,
+    password
   }
   return app.authenticate(payload)
     .then(response => {
       return app.passport.verifyJWT(response.accessToken)
     })
     .then(payload => {
-      dispatch(
-        authenticate({
-          payload: payload
-        })
-      )
+      app.service('users').get(payload.userId).then((user) => {
+        dispatch(
+          authenticate({
+            user
+          })
+        )
+      })
       return payload.userId ? true : false
-    }).catch(console.log)
+    }).catch((e) => {
+      // console.log('error:', e)
+      return false
+    })
 }
 
 export const getPlaylists = (userId) => dispatch => {
-  const playlists = app.service('playlist').find()
-  return playlists
+  app.service('playlists').on('created', (playlist) => {
+    dispatch(
+      addPlaylist({
+        playlist: playlist
+      })
+    )
+  })
+  app.service('playlists').on('removed', (playlist) => {
+    dispatch(
+      removePlaylist({
+        id: playlist._id
+      })
+    )
+  })
+  return app.service('playlists').find().then((response) => {
+    dispatch(
+      addPlaylists({
+        playlists: response.data
+      })
+    )
+  })
 }

@@ -1,12 +1,9 @@
 import React, {Component} from 'react'
 import {View} from 'react-native'
-import {Form, Text, Button} from 'native-base'
+import {Form, Button, Text} from 'native-base'
 import PropTypes from 'prop-types'
-import {bindActionCreators} from 'redux'
-import {connect} from 'react-redux'
 import styled from 'styled-components'
 
-import allTheActions from '../actions'
 import InputLabeled from '../components/inputLabeled'
 
 const BackgroundView = styled.View`
@@ -22,17 +19,18 @@ const Inputs = styled.View`
   margin-bottom: 40px;
 `
 
-class AddTrack extends Component {
+export default class AddPlaylist extends Component {
   static propTypes = {
     navigation: PropTypes.object
   }
 
   state = {
-    url: ''
+    name: '',
+    description: ''
   }
 
   _validLink = () => {
-    alert(`creation piste : ${this.state.url}`)
+    alert(`creation salon : ${this.state.name}`)
     this.props.navigation.goBack()
   }
 
@@ -43,8 +41,10 @@ class AddTrack extends Component {
       <BackgroundView>
         <Inputs>
           <Form>
-            <InputLabeled label='Lien Youtube' icon='link'
-                          onChange={url => this.setState({url: url})}/>
+            <InputLabeled label='Nom'
+                          onChange={name => this.setState({name: name})} />
+            <InputLabeled label='Description'
+                          onChange={desc => this.setState({description: desc})} />
           </Form>
         </Inputs>
         <Button block success onPress={this._validLink}>
@@ -54,18 +54,3 @@ class AddTrack extends Component {
     )
   }
 }
-
-const mapDispatchToProps = dispatch => ({
-  actions: {
-    // tracks: bindActionCreators(allTheActions.tracks, dispatch)
-  }
-})
-
-const mapStateToProps = state => {
-  return {}
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(AddTrack)
