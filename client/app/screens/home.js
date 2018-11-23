@@ -61,9 +61,9 @@ class Home extends Component {
 
         <Inputs>
           <Form>
-            <InputLabeled label='Adresse email'
+            <InputLabeled label='Adresse email' icon='mail'
                           onChange={email => this.setState({email: email})}/>
-            <InputLabeled label='Mot de passe'
+            <InputLabeled label='Mot de passe' icon='lock'
                           isPassword
                           onChange={pass => this.setState({pass: pass})}/>
           </Form>

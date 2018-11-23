@@ -25,12 +25,9 @@ class ListRooms extends Component {
     rooms: []
   }
 
-  _roomCard = ({item}) =>
-    <RoomCard room={item} navigation={this.props.navigation}/>
-
   componentDidMount() {
 
-    const { actions } = this.props
+    const {actions} = this.props
     actions.auth.getPlaylists().then((response) => {
       console.log(response.data)
       this.setState({
@@ -39,6 +36,11 @@ class ListRooms extends Component {
     })
   }
 
+  // roomsTest = [{_id:42, title:'Room #1', description:'la premiere playlist'}]
+
+  _roomCard = ({item}) =>
+    <RoomCard room={item} navigation={this.props.navigation}/>
+
   render() {
     const {navigation} = this.props
 
@@ -46,6 +48,7 @@ class ListRooms extends Component {
       <View style={{flex: 1}}>
         <ScrollRooms>
           <FlatList data={this.state.rooms}
+          // <FlatList data={this.roomsTest}
                     renderItem={this._roomCard}
                     keyExtractor={(item) => item._id}/>
         </ScrollRooms>
