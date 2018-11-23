@@ -3,6 +3,10 @@ import {View} from 'react-native'
 import {Form, Button, Text} from 'native-base'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
+
+import allTheActions from '../actions'
 
 import InputLabeled from '../components/inputLabeled'
 
@@ -19,7 +23,7 @@ const Inputs = styled.View`
   margin-bottom: 40px;
 `
 
-export default class AddPlaylist extends Component {
+class AddPlaylist extends Component {
   static propTypes = {
     navigation: PropTypes.object
   }
@@ -30,7 +34,13 @@ export default class AddPlaylist extends Component {
   }
 
   _validLink = () => {
-    alert(`creation salon : ${this.state.name}`)
+    const { actions, user } = this.props
+    const { name, tags } = this.state
+    actions.playlists.createPlaylist({
+      name,
+      tags,
+      members: [user._id]
+    })
     this.props.navigation.goBack()
   }
 
@@ -54,3 +64,21 @@ export default class AddPlaylist extends Component {
     )
   }
 }
+
+const mapDispatchToProps = dispatch => ({
+  actions: {
+    playlists: bindActionCreators(allTheActions.playlists, dispatch),
+  }
+})
+
+const mapStateToProps = state => {
+  return {
+    user: state.feathers.user,
+    playlists: state.playlists.playlists
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AddPlaylist)

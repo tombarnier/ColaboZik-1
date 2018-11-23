@@ -42,3 +42,9 @@ export const loadPlaylists = (userId) => dispatch => {
     )
   })
 }
+
+
+export const createPlaylist = (playlist) => dispatch => {
+  console.log(playlist)
+  return app.service('playlists').create(playlist)
+}
