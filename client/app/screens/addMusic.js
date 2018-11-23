@@ -22,7 +22,7 @@ const Inputs = styled.View`
   margin-bottom: 40px;
 `
 
-class AddTrack extends Component {
+class AddMusic extends Component {
   static propTypes = {
     navigation: PropTypes.object
   }
@@ -68,4 +68,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(AddTrack)
+)(AddMusic)

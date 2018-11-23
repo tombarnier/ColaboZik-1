@@ -10,7 +10,7 @@ const ScrollMusic = styled.ScrollView`
   padding: 10px;
 `
 
-export default class Room extends Component {
+export default class Playlist extends Component {
   static propTypes = {
     navigation: PropTypes.object
   }
@@ -46,8 +46,8 @@ export default class Room extends Component {
 
   render() {
     const {navigation} = this.props
-    const room = navigation.getParam('room', undefined)
-    if (!room) navigation.navigate('ListRooms')
+    const playlist = navigation.getParam('playlist', undefined)
+    if (!playlist) navigation.navigate('Home')
 
     return (
       <View style={{flex: 1}}>
@@ -60,7 +60,7 @@ export default class Room extends Component {
         <Fab
           style={{backgroundColor: '#5067FF'}}
           position="bottomRight"
-          onPress={() => navigation.navigate('AddTrack')}>
+          onPress={() => navigation.navigate('AddMusic')}>
           <Icon name="add"/>
         </Fab>
 

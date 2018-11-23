@@ -2,44 +2,43 @@ import { createSwitchNavigator, createStackNavigator} from 'react-navigation'
 
 import {displayName as appName} from '../../app.json'
 import AuthLoading from '../screens/authLoading'
+import Login from '../screens/login'
 import Home from '../screens/home'
-import AddRoom from '../screens/addRoom'
-import ListRooms from '../screens/listRooms'
-import Room from '../screens/room'
+import AddPlaylist from '../screens/addPlaylist'
+import Playlist from '../screens/playlist'
 import Player from '../screens/player'
-import AddTrack from '../screens/addTrack'
+import AddMusic from '../screens/addMusic'
 
 const optionsGeneral = {
   mode: 'modal',
-  headerMode: 'none',
-  initialRouteName: 'AuthLoading'
+  headerMode: 'none'
 }
 
 const LoggedUser = createStackNavigator({
-  ListRooms: {
-    screen: ListRooms,
+  Home: {
+    screen: Home,
     navigationOptions: {
-      title: 'Liste des salons'
+      title: appName
     }
   },
-  AddRoom: {
-    screen: AddRoom,
+  AddPlaylist: {
+    screen: AddPlaylist,
     navigationOptions: {
-      title: 'Ajouter un salon'
+      title: 'Ajouter une playlist'
     }
   },
-  Room: {
-    screen: Room,
+  Playlist: {
+    screen: Playlist,
     navigationOptions: ({navigation}) => {
       return {
-        title: navigation.getParam('room', 'Salon').title,
+        title: navigation.getParam('playlist', 'Playlist').title,
       }
     }
   },
-  AddTrack: {
-    screen: AddTrack,
+  AddMusic: {
+    screen: AddMusic,
     navigationOptions: {
-      title: 'Ajouter une piste'
+      title: 'Ajouter une musique'
     }
   },
   Player : {
@@ -50,13 +49,13 @@ const LoggedUser = createStackNavigator({
   }
 })
 
-const DisconnectedUser = createStackNavigator ({
-  Home: {
-    screen: Home,
+const DisconnectedUser = createStackNavigator({
+  Login: {
+    screen: Login,
     navigationOptions: {
       title: appName
     }
-  },
+  }
 })
 
 export default createSwitchNavigator(

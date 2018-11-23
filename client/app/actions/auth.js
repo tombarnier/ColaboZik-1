@@ -33,7 +33,7 @@ export const reauthenticate = () => dispatch => {
     .then(payload => {
       dispatch(
         authenticate({
-          payload: payload
+          payload
         })
       )
       return payload.userId ? true : false
@@ -43,11 +43,11 @@ export const reauthenticate = () => dispatch => {
     })
 }
 
-export const login = (email,pass) => dispatch => {
+export const login = (email, password) => dispatch => {
   const payload = {
     strategy: 'local',
-    email: email,
-    password: pass
+    email,
+    password
   }
   return app.authenticate(payload)
     .then(response => {
@@ -56,7 +56,7 @@ export const login = (email,pass) => dispatch => {
     .then(payload => {
       dispatch(
         authenticate({
-          payload: payload
+          payload
         })
       )
       return payload.userId ? true : false

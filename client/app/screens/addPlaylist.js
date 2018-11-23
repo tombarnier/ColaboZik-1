@@ -19,7 +19,7 @@ const Inputs = styled.View`
   margin-bottom: 40px;
 `
 
-export default class AddRoom extends Component {
+export default class AddPlaylist extends Component {
   static propTypes = {
     navigation: PropTypes.object
   }
