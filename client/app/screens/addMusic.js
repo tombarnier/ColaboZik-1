@@ -1,7 +1,6 @@
 import { Form, Text, Button } from 'native-base'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { View } from 'react-native'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
@@ -34,13 +33,14 @@ class AddMusic extends Component {
   }
 
   _validLink = () => {
-    alert(`creation piste : ${this.state.link}`)
-    this.props.navigation.goBack()
+    const { navigation } = this.props
+    const { link } = this.state
+
+    alert(`creation music : ${link}`)
+    navigation.goBack()
   }
 
   render() {
-    const { navigation } = this.props
-
     return (
       <BackgroundView>
         <Inputs>
@@ -49,6 +49,7 @@ class AddMusic extends Component {
                           onChange={link => this.setState({ link })}/>
           </Form>
         </Inputs>
+
         <Button block success onPress={this._validLink}>
           <Text>Ajouter</Text>
         </Button>

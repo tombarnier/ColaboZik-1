@@ -11,6 +11,11 @@ import PlaylistCard from '../components/playlistCard'
 import allTheActions from '../actions'
 
 
+const BackgroundView = styled.View`
+  flex: 1;
+  background-color: ${props => props.theme.color.secondary};
+`
+
 const ScrollPlaylists = styled.ScrollView`
   padding: 10px;
 `
@@ -18,6 +23,9 @@ const ScrollPlaylists = styled.ScrollView`
 class Home extends Component {
   static propTypes = {
     navigation: PropTypes.object,
+    actions: PropTypes.object,
+    playlists: PropTypes.array,
+    user: PropTypes.object
   }
 
   componentDidMount() {
@@ -28,16 +36,18 @@ class Home extends Component {
   _playlistCard = ({ item }) =>
     <PlaylistCard playlist={item} navigation={this.props.navigation}/>
 
+  _playlistKey = (item) => item._id
+
   render() {
-    const { navigation } = this.props
+    const { navigation, playlists } = this.props
 
     return (
-      <View style={{ flex: 1 }}>
+      <BackgroundView>
         <ScrollPlaylists>
-          <FlatList data={this.props.playlists}
+          <FlatList data={playlists}
                     renderItem={this._playlistCard}
-                    keyExtractor={(item) => item._id}/>
-          <Text></Text>
+                    keyExtractor={this._playlistKey}/>
+          <Text/>
         </ScrollPlaylists>
 
         <Fab
@@ -46,7 +56,7 @@ class Home extends Component {
           onPress={() => navigation.navigate('AddPlaylist')}>
           <Icon name="add"/>
         </Fab>
-      </View>
+      </BackgroundView>
     )
   }
 }

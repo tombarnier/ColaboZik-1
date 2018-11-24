@@ -1,11 +1,15 @@
 import { Fab, Icon } from 'native-base'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { FlatList, View } from 'react-native'
+import { FlatList } from 'react-native'
 import styled from 'styled-components'
 
 import MusicCard from '../components/musicCard'
 
+const BackgroundView = styled.View`
+  flex: 1;
+  background-color: ${props => props.theme.color.secondary};
+`
 
 const ScrollMusic = styled.ScrollView`
   padding: 10px;
@@ -41,17 +45,19 @@ export default class Playlist extends Component {
   _musicCard = ({ item }) =>
     <MusicCard music={item} navigation={this.props.navigation}/>
 
+  _musicKey = (item) => item._id
+
   render() {
     const { navigation } = this.props
     const playlist = navigation.getParam('playlist', undefined)
     if (!playlist) navigation.navigate('Home')
 
     return (
-      <View style={{ flex: 1 }}>
+      <BackgroundView>
         <ScrollMusic>
           <FlatList data={this.musics}
                     renderItem={this._musicCard}
-                    keyExtractor={(item) => item._id}/>
+                    keyExtractor={this._musicKey}/>
         </ScrollMusic>
 
         <Fab
@@ -67,7 +73,7 @@ export default class Playlist extends Component {
           onPress={() => navigation.navigate('Player')}>
           <Icon name="play"/>
         </Fab>
-      </View>
+      </BackgroundView>
     )
   }
 }

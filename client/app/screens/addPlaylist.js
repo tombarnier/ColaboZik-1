@@ -25,7 +25,9 @@ const Inputs = styled.View`
 
 class AddPlaylist extends Component {
   static propTypes = {
-    navigation: PropTypes.object
+    navigation: PropTypes.object,
+    actions: PropTypes.object,
+    user: PropTypes.object
   }
 
   state = {
@@ -36,6 +38,7 @@ class AddPlaylist extends Component {
   _validLink = () => {
     const { actions, user, navigation } = this.props
     const { name, tags } = this.state
+
     actions.playlists.createPlaylist({
       name,
       tags,
@@ -45,8 +48,6 @@ class AddPlaylist extends Component {
   }
 
   render() {
-    const { navigation } = this.props
-
     return (
       <BackgroundView>
         <Inputs>
@@ -57,6 +58,7 @@ class AddPlaylist extends Component {
                           onChange={tags => this.setState({ tags })}/>
           </Form>
         </Inputs>
+
         <Button block success onPress={this._validLink}>
           <Text>Ajouter</Text>
         </Button>

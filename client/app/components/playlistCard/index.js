@@ -14,26 +14,28 @@ const TagList = styled.FlatList`
 
 export default class PlaylistCard extends Component {
   static propTypes = {
-    playlist: PropTypes.object,
-    navigation: PropTypes.object
+    navigation: PropTypes.object,
+    playlist: PropTypes.object
   }
 
   _tagBadge = ({ item }) => <TagBadge tag={item}/>
 
+  _tagKey = (item) => item
 
   render() {
     const { navigation, playlist } = this.props
     const { name, tags } = playlist
-    console.log(playlist)
+
     return (
       <Card>
         <CardItem header bordered button onPress={() => navigation.navigate('Playlist', { playlist })}>
           <Text>{name}</Text>
         </CardItem>
+
         <CardItem bordered>
           <TagList data={tags}
                    renderItem={this._tagBadge}
-                   keyExtractor={(item) => item}/>
+                   keyExtractor={this._tagKey}/>
         </CardItem>
       </Card>
     )

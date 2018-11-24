@@ -10,22 +10,22 @@ const RightCard = styled.View`
 
 export default class MusicCard extends Component {
   static propTypes = {
-    music: PropTypes.object,
-    navigation: PropTypes.object
+    music: PropTypes.object
   }
 
   render() {
-    const { navigation, music } = this.props
-    const { title, thumbnail, dislike } = music
+    const { title, thumbnail, dislike } = this.props.music
+
     return (
       <Card>
         <CardItem>
           <Left>
             <Thumbnail square large source={{ uri: thumbnail }}/>
             <Body header>
-            <Text>{title}</Text>
+              <Text>{title}</Text>
             </Body>
           </Left>
+
           <RightCard>
             <Button danger>
               <Icon name='thumbs-down'/>

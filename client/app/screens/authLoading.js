@@ -19,11 +19,13 @@ const AuthLoadingContainer = styled.View`
 
 class AuthLoading extends React.Component {
   static propTypes = {
-    navigation: PropTypes.object
+    navigation: PropTypes.object,
+    actions: PropTypes.object
   }
 
   componentDidMount() {
     const { actions, navigation } = this.props
+
     actions.feathers.reauthenticate().then((authenticated) => {
       navigation.navigate(authenticated ? 'Connected' : 'Disconnected')
     })

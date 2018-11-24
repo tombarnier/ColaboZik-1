@@ -26,9 +26,9 @@ const Inputs = styled.View`
 class Login extends Component {
   static propTypes = {
     navigation: PropTypes.object,
-    email: PropTypes.string,
-    password: PropTypes.string
+    actions: PropTypes.object
   }
+
   state = {
     email: '',
     password: ''
@@ -36,16 +36,14 @@ class Login extends Component {
 
   submit = () => {
     const { email, password } = this.state
-    const { actions } = this.props
+    const { navigation, actions } = this.props
     actions.feathers.login(email, password).then((authenticated) => {
-      if (authenticated === true) this.props.navigation.navigate('Home')
+      if (authenticated === true) navigation.navigate('Home')
       else window.alert('Invalid credentials')
     })
   }
 
   render() {
-    const { navigation } = this.props
-
     return (
       <BackgroundView>
         <H1>Connexion</H1>
@@ -59,10 +57,10 @@ class Login extends Component {
                           onChange={password => this.setState({ password })}/>
           </Form>
         </Inputs>
-        <Button block info onPress={() => this.submit()}>
+
+        <Button block info onPress={this.submit}>
           <Text>Se connecter</Text>
         </Button>
-
       </BackgroundView>
     )
   }
