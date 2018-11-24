@@ -1,7 +1,8 @@
-import React, {Component} from 'react'
-import {Input, Item, Label, Icon} from 'native-base'
+import { Icon, Input, Item } from 'native-base'
 import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 import styled from 'styled-components'
+
 
 const BackgroundInput = styled.View`
   background-color: ${props => props.theme.color.primary};
@@ -17,7 +18,7 @@ export default class InputLabeled extends Component {
   }
 
   render() {
-    const {label, icon, isPassword, onChange} = this.props
+    const { label, icon, isPassword, onChange } = this.props
     return (
       <BackgroundInput>
         <Item regular>

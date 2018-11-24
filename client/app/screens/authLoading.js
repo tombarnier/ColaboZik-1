@@ -1,17 +1,18 @@
-import {ActivityIndicator, AsyncStorage, StatusBar} from 'react-native'
-import {H1, Spinner} from 'native-base'
+import { H1, Spinner } from 'native-base'
 import PropTypes from 'prop-types'
 import React from 'react'
+import { StatusBar } from 'react-native'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 import styled from 'styled-components'
-import {bindActionCreators} from 'redux'
-import {connect} from 'react-redux'
 
+import { displayName as appName } from '../../app.json'
 import allTheActions from '../actions'
-import {displayName as appName} from '../../app.json'
+
 
 const AuthLoadingContainer = styled.View`
-  background-color: ${props => props.theme.color.secondary};
   flex: 1;
+  background-color: ${props => props.theme.color.secondary};
   justify-content: center;
   align-items: center;
 `
@@ -22,7 +23,7 @@ class AuthLoading extends React.Component {
   }
 
   componentDidMount() {
-    const {actions, navigation} = this.props
+    const { actions, navigation } = this.props
     actions.feathers.reauthenticate().then((authenticated) => {
       navigation.navigate(authenticated ? 'Connected' : 'Disconnected')
     })

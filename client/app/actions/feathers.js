@@ -1,13 +1,14 @@
-import io from 'socket.io-client'
 import feathers from 'feathers/client'
+import authentication from 'feathers-authentication-client'
 import hooks from 'feathers-hooks'
 import socketio from 'feathers-socketio/client'
-import authentication from 'feathers-authentication-client'
-import {AsyncStorage} from 'react-native'
+import io from 'socket.io-client'
+import { AsyncStorage } from 'react-native'
 
-import {API_URL} from '../../config'
+import { API_URL } from '../../config'
 
-const options = {transports: ['websocket'], pingTimeout: 3000, pingInterval: 5000}
+
+const options = { transports: ['websocket'], pingTimeout: 3000, pingInterval: 5000 }
 
 const socket = io(API_URL, options)
 

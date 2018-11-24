@@ -1,14 +1,15 @@
-import React, {Component} from 'react'
-import {View, FlatList, Text} from 'react-native'
-import {Fab, Icon} from 'native-base'
+import { Fab, Icon } from 'native-base'
 import PropTypes from 'prop-types'
+import React, { Component } from 'react'
+import { FlatList, Text, View } from 'react-native'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 import styled from 'styled-components'
-import {bindActionCreators} from 'redux'
-import {connect} from 'react-redux'
+
+import PlaylistCard from '../components/playlistCard'
 
 import allTheActions from '../actions'
 
-import PlaylistCard from '../components/playlistCard'
 
 const ScrollPlaylists = styled.ScrollView`
   padding: 10px;
@@ -24,23 +25,23 @@ class Home extends Component {
     actions.playlists.loadPlaylists()
   }
 
-  _playlistCard = ({item}) =>
+  _playlistCard = ({ item }) =>
     <PlaylistCard playlist={item} navigation={this.props.navigation}/>
 
   render() {
-    const {navigation} = this.props
+    const { navigation } = this.props
 
     return (
-      <View style={{flex: 1}}>
+      <View style={{ flex: 1 }}>
         <ScrollPlaylists>
           <FlatList data={this.props.playlists}
-            renderItem={this._playlistCard}
-            keyExtractor={(item) => item._id}/>
+                    renderItem={this._playlistCard}
+                    keyExtractor={(item) => item._id}/>
           <Text></Text>
         </ScrollPlaylists>
 
         <Fab
-          style={{backgroundColor: '#5067FF'}}
+          style={{ backgroundColor: '#5067FF' }}
           position="bottomRight"
           onPress={() => navigation.navigate('AddPlaylist')}>
           <Icon name="add"/>

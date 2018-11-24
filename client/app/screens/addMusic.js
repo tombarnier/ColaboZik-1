@@ -1,13 +1,15 @@
-import React, {Component} from 'react'
-import {View} from 'react-native'
-import {Form, Text, Button} from 'native-base'
+import { Form, Text, Button } from 'native-base'
 import PropTypes from 'prop-types'
-import {bindActionCreators} from 'redux'
-import {connect} from 'react-redux'
+import React, { Component } from 'react'
+import { View } from 'react-native'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 import styled from 'styled-components'
 
-import allTheActions from '../actions'
 import InputLabeled from '../components/inputLabeled'
+
+import allTheActions from '../actions'
+
 
 const BackgroundView = styled.View`
   flex: 1;
@@ -32,19 +34,19 @@ class AddMusic extends Component {
   }
 
   _validLink = () => {
-    alert(`creation piste : ${this.state.url}`)
+    alert(`creation piste : ${this.state.link}`)
     this.props.navigation.goBack()
   }
 
   render() {
-    const {navigation} = this.props
+    const { navigation } = this.props
 
     return (
       <BackgroundView>
         <Inputs>
           <Form>
             <InputLabeled label='Lien Youtube' icon='link'
-                          onChange={link => this.setState({link})}/>
+                          onChange={link => this.setState({ link })}/>
           </Form>
         </Inputs>
         <Button block success onPress={this._validLink}>

@@ -1,9 +1,10 @@
-import React, {Component} from 'react'
-import {Card, CardItem, Text, Badge} from 'native-base'
+import { Card, CardItem, Text } from 'native-base'
 import PropTypes from 'prop-types'
-import {FlatList} from 'react-native'
+import React, { Component } from 'react'
 import styled from 'styled-components'
+
 import TagBadge from './TagBadge'
+
 
 const TagList = styled.FlatList`
   flex: 1;
@@ -17,12 +18,12 @@ export default class PlaylistCard extends Component {
     navigation: PropTypes.object
   }
 
-  _tagBadge = ({item}) => <TagBadge tag={item}/>
+  _tagBadge = ({ item }) => <TagBadge tag={item}/>
 
 
   render() {
-    const {navigation, playlist} = this.props
-    const {name, tags} = playlist
+    const { navigation, playlist } = this.props
+    const { name, tags } = playlist
     console.log(playlist)
     return (
       <Card>

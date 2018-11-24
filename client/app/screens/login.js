@@ -1,13 +1,14 @@
-import React, {Component} from 'react'
-import {View, TouchableOpacity} from 'react-native'
-import {Button, Form, H1, Text} from 'native-base'
+import { Button, Form, H1, Text } from 'native-base'
 import PropTypes from 'prop-types'
+import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 import styled from 'styled-components'
-import {bindActionCreators} from 'redux'
-import {connect} from 'react-redux'
+
+import InputLabeled from '../components/inputLabeled'
 
 import allTheActions from '../actions'
-import InputLabeled from '../components/inputLabeled'
+
 
 const BackgroundView = styled.View`
   flex: 1;
@@ -20,15 +21,6 @@ const BackgroundView = styled.View`
 const Inputs = styled.View`
   width: 100%;
   margin: 40px 0;
-`
-
-const ParameterTouchableOpacity = styled.TouchableOpacity`
-  border: 5px solid black;
-  width: 200px;
-`
-
-const TextBouton = styled.Text`
-   justify-content: center;
 `
 
 class Login extends Component {
@@ -46,13 +38,13 @@ class Login extends Component {
     const { email, password } = this.state
     const { actions } = this.props
     actions.feathers.login(email, password).then((authenticated) => {
-      if(authenticated === true) this.props.navigation.navigate('Home')
+      if (authenticated === true) this.props.navigation.navigate('Home')
       else window.alert('Invalid credentials')
     })
   }
 
   render() {
-    const {navigation} = this.props
+    const { navigation } = this.props
 
     return (
       <BackgroundView>
@@ -61,10 +53,10 @@ class Login extends Component {
         <Inputs>
           <Form>
             <InputLabeled label='Adresse email' icon='mail'
-                          onChange={email => this.setState({email})}/>
+                          onChange={email => this.setState({ email })}/>
             <InputLabeled label='Mot de passe' icon='lock'
                           isPassword
-                          onChange={password => this.setState({password})}/>
+                          onChange={password => this.setState({ password })}/>
           </Form>
         </Inputs>
         <Button block info onPress={() => this.submit()}>

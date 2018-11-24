@@ -1,4 +1,5 @@
-import { ADD_PLAYlISTS, ADD_PLAYlIST, REMOVE_PLAYlIST } from '../actions/playlists'
+import { ADD_PLAYlIST, ADD_PLAYlISTS, REMOVE_PLAYlIST } from '../actions/playlists'
+
 
 const initialState = {
   playlists: []

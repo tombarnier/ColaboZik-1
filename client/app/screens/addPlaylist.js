@@ -1,14 +1,14 @@
-import React, {Component} from 'react'
-import {View} from 'react-native'
-import {Form, Button, Text} from 'native-base'
+import { Button, Form, Text } from 'native-base'
 import PropTypes from 'prop-types'
+import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 import styled from 'styled-components'
-import {bindActionCreators} from 'redux'
-import {connect} from 'react-redux'
+
+import InputLabeled from '../components/inputLabeled'
 
 import allTheActions from '../actions'
 
-import InputLabeled from '../components/inputLabeled'
 
 const BackgroundView = styled.View`
   flex: 1;
@@ -34,27 +34,27 @@ class AddPlaylist extends Component {
   }
 
   _validLink = () => {
-    const { actions, user } = this.props
+    const { actions, user, navigation } = this.props
     const { name, tags } = this.state
     actions.playlists.createPlaylist({
       name,
       tags,
       members: [user._id]
     })
-    this.props.navigation.goBack()
+    navigation.goBack()
   }
 
   render() {
-    const {navigation} = this.props
+    const { navigation } = this.props
 
     return (
       <BackgroundView>
         <Inputs>
           <Form>
             <InputLabeled label='Nom'
-                          onChange={name => this.setState({name})}/>
+                          onChange={name => this.setState({ name })}/>
             <InputLabeled label='Tags'
-                          onChange={tags => this.setState({tags})}/>
+                          onChange={tags => this.setState({ tags })}/>
           </Form>
         </Inputs>
         <Button block success onPress={this._validLink}>

@@ -10,6 +10,7 @@
       "react/no-redundant-should-component-update": 2,
       "react/sort-comp": 2,
       "semi": [2, "never"],
-      "indent": [2, 2]
+      "indent": [2, 2],
+      "object-curly-spacing": [2, "always"]
     }
   }

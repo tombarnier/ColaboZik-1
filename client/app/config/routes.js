@@ -1,13 +1,14 @@
-import { createSwitchNavigator, createStackNavigator} from 'react-navigation'
+import { createStackNavigator, createSwitchNavigator } from 'react-navigation'
 
-import {displayName as appName} from '../../app.json'
-import AuthLoading from '../screens/authLoading'
-import Login from '../screens/login'
-import Home from '../screens/home'
-import AddPlaylist from '../screens/addPlaylist'
-import Playlist from '../screens/playlist'
-import Player from '../screens/player'
+import { displayName as appName } from '../../app.json'
 import AddMusic from '../screens/addMusic'
+import AddPlaylist from '../screens/addPlaylist'
+import AuthLoading from '../screens/authLoading'
+import Home from '../screens/home'
+import Login from '../screens/login'
+import Player from '../screens/player'
+import Playlist from '../screens/playlist'
+
 
 const optionsGeneral = {
   mode: 'modal',
@@ -29,7 +30,7 @@ const LoggedUser = createStackNavigator({
   },
   Playlist: {
     screen: Playlist,
-    navigationOptions: ({navigation}) => {
+    navigationOptions: ({ navigation }) => {
       return {
         title: navigation.getParam('playlist', 'Playlist').name,
       }
@@ -41,7 +42,7 @@ const LoggedUser = createStackNavigator({
       title: 'Ajouter une musique'
     }
   },
-  Player : {
+  Player: {
     screen: Player,
     navigationOptions: {
       title: 'Player'

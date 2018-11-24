@@ -1,6 +1,7 @@
+import React, { Component } from 'react'
 import { Provider } from 'react-redux'
-import React, {Component} from 'react'
-import {ThemeProvider} from 'styled-components'
+import { ThemeProvider } from 'styled-components'
+
 import StackNavigator from './app/config/routes'
 import { store } from './app/config/store'
 
@@ -17,7 +18,7 @@ export default class App extends Component<Props> {
     return (
       <Provider store={store}>
         <ThemeProvider theme={currentTheme}>
-          <StackNavigator />
+          <StackNavigator/>
         </ThemeProvider>
       </Provider>
     )
