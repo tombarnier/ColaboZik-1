@@ -9,8 +9,11 @@
       "quotes": [2, "single", { "avoidEscape": true }],
       "react/no-redundant-should-component-update": 2,
       "react/sort-comp": 2,
+      "react/jsx-indent-props": [2, "first"],
       "semi": [2, "never"],
       "indent": [2, 2],
-      "object-curly-spacing": [2, "always"]
+      "object-curly-spacing": [2, "always"],
+      "no-tabs": 2,
+      "eol-last": 2
     }
   }

@@ -79,7 +79,7 @@ export default class Player extends Component {
             paddingTop: 25,
             backgroundColor: '#f8f8f8',
             width: ScreenWidth,
-            height: ScreenHeight,
+            height: ScreenHeight
           }}
                    source={{ uri: this.state.url }}/>
         </View>

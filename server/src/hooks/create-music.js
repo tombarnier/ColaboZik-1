@@ -1,6 +1,6 @@
 // Use this hook to manipulate incoming or outgoing data.
 // For more information on hooks see: http://docs.feathersjs.com/api/hooks.html
-var fetchVideo = require('youtube-info');
+const fetchVideo = require('youtube-info');
 
 // eslint-disable-next-line no-unused-vars
 module.exports = function(options = {}) {
@@ -20,6 +20,6 @@ module.exports = function(options = {}) {
         return context;
       })
       .catch((err) => {throw err;});
-    
+
   };
 };

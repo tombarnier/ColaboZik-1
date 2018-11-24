@@ -13,16 +13,18 @@ export default class InputLabeled extends Component {
   static propTypes = {
     label: PropTypes.string,
     icon: PropTypes.string,
+    androidIcon: PropTypes.string,
+    iosIcon: PropTypes.string,
     isPassword: PropTypes.bool,
     onChange: PropTypes.func
   }
 
   render() {
-    const { label, icon, isPassword, onChange } = this.props
+    const { label, icon, androidIcon, iosIcon, isPassword, onChange } = this.props
     return (
       <BackgroundInput>
         <Item regular>
-          <Icon active name={icon}/>
+          <Icon active name={icon} android={androidIcon} ios={iosIcon}/>
           <Input placeholder={label}
                  secureTextEntry={isPassword}
                  onChangeText={onChange}/>
