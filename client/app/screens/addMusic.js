@@ -1,4 +1,4 @@
-import { Form, Text, Button } from 'native-base'
+import { Button, Form, Text } from 'native-base'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
@@ -25,7 +25,8 @@ const Inputs = styled.View`
 
 class AddMusic extends Component {
   static propTypes = {
-    navigation: PropTypes.object
+    navigation: PropTypes.object,
+    actions: PropTypes.object
   }
 
   state = {
@@ -33,10 +34,15 @@ class AddMusic extends Component {
   }
 
   _validLink = () => {
-    const { navigation } = this.props
+    const { actions, navigation } = this.props
     const { link } = this.state
+    const playlist = navigation.getParam('playlist', undefined)
+    if (!playlist) navigation.goBack()
 
-    alert(`creation music : ${link}`)
+    actions.musics.createMusic({
+      link,
+      playlist: playlist._id
+    })
     navigation.goBack()
   }
 
@@ -60,7 +66,7 @@ class AddMusic extends Component {
 
 const mapDispatchToProps = dispatch => ({
   actions: {
-    // tracks: bindActionCreators(allTheActions.tracks, dispatch)
+    musics: bindActionCreators(allTheActions.musics, dispatch)
   }
 })
 

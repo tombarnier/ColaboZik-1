@@ -15,6 +15,7 @@ module.exports = function(options = {}) {
         data.embed = info.embedURL;
         data.title = info.title;
         data.thumbnail = info.thumbnailUrl;
+        data.dislike = 0;
         console.log(context.data);
         console.log('aprés la promise');
         return context;

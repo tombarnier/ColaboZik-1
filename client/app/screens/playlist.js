@@ -2,9 +2,14 @@ import { Fab, Icon } from 'native-base'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { FlatList } from 'react-native'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import styled from 'styled-components'
 
 import MusicCard from '../components/musicCard'
+
+import allTheActions from '../actions'
+
 
 const BackgroundView = styled.View`
   flex: 1;
@@ -15,32 +20,19 @@ const ScrollMusic = styled.ScrollView`
   padding: 10px;
 `
 
-export default class Playlist extends Component {
+class Playlist extends Component {
   static propTypes = {
-    navigation: PropTypes.object
+    navigation: PropTypes.object,
+    actions: PropTypes.object,
+    musics: PropTypes.array
   }
 
-  musics = [{
-    id: '1',
-    title: 'Music #1 sdhv uhgo ',
-    dislike: -2,
-    thumbnail: 'http://i3.ytimg.com/vi/erLk59H86ww/maxresdefault.jpg'
-  }, {
-    id: '2',
-    title: 'Music #2',
-    dislike: -35,
-    thumbnail: 'http://i3.ytimg.com/vi/k2XREx_nWnA/maxresdefault.jpg'
-  }, {
-    id: '3',
-    title: 'Music #3',
-    dislike: 42,
-    thumbnail: 'http://i3.ytimg.com/vi/_UgsqtaXiwI/maxresdefault.jpg'
-  }, {
-    id: '4',
-    title: 'Music #4',
-    dislike: 0,
-    thumbnail: 'http://i3.ytimg.com/vi/vj-5-_h_E8w/maxresdefault.jpg'
-  }]
+  componentDidMount() {
+    const { navigation, actions } = this.props
+    const playlist = navigation.getParam('playlist', undefined)
+
+    actions.musics.loadMusic(playlist._id)
+  }
 
   _musicCard = ({ item }) =>
     <MusicCard music={item} navigation={this.props.navigation}/>
@@ -48,14 +40,14 @@ export default class Playlist extends Component {
   _musicKey = (item) => item._id
 
   render() {
-    const { navigation } = this.props
+    const { navigation, musics } = this.props
     const playlist = navigation.getParam('playlist', undefined)
     if (!playlist) navigation.navigate('Home')
 
     return (
       <BackgroundView>
         <ScrollMusic>
-          <FlatList data={this.musics}
+          <FlatList data={musics}
                     renderItem={this._musicCard}
                     keyExtractor={this._musicKey}/>
         </ScrollMusic>
@@ -63,7 +55,7 @@ export default class Playlist extends Component {
         <Fab
           style={{ backgroundColor: '#5067FF' }}
           position="bottomRight"
-          onPress={() => navigation.navigate('AddMusic')}>
+          onPress={() => navigation.navigate('AddMusic', { playlist })}>
           <Icon name="add"/>
         </Fab>
 
@@ -77,3 +69,20 @@ export default class Playlist extends Component {
     )
   }
 }
+
+const mapDispatchToProps = dispatch => ({
+  actions: {
+    musics: bindActionCreators(allTheActions.musics, dispatch)
+  }
+})
+
+const mapStateToProps = state => {
+  return {
+    musics: state.musics.musics
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Playlist)
