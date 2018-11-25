@@ -1,7 +1,7 @@
 import { Fab, Icon } from 'native-base'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { FlatList } from 'react-native'
+import { FlatList, Text } from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import styled from 'styled-components'
@@ -34,6 +34,12 @@ class Playlist extends Component {
     actions.musics.loadMusic(playlist._id)
   }
 
+  componentWillUnmount() {
+    const { actions } = this.props
+
+    actions.musics.unloadMusic()
+  }
+
   _musicCard = ({ item }) =>
     <MusicCard music={item} navigation={this.props.navigation}/>
 
@@ -50,6 +56,7 @@ class Playlist extends Component {
           <FlatList data={musics}
                     renderItem={this._musicCard}
                     keyExtractor={this._musicKey}/>
+          <Text/>
         </ScrollMusic>
 
         <Fab

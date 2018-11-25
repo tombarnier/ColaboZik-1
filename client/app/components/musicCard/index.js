@@ -28,10 +28,10 @@ export default class MusicCard extends Component {
           </Left>
 
           <RightCard>
-            <Button danger>
+            <Button danger transparent>
               <Icon name='thumbs-down'/>
             </Button>
-            <Text style={{ color: dislike < 0 ? 'red' : 'black' }}>{counter}</Text>
+            <Text style={{ color: counter < 0 ? 'red' : 'black' }}>{counter}</Text>
           </RightCard>
         </CardItem>
       </Card>

@@ -1,4 +1,4 @@
-import { ADD_MUSIC, ADD_MUSICS, REMOVE_MUSIC } from '../actions/musics'
+import { ADD_MUSIC, ADD_MUSICS, REMOVE_MUSIC, REMOVE_MUSICS } from '../actions/musics'
 
 
 const initialState = {
@@ -16,6 +16,11 @@ export default (state = initialState, action) => {
     return {
       ...state,
       musics: [...state.musics, action.music]
+    }
+  case REMOVE_MUSICS:
+    return {
+      ...state,
+      musics: []
     }
   case REMOVE_MUSIC:
     return {
