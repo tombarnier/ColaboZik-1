@@ -15,6 +15,7 @@ export default class MusicCard extends Component {
 
   render() {
     const { title, thumbnail, dislike } = this.props.music
+    const counter = dislike !== undefined ? dislike : 0
 
     return (
       <Card>
@@ -27,10 +28,10 @@ export default class MusicCard extends Component {
           </Left>
 
           <RightCard>
-            <Button danger>
+            <Button danger transparent>
               <Icon name='thumbs-down'/>
             </Button>
-            <Text style={{ color: dislike < 0 ? 'red' : 'black' }}>{dislike}</Text>
+            <Text style={{ color: counter < 0 ? 'red' : 'black' }}>{counter}</Text>
           </RightCard>
         </CardItem>
       </Card>
