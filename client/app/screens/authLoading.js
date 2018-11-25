@@ -36,7 +36,7 @@ class AuthLoading extends React.Component {
       <AuthLoadingContainer>
         <H1>{appName}</H1>
         <Spinner color='blue'/>
-        <StatusBar barStyle="default"/>
+        {/*<StatusBar barStyle="default"/>*/}
       </AuthLoadingContainer>
     )
   }
