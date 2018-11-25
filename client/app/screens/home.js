@@ -63,7 +63,7 @@ class Home extends Component {
 
 const mapDispatchToProps = dispatch => ({
   actions: {
-    playlists: bindActionCreators(allTheActions.playlists, dispatch),
+    playlists: bindActionCreators(allTheActions.playlists, dispatch)
   }
 })
 

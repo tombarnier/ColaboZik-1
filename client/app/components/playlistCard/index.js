@@ -1,6 +1,7 @@
 import { Card, CardItem, Text } from 'native-base'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
+import { TouchableOpacity } from 'react-native'
 import styled from 'styled-components'
 
 import TagBadge from './TagBadge'
@@ -28,15 +29,17 @@ export default class PlaylistCard extends Component {
 
     return (
       <Card>
-        <CardItem header bordered button onPress={() => navigation.navigate('Playlist', { playlist })}>
-          <Text>{name}</Text>
-        </CardItem>
+        <TouchableOpacity onPress={() => navigation.navigate('Playlist', { playlist })}>
+          <CardItem header bordered>
+            <Text>{name}</Text>
+          </CardItem>
 
-        <CardItem bordered>
-          <TagList data={tags}
-                   renderItem={this._tagBadge}
-                   keyExtractor={this._tagKey}/>
-        </CardItem>
+          <CardItem bordered>
+            <TagList data={tags}
+                     renderItem={this._tagBadge}
+                     keyExtractor={this._tagKey}/>
+          </CardItem>
+        </TouchableOpacity>
       </Card>
     )
   }

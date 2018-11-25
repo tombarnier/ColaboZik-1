@@ -1,6 +1,7 @@
 import { Body, Button, Card, CardItem, Icon, Left, Text, Thumbnail } from 'native-base'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
+import { TouchableOpacity } from 'react-native'
 import styled from 'styled-components'
 
 
@@ -29,7 +30,9 @@ export default class MusicCard extends Component {
 
           <RightCard>
             <Button danger transparent>
-              <Icon name='thumbs-down'/>
+              <TouchableOpacity>
+                <Icon name='thumbs-down'/>
+              </TouchableOpacity>
             </Button>
             <Text style={{ color: counter < 0 ? 'red' : 'black' }}>{counter}</Text>
           </RightCard>
