@@ -7,7 +7,7 @@ module.exports = function(options = {}) {
   return async context => {
     const {app, data} = context;
     console.log('on est la');
-    let regex = /^(?:(?:http(?:s)?:\/\/|)(?:www\.youtube\.com\/(?:watch\?v=|embed\/)|youtu.be\/)|)([A-Za-z0-9_-]{11})$/g;
+    let regex = /^(?:(?:http(?:s)?:\/\/|)(?:(?:www|music)\.youtube\.com\/(?:watch\?v=|embed\/)|youtu.be\/)|)([A-Za-z0-9_-]{11})$/g;
     let id = regex.exec(data.link);
     return fetchVideo(id[1])
       .then((info) => {

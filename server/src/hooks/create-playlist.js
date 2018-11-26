@@ -4,8 +4,11 @@ const strToArray = (str) => [...new Set(str.split(/\s+/).filter(x => x))];
 module.exports = function(options = {}) {
   return async context => {
     const { app, data } = context;
-    data.tags = strToArray(data.tags);
-    data.name = data.name.trim();
+    let {name, tags} = data;
+
+    name = name.trim();
+    tags = tags ? strToArray(tags) : [];
+
     return context;
   };
 };
