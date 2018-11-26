@@ -69,7 +69,7 @@ class Playlist extends Component {
         <Fab
           style={{ backgroundColor: '#5067FF' }}
           position="bottomLeft"
-          onPress={() => navigation.navigate('Player')}>
+          onPress={() => navigation.navigate('Player', { playlist })}>
           <Icon name="play"/>
         </Fab>
       </BackgroundView>
