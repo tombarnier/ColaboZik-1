@@ -35,7 +35,14 @@ export const loadPlaylists = (userId) => dispatch => {
       })
     )
   })
-  return app.service('playlists').find().then((response) => {
+  return app.service('playlists').find({
+    query: {
+      $limit: 100,
+      $sort: {
+        createdAt: 1
+      }
+    }
+  }).then((response) => {
     dispatch(
       addPlaylists({
         playlists: response.data

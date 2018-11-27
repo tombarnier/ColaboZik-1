@@ -43,7 +43,13 @@ export const loadMusic = (playlistId) => dispatch => {
 
   return app.service('musics').find(
     {
-      query: { playlist: playlistId }
+      query: {
+        playlist: playlistId,
+        $limit: 100,
+        $sort: {
+          createdAt: -1
+        }
+      }
     }
   ).then((response) => {
     dispatch(

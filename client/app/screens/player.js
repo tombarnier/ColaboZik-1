@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Dimensions, Text, TouchableOpacity, View, WebView } from 'react-native'
+import { Dimensions, Text, View, WebView } from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
@@ -29,53 +29,55 @@ class Player extends Component {
   }
 
   componentDidMount() {
-    const { navigation, actions } = this.props
-    const playlist = navigation.getParam('playlist', undefined)
+    const { navigation, musics } = this.props
 
-    // actions.musics.loadMusic(playlist._id)
-    this.setState(() => ({ playlist: this.props.musics }))
-    this.setState(() => ({ url: this.props.musics[0].embed }))
-    this.setState(() => ({ title: this.props.musics[0].title }))
-  }
+    if (musics.length === 0) {
+      navigation.goBack()
+      alert('Playlist vide !')
+      return
+    }
 
-  componentWillUnmount() {
-    const { actions } = this.props
-
-    // actions.musics.unloadMusic()
+    this.setState(() => ({ playlist: musics }))
+    this.setState(() => ({ url: musics[0].embed }))
+    this.setState(() => ({ title: musics[0].title }))
   }
 
   nextMusic = () => {
+    const { playlist, id } = this.state
+
     let nextMusic = 0
-    if (this.state.id != this.state.playlist.length - 1)
-      nextMusic = this.state.playlist[this.state.id + 1]
+    if (id != playlist.length - 1)
+      nextMusic = playlist[id + 1]
     else
-      nextMusic = this.state.playlist[0]
+      nextMusic = playlist[0]
     let url = nextMusic.embed
-    let id = this.state.playlist.indexOf(nextMusic)
+    let nextId = playlist.indexOf(nextMusic)
     let title = nextMusic.title
     console.log(title)
 
-    this.setState({ id: id })
+    this.setState({ id: nextId })
     this.setState({ url: url })
     this.setState({ title: title })
     console.log(nextMusic)
   }
   prevMusic = () => {
+    const { playlist, id } = this.state
+
     let prevMusic = 0
-    if (this.state.id != 0)
-      prevMusic = this.state.playlist[this.state.id - 1]
+    if (id != 0)
+      prevMusic = playlist[id - 1]
     else
-      prevMusic = this.state.playlist[this.state.playlist.length - 1]
+      prevMusic = playlist[playlist.length - 1]
     let url = prevMusic.embed
-    let id = this.state.playlist.indexOf(prevMusic)
+    let prevId = playlist.indexOf(prevMusic)
     let title = prevMusic.title
-    this.setState({ id: id })
+    this.setState({ id: prevId })
     this.setState({ url: url })
     this.setState({ title: title })
   }
 
   render() {
-    const { title } = this.state.title
+    const { title, url } = this.state
     return (
       <View>
         <View style={{ height: ScreenHeight - 175, width: ScreenWidth }}>
@@ -85,7 +87,7 @@ class Player extends Component {
             width: ScreenWidth,
             height: ScreenHeight
           }}
-                   source={{ uri: this.state.url }}
+                   source={{ uri: url }}
                    mediaPlaybackRequiresUserAction={false}
                    javaScriptEnabled={true}
                    scalesPageToFit={true}
@@ -120,7 +122,7 @@ class Player extends Component {
               marginRight: 100,
               color: 'white',
               backgroundColor: '#131313'
-            }}>{this.state.title}</Text>
+            }}>{title}</Text>
           </View>
         </View>
       </View>
