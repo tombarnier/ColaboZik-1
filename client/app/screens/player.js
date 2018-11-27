@@ -3,10 +3,10 @@ import { Dimensions, Text, TouchableOpacity, View, WebView } from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
-import {Fab, Icon} from 'native-base'
-
+import { Fab, Icon } from 'native-base'
 
 import allTheActions from '../actions'
+
 
 const {
   height: ScreenHeight,
@@ -27,11 +27,12 @@ class Player extends Component {
     url: '',
     title: ''
   }
+
   componentDidMount() {
     const { navigation, actions } = this.props
     const playlist = navigation.getParam('playlist', undefined)
 
-    actions.musics.loadMusic(playlist._id)
+    // actions.musics.loadMusic(playlist._id)
     this.setState(() => ({ playlist: this.props.musics }))
     this.setState(() => ({ url: this.props.musics[0].embed }))
     this.setState(() => ({ title: this.props.musics[0].title }))
@@ -40,8 +41,9 @@ class Player extends Component {
   componentWillUnmount() {
     const { actions } = this.props
 
-    actions.musics.unloadMusic()
+    // actions.musics.unloadMusic()
   }
+
   nextMusic = () => {
     let nextMusic = 0
     if (this.state.id != this.state.playlist.length - 1)
@@ -73,7 +75,7 @@ class Player extends Component {
   }
 
   render() {
-    const {title} = this.state.title
+    const { title } = this.state.title
     return (
       <View>
         <View style={{ height: ScreenHeight - 175, width: ScreenWidth }}>
@@ -81,13 +83,13 @@ class Player extends Component {
             paddingTop: 25,
             backgroundColor: '#f8f8f8',
             width: ScreenWidth,
-            height: ScreenHeight,
+            height: ScreenHeight
           }}
-                  source={{ uri: this.state.url }}
-                  mediaPlaybackRequiresUserAction={false}
-                  javaScriptEnabled={true}
-                  scalesPageToFit={true}
-                  />
+                   source={{ uri: this.state.url }}
+                   mediaPlaybackRequiresUserAction={false}
+                   javaScriptEnabled={true}
+                   scalesPageToFit={true}
+          />
         </View>
         <View style={{
           backgroundColor: '#131313',
@@ -97,32 +99,35 @@ class Player extends Component {
           <View style={{
             width: ScreenWidth
           }}>
-          <Fab
-            style={{backgroundColor: '#5067FF'}}
-            position="topRight"
-            onPress={() => this.nextMusic()}>
-            <Icon name="play"/>
-          </Fab>
-          <Fab
-          style={{backgroundColor: '#5067FF'}}
-          position="topLeft"
-          onPress={() => this.prevMusic()}>
-          <Icon name="play"/>
-        </Fab>
-        <Text style={{textAlign: 'center', // <-- the magic
-          fontWeight: 'bold',
-          fontSize: 18,
-          marginTop: 0,
-          marginLeft: 100,
-          marginRight: 100,
-          color:'white',
-          backgroundColor: '#131313',}}>{this.state.title}</Text>
+            <Fab
+              style={{ backgroundColor: '#5067FF' }}
+              position='topRight'
+              onPress={() => this.nextMusic()}>
+              <Icon name='skip-forward'/>
+            </Fab>
+            <Fab
+              style={{ backgroundColor: '#5067FF' }}
+              position='topLeft'
+              onPress={() => this.prevMusic()}>
+              <Icon name='skip-backward'/>
+            </Fab>
+            <Text style={{
+              textAlign: 'center', // <-- the magic
+              fontWeight: 'bold',
+              fontSize: 18,
+              marginTop: 0,
+              marginLeft: 100,
+              marginRight: 100,
+              color: 'white',
+              backgroundColor: '#131313'
+            }}>{this.state.title}</Text>
           </View>
         </View>
       </View>
     )
   }
 }
+
 const mapDispatchToProps = dispatch => ({
   actions: {
     musics: bindActionCreators(allTheActions.musics, dispatch)
