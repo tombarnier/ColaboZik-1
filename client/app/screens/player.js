@@ -40,42 +40,23 @@ class Player extends Component {
     this.setState(() => ({ title: musics[0].title }))
   }
 
-  nextMusic = () => {
+  next = ( next ) => {
     const { id } = this.state
     const { musics } = this.props
-    console.log(musics)
-    let nextMusic = 0
-    if (id != musics.length - 1)
-      nextMusic = musics[id + 1]
-    else
-      nextMusic = musics[0]
-    let url = nextMusic.embed
-    let nextId = musics.indexOf(nextMusic)
-    let title = nextMusic.title
+    let music = 0
+    if (id === musics.length - 1 && next === 'forward') music = musics[0]
+    else if ( next === 'forward') music = musics[id +1]
+    else if ( id === 0 && next === 'prev' ) music = musics[musics.length - 1]
+    else music = musics[id -1]
+    let url = music.embed
+    let nextId = musics.indexOf(music)
+    let title = music.title
     this.setState({
       id: nextId,
       url: url,
       title: title
     })
   }
-  prevMusic = () => {
-    const { musics, id } = this.state
-
-    let prevMusic = 0
-    if (id != 0)
-      prevMusic = musics[id - 1]
-    else
-      prevMusic = musics[musics.length - 1]
-    let url = prevMusic.embed
-    let prevId = musics.indexOf(prevMusic)
-    let title = prevMusic.title
-    this.setState({
-      id: prevId,
-      url: url,
-      title: title
-    })
-  }
-
   render() {
     const { title, url } = this.state
     return (
@@ -87,11 +68,10 @@ class Player extends Component {
           loop={false}
           apiKey={API_KEY_YT}           // control whether the video should loop when ended
           onChangeState={(e) => {
-            console.log(e)
-            if (e.state === 'ended') this.nextMusic()
+            if (e.state === 'ended') this.next('forward')
           }}
           onError={() => {
-            this.nextMusic()
+            this.next('forward')
           }}
           style={{ alignSelf: 'stretch', height:'80%' }}
         />
@@ -101,13 +81,13 @@ class Player extends Component {
           <Fab
             style={{ backgroundColor: '#5067FF' }}
             position='topRight'
-            onPress={() => this.nextMusic()}>
+            onPress={() => this.next('forward')}>
             <Icon name='skip-forward'/>
           </Fab>
           <Fab
             style={{ backgroundColor: '#5067FF' }}
             position='topLeft'
-            onPress={() => this.prevMusic()}>
+            onPress={() => this.next('prev')}>
             <Icon name='skip-backward'/>
           </Fab>
           <Text style={{
