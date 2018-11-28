@@ -41,7 +41,8 @@ class AddMusic extends Component {
 
     actions.musics.createMusic({
       link,
-      playlist: playlist._id
+      playlist: playlist._id,
+      dislike: '0'
     })
     navigation.goBack()
   }

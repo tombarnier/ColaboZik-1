@@ -11,7 +11,6 @@ import allTheActions from '../actions'
 
 
 const {
-  height: ScreenHeight,
   width: ScreenWidth
 } = Dimensions.get('window')
 
@@ -24,7 +23,6 @@ class Player extends Component {
   }
 
   state = {
-    playlist: [],
     id: 0,
     url: '',
     title: ''
@@ -38,40 +36,44 @@ class Player extends Component {
       alert('Playlist vide !')
       return
     }
-    this.setState(() => ({ playlist: musics }))
     this.setState(() => ({ url: musics[0].embed }))
     this.setState(() => ({ title: musics[0].title }))
   }
 
   nextMusic = () => {
-    const { playlist, id } = this.state
-
+    const { id } = this.state
+    const { musics } = this.props
+    console.log(musics)
     let nextMusic = 0
-    if (id != playlist.length - 1)
-      nextMusic = playlist[id + 1]
+    if (id != musics.length - 1)
+      nextMusic = musics[id + 1]
     else
-      nextMusic = playlist[0]
+      nextMusic = musics[0]
     let url = nextMusic.embed
-    let nextId = playlist.indexOf(nextMusic)
+    let nextId = musics.indexOf(nextMusic)
     let title = nextMusic.title
-    this.setState({ id: nextId })
-    this.setState({ url: url })
-    this.setState({ title: title })
+    this.setState({
+      id: nextId,
+      url: url,
+      title: title
+    })
   }
   prevMusic = () => {
-    const { playlist, id } = this.state
+    const { musics, id } = this.state
 
     let prevMusic = 0
     if (id != 0)
-      prevMusic = playlist[id - 1]
+      prevMusic = musics[id - 1]
     else
-      prevMusic = playlist[playlist.length - 1]
+      prevMusic = musics[musics.length - 1]
     let url = prevMusic.embed
-    let prevId = playlist.indexOf(prevMusic)
+    let prevId = musics.indexOf(prevMusic)
     let title = prevMusic.title
-    this.setState({ id: prevId })
-    this.setState({ url: url })
-    this.setState({ title: title })
+    this.setState({
+      id: prevId,
+      url: url,
+      title: title
+    })
   }
 
   render() {
@@ -81,7 +83,6 @@ class Player extends Component {
         <YouTube
           videoId={url}   // The YouTube video ID
           play={true}
-          controls={1}            // control playback of video with true/false
           fullscreen={false}       // control whether the video should play in fullscreen or inline
           loop={false}
           apiKey={API_KEY_YT}           // control whether the video should loop when ended
@@ -110,7 +111,7 @@ class Player extends Component {
             <Icon name='skip-backward'/>
           </Fab>
           <Text style={{
-            textAlign: 'center', // <-- the magic
+            textAlign: 'center',
             fontWeight: 'bold',
             fontSize: 18,
             marginTop: 0,
