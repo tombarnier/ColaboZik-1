@@ -4,6 +4,7 @@ const createMusic = require('../../hooks/create-music');
 
 const addMusicPlaylist = require('../../hooks/add-music-playlist');
 
+
 module.exports = {
   before: {
     all: [ authenticate('jwt') ],

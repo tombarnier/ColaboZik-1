@@ -12,7 +12,7 @@ module.exports = function(options = {}) {
     return fetchVideo(id[1])
       .then((info) => {
         console.log('pk');
-        data.embed = info.embedURL;
+        data.embed = id[1];
         data.title = info.title;
         data.thumbnail = info.thumbnailUrl;
         data.dislike = 0;
