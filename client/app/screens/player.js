@@ -6,6 +6,8 @@ import PropTypes from 'prop-types'
 import { Fab, Icon } from 'native-base'
 import YouTube from 'react-native-youtube'
 import { API_KEY_YT } from '../../config'
+import styled from 'styled-components'
+
 
 import allTheActions from '../actions'
 
@@ -13,6 +15,15 @@ import allTheActions from '../actions'
 const {
   width: ScreenWidth
 } = Dimensions.get('window')
+
+const TitleText = styled.Text`
+  text-align: center;
+  font-size: 18px;
+  margin-top: 0px;
+  margin-left: 100px;
+  margin-right: 100px;
+  color: black
+`
 
 class Player extends Component {
 
@@ -73,7 +84,7 @@ class Player extends Component {
           onError={() => {
             this.next('forward')
           }}
-          style={{ alignSelf: 'stretch', height:'80%' }}
+          style={{ alignSelf: 'stretch', height:'89%' }}
         />
         <View style={{
           width: ScreenWidth
@@ -90,16 +101,7 @@ class Player extends Component {
             onPress={() => this.next('prev')}>
             <Icon name='skip-backward'/>
           </Fab>
-          <Text style={{
-            textAlign: 'center',
-            fontWeight: 'bold',
-            fontSize: 18,
-            marginTop: 0,
-            marginLeft: 100,
-            marginRight: 100,
-            color: 'white',
-            backgroundColor: '#131313'
-          }}>{title}</Text>
+          <TitleText>{title}</TitleText>
         </View>
       </View>
     )
