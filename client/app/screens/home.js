@@ -1,12 +1,12 @@
 import { Fab, Icon } from 'native-base'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { FlatList, Text } from 'react-native'
+import { Text } from 'react-native'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
 
-import PlaylistCard from '../components/playlistCard'
+import PlaylistsList from '../components/playlistsList'
 
 import allTheActions from '../actions'
 
@@ -33,20 +33,13 @@ class Home extends Component {
     actions.playlists.loadPlaylists()
   }
 
-  _playlistCard = ({ item }) =>
-    <PlaylistCard playlist={item} navigation={this.props.navigation}/>
-
-  _playlistKey = (item) => item._id
-
   render() {
     const { navigation, playlists } = this.props
 
     return (
       <BackgroundView>
         <ScrollPlaylists>
-          <FlatList data={playlists}
-                    renderItem={this._playlistCard}
-                    keyExtractor={this._playlistKey}/>
+          <PlaylistsList playlists={playlists} navigation={navigation}/>
           <Text/>
         </ScrollPlaylists>
 

@@ -1,12 +1,12 @@
 import { Fab, Icon } from 'native-base'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { FlatList, Text } from 'react-native'
+import { Text } from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import styled from 'styled-components'
 
-import MusicCard from '../components/musicCard'
+import MusicsList from '../components/musicsList'
 
 import allTheActions from '../actions'
 
@@ -40,11 +40,6 @@ class Playlist extends Component {
     actions.musics.unloadMusic()
   }
 
-  _musicCard = ({ item }) =>
-    <MusicCard music={item} navigation={this.props.navigation}/>
-
-  _musicKey = (item) => item._id
-
   render() {
     const { navigation, musics } = this.props
     const playlist = navigation.getParam('playlist', undefined)
@@ -53,9 +48,7 @@ class Playlist extends Component {
     return (
       <BackgroundView>
         <ScrollMusic>
-          <FlatList data={musics}
-                    renderItem={this._musicCard}
-                    keyExtractor={this._musicKey}/>
+          <MusicsList musics={musics} navigation={navigation}/>
           <Text/>
         </ScrollMusic>
 
