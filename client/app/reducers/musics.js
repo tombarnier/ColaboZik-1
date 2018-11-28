@@ -2,12 +2,7 @@ import { ADD_MUSIC, ADD_MUSICS, DISLIKE_MUSIC, REMOVE_MUSIC, REMOVE_MUSICS } fro
 
 
 const initialState = {
-  musics: [
-    {
-      link:'',
-      donwote: 0
-    }
-  ]
+  musics: []
 }
 
 export default (state = initialState, action) => {
@@ -31,6 +26,19 @@ export default (state = initialState, action) => {
     return {
       ...state,
       musics: state.musics.filter((music) => music._id !== action.id)
+    }
+  case DISLIKE_MUSIC:
+    return {
+      ...state,
+      musics: state.musics.map((music) => {
+        if (music._id === action.id){
+          return {
+            ...action.music,
+            dislike: action.music.dislike + 1
+          }
+        }
+        else return music
+      })
     }
   default:
     return state

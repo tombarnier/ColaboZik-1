@@ -5,6 +5,8 @@ export const ADD_MUSICS = 'ADD_MUSICS'
 export const ADD_MUSIC = 'ADD_MUSIC'
 export const REMOVE_MUSICS = 'REMOVE_MUSICS'
 export const REMOVE_MUSIC = 'REMOVE_MUSIC'
+export const DISLIKE_MUSIC = 'DISLIKE_MUSIC'
+
 
 
 export const addMusics = payload => ({
@@ -22,6 +24,11 @@ export const removeMusics = () => ({
 export const removeMusic = payload => ({
   type: REMOVE_MUSIC,
   id: payload.id
+})
+export const dislikeMusic = payload => ({
+  type: DISLIKE_MUSIC,
+  id: payload._id,
+  music: payload
 })
 
 
@@ -92,10 +99,11 @@ export const downvoteMusic = (music) => dispatch => {
     )
   }
   else {
-    console.log(music)
-    let dislike = music.dislike + 1
     return app.service('musics').patch(music._id,{
-      dislike: dislike
+      dislike: music.dislike + 1
     })
+      .then(() => dispatch (
+        dislikeMusic(music)
+      ))
   }
 }
