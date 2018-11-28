@@ -85,6 +85,10 @@ class Player extends Component {
           fullscreen={false}       // control whether the video should play in fullscreen or inline
           loop={false}
           apiKey={API_KEY_YT}           // control whether the video should loop when ended
+          onChangeState={(e) => {
+            console.log(e)
+            if (e.state === 'ended') this.nextMusic()
+          }}
           onError={() => {
             this.nextMusic()
           }}
