@@ -23,16 +23,12 @@ export const removePlaylist = payload => ({
 export const loadPlaylists = (userId) => dispatch => {
   app.service('playlists').on('created', (playlist) => {
     dispatch(
-      addPlaylist({
-        playlist: playlist
-      })
+      addPlaylist({ playlist: playlist })
     )
   })
   app.service('playlists').on('removed', (playlist) => {
     dispatch(
-      removePlaylist({
-        id: playlist._id
-      })
+      removePlaylist({ id: playlist._id })
     )
   })
   return app.service('playlists').find({
@@ -44,9 +40,7 @@ export const loadPlaylists = (userId) => dispatch => {
     }
   }).then((response) => {
     dispatch(
-      addPlaylists({
-        playlists: response.data
-      })
+      addPlaylists({ playlists: response.data })
     )
   })
 }
