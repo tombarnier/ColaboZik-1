@@ -5,8 +5,9 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
-import allTheActions from '../actions'
 import InputLabeled from '../components/inputLabeled'
+
+import allTheActions from '../actions'
 
 const BackgroundView = styled.View`
   flex: 1;
