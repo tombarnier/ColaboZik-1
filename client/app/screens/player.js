@@ -86,13 +86,12 @@ class Player extends Component {
     return (
       <BackgroundView>
         <YouTube
-          videoId={url}       // The YouTube video ID
+          videoId={url}           // The YouTube video ID
           play={true}
-          fullscreen={false}  // control whether the video should play in fullscreen or inline
+          fullscreen={false}      // control whether the video should play in fullscreen or inline
           loop={false}
-          apiKey={API_KEY_YT} // control whether the video should loop when ended
-          onChangeState={(e) => {
-            console.log('change', e)
+          apiKey={API_KEY_YT}
+          onChangeState={(e) => { // control whether the video should loop when ended
             if (e.state === 'ended') this.next('forward')
           }}
           onError={() => {

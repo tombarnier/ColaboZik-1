@@ -2,6 +2,8 @@ const { authenticate } = require('@feathersjs/authentication').hooks;
 
 const createPlaylist = require('../../hooks/create-playlist');
 
+const findPlaylistsByUser = require('../../hooks/find-playlists-by-user');
+
 module.exports = {
   before: {
     all: [ authenticate('jwt') ],
@@ -15,7 +17,7 @@ module.exports = {
 
   after: {
     all: [],
-    find: [],
+    find: [findPlaylistsByUser()],
     get: [],
     create: [],
     update: [],

@@ -32,17 +32,19 @@ class AddPlaylist extends Component {
 
   state = {
     name: '',
-    tags: ''
+    tags: '',
+    members: ''
   }
 
   _validAdding = () => {
     const { actions, user, navigation } = this.props
-    const { name, tags } = this.state
+    const { name, tags, members } = this.state
 
     actions.playlists.createPlaylist({
       name,
       tags,
-      members: [user._id]
+      members,
+      owner: user.email
     })
     navigation.goBack()
   }
@@ -57,6 +59,9 @@ class AddPlaylist extends Component {
             <InputLabeled label='Tags' icon='tags'
                           androidIcon='md-pricetags' iosIcon='ios-pricetags'
                           onChange={tags => this.setState({ tags })}/>
+            <InputLabeled label='Members' icon='tags'
+                          androidIcon='md-pricetags' iosIcon='ios-pricetags'
+                          onChange={members => this.setState({ members })}/>
           </Form>
         </Inputs>
 
