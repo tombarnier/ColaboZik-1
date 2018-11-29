@@ -32,7 +32,7 @@ class MusicCard extends Component {
 
           <RightCard>
             <DislikeButton music={music}/>
-            <Text style={{ color: dislike.length > 0 ? 'red' : 'black' }}>{dislike.length}</Text>
+            <Text style={{ color: dislike.length > 0 ? 'red' : 'black' }}>{dislike.length > 0 ? `-${dislike.length}` : '0'}</Text>
           </RightCard>
         </CardItem>
       </Card>
