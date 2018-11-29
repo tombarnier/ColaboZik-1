@@ -19,6 +19,9 @@ export default class MusicCard extends Component {
   render() {
     const { music } = this.props
     const { title, thumbnail, dislike } = music
+    console.log(music);
+    console.log(dislike);
+    console.log(dislike.length);
 
     return (
       <Card>
@@ -32,7 +35,7 @@ export default class MusicCard extends Component {
 
           <RightCard>
             <DislikeButton music={music}/>
-            <Text style={{ color: dislike > 0 ? 'red' : 'black' }}>{dislike}</Text>
+            <Text style={{ color: dislike.length > 0 ? 'red' : 'black' }}>{dislike.length}</Text>
           </RightCard>
         </CardItem>
       </Card>

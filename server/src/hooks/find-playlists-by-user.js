@@ -7,10 +7,8 @@ module.exports = function (options = {}) {
     const { params, result } = context;
     const { user } = context.params;
     let playlists = result.data.filter((playlist) => {
-      console.log(playlist.members.includes(user.email));
       return playlist.members.includes(user.email);
     })
-    console.log(playlists);
     context.result.data = playlists;
     return context;
   };

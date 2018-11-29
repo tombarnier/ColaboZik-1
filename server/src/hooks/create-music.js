@@ -13,7 +13,7 @@ module.exports = function(options = {}) {
         data.embed = id[1];
         data.title = info.title;
         data.thumbnail = info.thumbnailUrl;
-        data.dislike = 0;
+        data.dislike = [];
         return context;
       })
       .catch((err) => {throw err;});

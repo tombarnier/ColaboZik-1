@@ -10,13 +10,16 @@ import { connect } from 'react-redux'
 class DislikeButton extends Component {
   static propTypes = {
     music: PropTypes.object,
-    actions: PropTypes.object
+    actions: PropTypes.object,
+    user: PropTypes.object
   }
 
   _downVote = (music) => {
-    const { actions } = this.props
+    const { actions, user } = this.props
 
-    actions.musics.downvoteMusic(music)
+    console.log(music);
+
+    actions.musics.downvoteMusic(music, user)
   }
 
   render() {
@@ -39,7 +42,9 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const mapStateToProps = state => {
-  return state
+  return {
+    user: state.feathers.user
+  }
 }
 
 export default connect(

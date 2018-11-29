@@ -31,7 +31,6 @@ export const dislikeMusic = payload => ({
   music: payload
 })
 
-
 let createdListener, removedListener, updateListener
 
 export const loadMusic = (playlistId) => dispatch => {
@@ -42,16 +41,19 @@ export const loadMusic = (playlistId) => dispatch => {
       )
     }
   }
+
   removedListener = (music) => {
     dispatch(
       removeMusic({ id: music._id })
     )
   }
+
   updateListener = (music) => {
     dispatch(
       loadMusic(music.playlist)
     )
   }
+
   app.service('musics').on('created', createdListener)
   app.service('musics').on('removed', removedListener)
   app.service('musics').on('updated', updateListener)
@@ -83,7 +85,6 @@ export const unloadMusic = () => dispatch => {
 }
 
 export const createMusic = (music) => dispatch => {
-  console.log(music)
   return app.service('musics').create(music)
 }
 
@@ -91,16 +92,16 @@ export const deleteMusic = (music) => dispatch => {
   return app.service('musics').remove(music)
 }
 
-export const downvoteMusic = (music) => dispatch => {
-  if (music.dislike >= 5 ) {
-    console.log(music)
+export const downvoteMusic = (music, user) => dispatch => {
+  if (music.dislike.length >= 5 ) {
     dispatch(
       deleteMusic(music._id)
     )
   }
   else {
+    if (!music.dislike.includes(user._id)) music.dislike.push(user._id)
     return app.service('musics').patch(music._id,{
-      dislike: music.dislike + 1
+      dislike: music.dislike
     })
       .then(() => dispatch (
         dislikeMusic(music)

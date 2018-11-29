@@ -30,15 +30,7 @@ export default (state = initialState, action) => {
   case DISLIKE_MUSIC:
     return {
       ...state,
-      musics: state.musics.map((music) => {
-        if (music._id === action.id){
-          return {
-            ...action.music,
-            dislike: action.music.dislike + 1
-          }
-        }
-        else return music
-      })
+      musics: state.musics.map((music) => music._id === action.id ? action.music : music)
     }
   default:
     return state
