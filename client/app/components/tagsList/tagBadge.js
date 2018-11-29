@@ -1,7 +1,7 @@
 import { Badge, Text } from 'native-base'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 
 class TagBadge extends Component {
   static propTypes = {

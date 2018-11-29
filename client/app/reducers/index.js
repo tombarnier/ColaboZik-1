@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
 
 import feathers from './feathers'
-import playlists from './playlists'
 import musics from './musics'
+import playlists from './playlists'
 import themes from './themes'
 
 

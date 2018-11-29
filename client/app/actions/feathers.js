@@ -1,9 +1,9 @@
-import feathers from 'feathers/client'
-import authentication from 'feathers-authentication-client'
-import hooks from 'feathers-hooks'
-import socketio from 'feathers-socketio/client'
 import { AsyncStorage } from 'react-native'
+import authentication from 'feathers-authentication-client'
+import feathers from 'feathers/client'
+import hooks from 'feathers-hooks'
 import io from 'socket.io-client'
+import socketio from 'feathers-socketio/client'
 
 import { API_URL } from '../../config'
 

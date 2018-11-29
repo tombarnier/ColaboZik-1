@@ -1,14 +1,13 @@
-import { Fab, Icon } from 'native-base'
-import PropTypes from 'prop-types'
-import React, { Component } from 'react'
-import { Text } from 'react-native'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { Fab, Icon } from 'native-base'
+import { Text } from 'react-native'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 import styled from 'styled-components'
 
-import PlaylistsList from '../components/playlistsList'
-
 import allTheActions from '../actions'
+import PlaylistsList from '../components/playlistsList'
 
 const BackgroundView = styled.View`
   flex: 1;
