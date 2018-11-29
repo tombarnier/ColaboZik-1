@@ -31,7 +31,7 @@ class Home extends Component {
   componentDidMount() {
     console.log(this.props)
     const { actions, user } = this.props
-    actions.playlists.loadPlaylists()
+    actions.playlists.loadPlaylists(user)
   }
 
   render() {

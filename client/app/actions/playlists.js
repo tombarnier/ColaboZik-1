@@ -19,16 +19,20 @@ export const removePlaylist = payload => ({
   id: payload.id
 })
 
-export const loadPlaylists = (userId) => dispatch => {
+export const loadPlaylists = (user) => dispatch => {
   app.service('playlists').on('created', (playlist) => {
-    dispatch(
-      addPlaylist({ playlist: playlist })
-    )
+    if (playlist.members.includes(user.email)) {
+      dispatch(
+        addPlaylist({ playlist: playlist })
+      )
+    }
   })
   app.service('playlists').on('removed', (playlist) => {
-    dispatch(
-      removePlaylist({ id: playlist._id })
-    )
+    if (playlist.members.includes(user.email)) {
+      dispatch(
+        removePlaylist({ id: playlist._id })
+      )
+    }
   })
   return app.service('playlists').find({
     query: {
