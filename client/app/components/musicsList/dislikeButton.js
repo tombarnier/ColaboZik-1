@@ -1,9 +1,9 @@
+import { bindActionCreators } from 'redux'
 import { Button, Icon } from 'native-base'
+import { connect } from 'react-redux'
+import { TouchableOpacity } from 'react-native'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { TouchableOpacity } from 'react-native'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 
 import allTheActions from '../../actions'
 

@@ -1,8 +1,8 @@
 import { Card, CardItem, Text } from 'native-base'
+import { connect } from 'react-redux'
+import { TouchableOpacity } from 'react-native'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { TouchableOpacity } from 'react-native'
-import { connect } from 'react-redux'
 
 import TagsList from '../tagsList'
 

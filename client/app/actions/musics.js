@@ -1,10 +1,10 @@
 import { app } from './feathers'
 
-export const ADD_MUSICS = 'ADD_MUSICS'
 export const ADD_MUSIC = 'ADD_MUSIC'
-export const REMOVE_MUSICS = 'REMOVE_MUSICS'
-export const REMOVE_MUSIC = 'REMOVE_MUSIC'
+export const ADD_MUSICS = 'ADD_MUSICS'
 export const DISLIKE_MUSIC = 'DISLIKE_MUSIC'
+export const REMOVE_MUSIC = 'REMOVE_MUSIC'
+export const REMOVE_MUSICS = 'REMOVE_MUSICS'
 
 export const addMusics = payload => ({
   type: ADD_MUSICS,

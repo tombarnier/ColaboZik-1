@@ -1,13 +1,12 @@
+import { bindActionCreators } from 'redux'
 import { Button, Form, Text } from 'native-base'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 import styled from 'styled-components'
 
-import InputLabeled from '../components/inputLabeled'
-
 import allTheActions from '../actions'
+import InputLabeled from '../components/inputLabeled'
 
 const BackgroundView = styled.View`
   flex: 1;

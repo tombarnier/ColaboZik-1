@@ -1,8 +1,8 @@
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 import { H1, Spinner } from 'native-base'
 import PropTypes from 'prop-types'
 import React from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 import styled from 'styled-components'
 
 import { displayName as appName } from '../../app.json'

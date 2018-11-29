@@ -5,7 +5,7 @@ import * as themes from './themes'
 
 export default {
   feathers,
-  playlists,
   musics,
+  playlists,
   themes
 }

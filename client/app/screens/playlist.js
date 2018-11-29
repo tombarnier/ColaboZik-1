@@ -1,14 +1,13 @@
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 import { Fab, Icon } from 'native-base'
+import { Text } from 'react-native'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { Text } from 'react-native'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 import styled from 'styled-components'
 
-import MusicsList from '../components/musicsList'
-
 import allTheActions from '../actions'
+import MusicsList from '../components/musicsList'
 
 const BackgroundView = styled.View`
   flex: 1;

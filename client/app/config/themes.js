@@ -1,19 +1,19 @@
 export const themeLight = {
   color: {
-    font: '#000',
     background: '#f2f2f2',
+    button: '#5067FF',
     cards: '#fff',
-    tags: '#1abc9c',
-    button: '#5067FF'
+    font: '#000',
+    tags: '#1abc9c'
   }
 }
 
 export const themeDark = {
   color: {
-    font: '#fff',
     background: '#2d2d2d',
+    button: '#5067FF',
     cards: '#000',
-    tags: '#1abc9c',
-    button: '#5067FF'
+    font: '#fff',
+    tags: '#1abc9c'
   }
 }
