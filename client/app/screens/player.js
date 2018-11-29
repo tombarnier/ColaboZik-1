@@ -1,29 +1,28 @@
+import { Fab, Icon } from 'native-base'
+import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { Dimensions, Text, View, StyleSheet } from 'react-native'
+import { Dimensions, View } from 'react-native'
+import YouTube from 'react-native-youtube'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import PropTypes from 'prop-types'
-import { Fab, Icon } from 'native-base'
-import YouTube from 'react-native-youtube'
-import { API_KEY_YT } from '../../config'
 import styled from 'styled-components'
 
-
+import { API_KEY_YT } from '../../config'
 import allTheActions from '../actions'
 
 
-const {
-  width: ScreenWidth
-} = Dimensions.get('window')
+const BackgroundView = styled.View`
+  flex: 1;
+  background-color: ${props => props.theme.color.secondary};
+`
 
 const TitleText = styled.Text`
   text-align: center;
   font-size: 18px;
-  margin-top: 0px;
-  margin-left: 100px;
-  margin-right: 100px;
-  color: black
+  margin: 0px 100px;
 `
+
+const youtubeHeight = Dimensions.get('window').width / (16 / 9)
 
 class Player extends Component {
 
@@ -47,48 +46,61 @@ class Player extends Component {
       alert('Playlist vide !')
       return
     }
-    this.setState(() => ({ url: musics[0].embed }))
-    this.setState(() => ({ title: musics[0].title }))
-  }
 
-  next = ( next ) => {
-    const { id } = this.state
-    const { musics } = this.props
-    let music = 0
-    if (id === musics.length - 1 && next === 'forward') music = musics[0]
-    else if ( next === 'forward') music = musics[id +1]
-    else if ( id === 0 && next === 'prev' ) music = musics[musics.length - 1]
-    else music = musics[id -1]
-    let url = music.embed
-    let nextId = musics.indexOf(music)
-    let title = music.title
     this.setState({
-      id: nextId,
-      url: url,
-      title: title
+      url: musics[0].embed,
+      title: musics[0].title
     })
   }
+
+  next = (direction) => {
+    const { id } = this.state
+    const { musics } = this.props
+    let music
+
+    if (direction === 'forward') {
+      if (id === musics.length - 1)
+        music = musics[0]
+      else
+        music = musics[id + 1]
+    } else if (direction === 'backward') {
+      if (id === 0)
+        music = musics[musics.length - 1]
+      else
+        music = musics[id - 1]
+    } else {
+      alert('invalid direction')
+      return
+    }
+
+    this.setState({
+      id: musics.indexOf(music),
+      url: music.embed,
+      title: music.title
+    })
+  }
+
   render() {
     const { title, url } = this.state
+
     return (
-      <View>
+      <BackgroundView>
         <YouTube
-          videoId={url}   // The YouTube video ID
+          videoId={url}       // The YouTube video ID
           play={true}
-          fullscreen={false}       // control whether the video should play in fullscreen or inline
+          fullscreen={false}  // control whether the video should play in fullscreen or inline
           loop={false}
-          apiKey={API_KEY_YT}           // control whether the video should loop when ended
+          apiKey={API_KEY_YT} // control whether the video should loop when ended
           onChangeState={(e) => {
+            console.log('change', e)
             if (e.state === 'ended') this.next('forward')
           }}
           onError={() => {
             this.next('forward')
           }}
-          style={{ alignSelf: 'stretch', height:'89%' }}
+          style={{ alignSelf: 'stretch', height: youtubeHeight }}
         />
-        <View style={{
-          width: ScreenWidth
-        }}>
+        <View>
           <Fab
             style={{ backgroundColor: '#5067FF' }}
             position='topRight'
@@ -98,12 +110,12 @@ class Player extends Component {
           <Fab
             style={{ backgroundColor: '#5067FF' }}
             position='topLeft'
-            onPress={() => this.next('prev')}>
+            onPress={() => this.next('backward')}>
             <Icon name='skip-backward'/>
           </Fab>
           <TitleText>{title}</TitleText>
         </View>
-      </View>
+      </BackgroundView>
     )
   }
 }
