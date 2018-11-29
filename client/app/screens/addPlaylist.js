@@ -35,7 +35,7 @@ class AddPlaylist extends Component {
     tags: ''
   }
 
-  _validLink = () => {
+  _validAdding = () => {
     const { actions, user, navigation } = this.props
     const { name, tags } = this.state
 
@@ -60,7 +60,7 @@ class AddPlaylist extends Component {
           </Form>
         </Inputs>
 
-        <Button block success onPress={this._validLink}>
+        <Button block success onPress={this._validAdding}>
           <Text>Ajouter</Text>
         </Button>
       </BackgroundView>
@@ -76,8 +76,7 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = state => {
   return {
-    user: state.feathers.user,
-    playlists: state.playlists.playlists
+    user: state.feathers.user
   }
 }
 

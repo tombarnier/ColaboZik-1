@@ -33,7 +33,7 @@ class AddMusic extends Component {
     link: ''
   }
 
-  _validLink = () => {
+  _validAdding = () => {
     const { actions, navigation } = this.props
     const { link } = this.state
     const playlist = navigation.getParam('playlist', undefined)
@@ -57,7 +57,7 @@ class AddMusic extends Component {
           </Form>
         </Inputs>
 
-        <Button block success onPress={this._validLink}>
+        <Button block success onPress={this._validAdding}>
           <Text>Ajouter</Text>
         </Button>
       </BackgroundView>
@@ -72,7 +72,7 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const mapStateToProps = state => {
-  return {}
+  return state
 }
 
 export default connect(
