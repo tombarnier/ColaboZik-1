@@ -6,7 +6,6 @@ import allTheActions from '../../actions'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-
 class DislikeButton extends Component {
   static propTypes = {
     music: PropTypes.object,
@@ -14,20 +13,15 @@ class DislikeButton extends Component {
     user: PropTypes.object
   }
 
-  _downVote = (music) => {
-    const { actions, user } = this.props
-
-    console.log(music);
-
+  _downVote = () => {
+    const { actions, user, music } = this.props
     actions.musics.downvoteMusic(music, user)
   }
 
   render() {
-    const { music } = this.props
-
     return (
       <Button danger transparent>
-        <TouchableOpacity onPress={() => this._downVote(music)}>
+        <TouchableOpacity onPress={this._downVote}>
           <Icon name='thumbs-down'/>
         </TouchableOpacity>
       </Button>

@@ -9,7 +9,6 @@ import styled from 'styled-components'
 import { displayName as appName } from '../../app.json'
 import allTheActions from '../actions'
 
-
 const AuthLoadingContainer = styled.View`
   flex: 1;
   background-color: ${props => props.theme.color.secondary};
@@ -36,7 +35,6 @@ class AuthLoading extends React.Component {
       <AuthLoadingContainer>
         <H1>{appName}</H1>
         <Spinner color='blue'/>
-        {/*<StatusBar barStyle="default"/>*/}
       </AuthLoadingContainer>
     )
   }

@@ -10,7 +10,6 @@ import PlaylistsList from '../components/playlistsList'
 
 import allTheActions from '../actions'
 
-
 const BackgroundView = styled.View`
   flex: 1;
   background-color: ${props => props.theme.color.secondary};

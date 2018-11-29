@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
-
 const BackgroundInput = styled.View`
   background-color: ${props => props.theme.color.primary};
   margin-top: 10px;

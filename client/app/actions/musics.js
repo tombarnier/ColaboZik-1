@@ -1,13 +1,10 @@
 import { app } from './feathers'
 
-
 export const ADD_MUSICS = 'ADD_MUSICS'
 export const ADD_MUSIC = 'ADD_MUSIC'
 export const REMOVE_MUSICS = 'REMOVE_MUSICS'
 export const REMOVE_MUSIC = 'REMOVE_MUSIC'
 export const DISLIKE_MUSIC = 'DISLIKE_MUSIC'
-
-
 
 export const addMusics = payload => ({
   type: ADD_MUSICS,
@@ -58,7 +55,6 @@ export const loadMusic = (playlistId) => dispatch => {
   app.service('musics').on('removed', removedListener)
   app.service('musics').on('updated', updateListener)
 
-
   return app.service('musics').find(
     {
       query: {
@@ -73,6 +69,9 @@ export const loadMusic = (playlistId) => dispatch => {
     dispatch(
       addMusics({ musics: response.data })
     )
+  }).catch((e) => {
+    // console.log('error', e)
+    return false
   })
 }
 
@@ -97,14 +96,17 @@ export const downvoteMusic = (music, user) => dispatch => {
     dispatch(
       deleteMusic(music._id)
     )
-  }
-  else {
+  } else {
     if (!music.dislike.includes(user._id)) music.dislike.push(user._id)
     return app.service('musics').patch(music._id,{
       dislike: music.dislike
-    })
-      .then(() => dispatch (
+    }).then(() => {
+      dispatch (
         dislikeMusic(music)
-      ))
+      )
+    }).catch((e) => {
+      // console.log('error', e)
+      return false
+    })
   }
 }

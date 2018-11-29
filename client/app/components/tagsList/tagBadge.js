@@ -2,7 +2,6 @@ import { Badge, Text } from 'native-base'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
-
 export default class TagBadge extends Component {
   static propTypes = {
     tag: PropTypes.string

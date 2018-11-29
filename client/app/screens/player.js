@@ -10,7 +10,6 @@ import styled from 'styled-components'
 import { API_KEY_YT } from '../../config'
 import allTheActions from '../actions'
 
-
 const BackgroundView = styled.View`
   flex: 1;
   background-color: ${props => props.theme.color.secondary};

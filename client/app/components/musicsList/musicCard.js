@@ -5,7 +5,6 @@ import styled from 'styled-components'
 
 import DislikeButton from './dislikeButton'
 
-
 const RightCard = styled.View`
   align-items: center;
 `
@@ -19,9 +18,6 @@ export default class MusicCard extends Component {
   render() {
     const { music } = this.props
     const { title, thumbnail, dislike } = music
-    console.log(music);
-    console.log(dislike);
-    console.log(dislike.length);
 
     return (
       <Card>

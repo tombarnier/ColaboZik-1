@@ -5,7 +5,6 @@ import { TouchableOpacity } from 'react-native'
 
 import TagsList from '../tagsList'
 
-
 export default class PlaylistCard extends Component {
   static propTypes = {
     navigation: PropTypes.object,

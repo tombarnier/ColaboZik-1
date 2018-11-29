@@ -4,7 +4,6 @@ import thunk from 'redux-thunk'
 
 import reducers from '../reducers'
 
-
 const middleware = []
 
 if (process.env.NODE_ENV === 'development') {

@@ -4,7 +4,6 @@ import styled from 'styled-components'
 
 import TagBadge from '../tagsList/tagBadge'
 
-
 const HorizontalList = styled.FlatList`
   flex: 1;
   flex-direction: row;

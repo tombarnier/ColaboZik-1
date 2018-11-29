@@ -6,8 +6,6 @@ module.exports = function (options = {}) {
   return async context => {
     const { app, data} = context;
     app.service('playlists').get(data.playlist).then((playlist) => {
-      console.log(data);
-      console.log(context.result._id);
       playlist.musics.push(context.result._id);
       return app.service('playlists').update(playlist._id,playlist);
     });

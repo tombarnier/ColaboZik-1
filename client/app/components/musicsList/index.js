@@ -4,7 +4,6 @@ import { FlatList } from 'react-native'
 
 import MusicCard from './musicCard'
 
-
 export default class MusicsList extends Component {
   static propTypes = {
     navigation: PropTypes.object,

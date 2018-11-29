@@ -1,6 +1,5 @@
 import { app } from './feathers'
 
-
 export const ADD_PLAYlISTS = 'ADD_PLAYlISTS'
 export const ADD_PLAYlIST = 'ADD_PLAYlIST'
 export const REMOVE_PLAYlIST = 'REMOVE_PLAYlIST'
@@ -42,11 +41,12 @@ export const loadPlaylists = (userId) => dispatch => {
     dispatch(
       addPlaylists({ playlists: response.data })
     )
+  }).catch((e) => {
+    // console.log('error', e)
+    return false
   })
 }
 
-
 export const createPlaylist = (playlist) => dispatch => {
-  console.log(playlist)
   return app.service('playlists').create(playlist)
 }

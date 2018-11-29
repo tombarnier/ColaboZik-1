@@ -9,7 +9,6 @@ import Login from '../screens/login'
 import Player from '../screens/player'
 import Playlist from '../screens/playlist'
 
-
 const optionsGeneral = {
   mode: 'modal',
   headerMode: 'none'

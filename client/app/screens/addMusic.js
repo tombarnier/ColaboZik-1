@@ -9,7 +9,6 @@ import InputLabeled from '../components/inputLabeled'
 
 import allTheActions from '../actions'
 
-
 const BackgroundView = styled.View`
   flex: 1;
   padding: 10px;
