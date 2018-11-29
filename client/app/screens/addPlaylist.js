@@ -1,8 +1,8 @@
 import { Button, Form, Text } from 'native-base'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import styled from 'styled-components'
 
 import InputLabeled from '../components/inputLabeled'
@@ -74,11 +74,11 @@ class AddPlaylist extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  actions: {
-    playlists: bindActionCreators(allTheActions.playlists, dispatch),
-  }
-})
+  const mapDispatchToProps = dispatch => ({
+    actions: {
+      playlists: bindActionCreators(allTheActions.playlists, dispatch),
+    }
+  })
 
 const mapStateToProps = state => {
   return {

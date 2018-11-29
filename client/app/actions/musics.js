@@ -34,7 +34,7 @@ export const loadMusic = (playlistId) => dispatch => {
   createdListener = (music) => {
     if (music.playlist === playlistId) {
       dispatch(
-        addMusic({ music: music })
+        addMusic({ music })
       )
     }
   }
@@ -83,30 +83,28 @@ export const unloadMusic = () => dispatch => {
   )
 }
 
-export const createMusic = (music) => dispatch => {
-  return app.service('musics').create(music)
-}
+export const createMusic = (music) => dispatch =>
+  app.service('musics').create(music)
 
-export const deleteMusic = (music) => dispatch => {
-  return app.service('musics').remove(music)
-}
+export const deleteMusic = (music) => dispatch =>
+  app.service('musics').remove(music)
 
 export const downvoteMusic = (music, user) => dispatch => {
-  if (music.dislike.length >= 5 ) {
+  if (music.dislike.length >= 2) {
     dispatch(
       deleteMusic(music._id)
     )
   } else {
     if (!music.dislike.includes(user._id)) music.dislike.push(user._id)
-    return app.service('musics').patch(music._id,{
-      dislike: music.dislike
-    }).then(() => {
-      dispatch (
-        dislikeMusic(music)
-      )
-    }).catch((e) => {
-      // console.log('error', e)
-      return false
-    })
+    return app.service('musics')
+      .patch(music._id, { dislike: music.dislike })
+      .then(() => {
+        dispatch(
+          dislikeMusic(music)
+        )
+      }).catch((e) => {
+        // console.log('error', e)
+        return false
+      })
   }
 }

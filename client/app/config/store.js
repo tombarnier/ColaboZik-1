@@ -6,9 +6,7 @@ import reducers from '../reducers'
 
 const middleware = []
 
-if (process.env.NODE_ENV === 'development') {
-  middleware.push(logger)
-}
+if (process.env.NODE_ENV === 'development') middleware.push(logger)
 middleware.push(thunk)
 
 export const store = createStore(reducers, applyMiddleware(...middleware))

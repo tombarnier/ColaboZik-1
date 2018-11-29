@@ -1,8 +1,8 @@
 import { Body, Card, CardItem, Left, Text, Thumbnail } from 'native-base'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import styled from 'styled-components'
 import { connect } from 'react-redux'
+import styled from 'styled-components'
 
 import DislikeButton from './dislikeButton'
 
@@ -13,7 +13,7 @@ const RightCard = styled.View`
 class MusicCard extends Component {
   static propTypes = {
     music: PropTypes.object,
-    actions: PropTypes.object
+    theme: PropTypes.object
   }
 
   render() {
@@ -40,11 +40,9 @@ class MusicCard extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    theme: state.themes.currentTheme
-  }
-}
+const mapStateToProps = state => ({
+  theme: state.themes.currentTheme
+})
 
 export default connect(
   mapStateToProps

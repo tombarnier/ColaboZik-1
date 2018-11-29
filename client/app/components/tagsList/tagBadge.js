@@ -11,19 +11,22 @@ class TagBadge extends Component {
 
   render() {
     const { tag, theme } = this.props
+
     return (
-      <Badge style={{ marginRight: 4, marginBottom: 4, backgroundColor: theme.color.tags }}>
+      <Badge style={{
+        marginRight: 4,
+        marginBottom: 4,
+        backgroundColor: theme.color.tags
+      }}>
         <Text>{tag}</Text>
       </Badge>
     )
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    theme: state.themes.currentTheme
-  }
-}
+const mapStateToProps = state => ({
+  theme: state.themes.currentTheme
+})
 
 export default connect(
   mapStateToProps

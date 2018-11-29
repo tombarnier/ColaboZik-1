@@ -2,9 +2,10 @@ import { Button, Icon } from 'native-base'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { TouchableOpacity } from 'react-native'
-import allTheActions from '../../actions'
-import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+
+import allTheActions from '../../actions'
 
 class DislikeButton extends Component {
   static propTypes = {
@@ -15,6 +16,7 @@ class DislikeButton extends Component {
 
   _downVote = () => {
     const { actions, user, music } = this.props
+
     actions.musics.downvoteMusic(music, user)
   }
 
@@ -35,11 +37,9 @@ const mapDispatchToProps = dispatch => ({
   }
 })
 
-const mapStateToProps = state => {
-  return {
-    user: state.feathers.user
-  }
-}
+const mapStateToProps = state => ({
+  user: state.feathers.user
+})
 
 export default connect(
   mapStateToProps,

@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 
 const BackgroundInput = styled.View`
-  background-color: ${props => props.theme.color.background};
+  background-color: ${props => props.theme.color.cards};
   margin-top: 10px;
 `
 
@@ -20,6 +20,7 @@ export default class InputLabeled extends Component {
 
   render() {
     const { label, icon, androidIcon, iosIcon, isPassword, onChange } = this.props
+
     return (
       <BackgroundInput>
         <Item regular>

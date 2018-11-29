@@ -6,9 +6,8 @@ module.exports = function (options = {}) {
   return async context => {
     const { params, result } = context;
     const { user } = context.params;
-    let playlists = result.data.filter((playlist) => {
-      return playlist.members.includes(user.email);
-    })
+    let playlists = result.data.filter((playlist) =>
+      playlist.members.includes(user.email))
     context.result.data = playlists;
     return context;
   };

@@ -9,7 +9,8 @@ import TagsList from '../tagsList'
 class PlaylistCard extends Component {
   static propTypes = {
     navigation: PropTypes.object,
-    playlist: PropTypes.object
+    playlist: PropTypes.object,
+    theme: PropTypes.object
   }
 
   render() {
@@ -32,11 +33,9 @@ class PlaylistCard extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    theme: state.themes.currentTheme
-  }
-}
+const mapStateToProps = state => ({
+  theme: state.themes.currentTheme
+})
 
 export default connect(
   mapStateToProps

@@ -2,13 +2,16 @@ import feathers from 'feathers/client'
 import authentication from 'feathers-authentication-client'
 import hooks from 'feathers-hooks'
 import socketio from 'feathers-socketio/client'
-import io from 'socket.io-client'
 import { AsyncStorage } from 'react-native'
+import io from 'socket.io-client'
 
 import { API_URL } from '../../config'
 
-
-const options = { transports: ['websocket'], pingTimeout: 3000, pingInterval: 5000 }
+const options = {
+  transports: ['websocket'],
+  pingTimeout: 3000,
+  pingInterval: 5000
+}
 
 const socket = io(API_URL, options)
 
@@ -28,15 +31,11 @@ export const authenticate = payload => ({
 
 export const reauthenticate = () => dispatch => {
   return app.authenticate()
-    .then(response => {
-      return app.passport.verifyJWT(response.accessToken)
-    })
+    .then(response => app.passport.verifyJWT(response.accessToken))
     .then(payload => {
-      return app.service('users').get(payload.userId).then((user) => {
+      app.service('users').get(payload.userId).then((user) => {
         dispatch(
-          authenticate({
-            user
-          })
+          authenticate({ user })
         )
         return !!payload.userId
       })
@@ -53,15 +52,11 @@ export const login = (email, password) => dispatch => {
     password
   }
   return app.authenticate(payload)
-    .then(response => {
-      return app.passport.verifyJWT(response.accessToken)
-    })
+    .then(response => app.passport.verifyJWT(response.accessToken))
     .then(payload => {
       app.service('users').get(payload.userId).then((user) => {
         dispatch(
-          authenticate({
-            user
-          })
+          authenticate({ user })
         )
       })
       return !!payload.userId
