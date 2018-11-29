@@ -54,6 +54,7 @@ export const loadMusic = (playlistId) => dispatch => {
   app.service('musics').on('created', createdListener)
   app.service('musics').on('removed', removedListener)
   app.service('musics').on('updated', updateListener)
+  app.service('musics').on('patched', updateListener)
 
   return app.service('musics').find(
     {
@@ -78,6 +79,8 @@ export const loadMusic = (playlistId) => dispatch => {
 export const unloadMusic = () => dispatch => {
   app.service('musics').removeListener('created', createdListener)
   app.service('musics').removeListener('removed', removedListener)
+  app.service('musics').removeListener('updated', updateListener)
+  app.service('musics').removeListener('patched', updateListener)
   dispatch(
     removeMusics()
   )

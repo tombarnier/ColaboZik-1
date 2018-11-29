@@ -20,7 +20,7 @@ module.exports = {
     all: [],
     find: [],
     get: [],
-    create: [addMusicPlaylist()],
+    create: [],
     update: [],
     patch: [],
     remove: []
