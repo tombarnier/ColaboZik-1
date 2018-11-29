@@ -27,9 +27,10 @@ export default (state = initialState, action) => {
       musics: state.musics.filter((music) => music._id !== action.id)
     }
   case DISLIKE_MUSIC:
+  const musics = state.musics.map((music) => music._id === action.id ? action.music : music)
     return {
       ...state,
-      musics: state.musics.map((music) => music._id === action.id ? action.music : music)
+      musics
     }
   default:
     return state
