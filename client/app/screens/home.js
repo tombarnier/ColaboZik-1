@@ -60,13 +60,11 @@ const mapDispatchToProps = dispatch => ({
   }
 })
 
-const mapStateToProps = state => {
-  return {
-    user: state.feathers.user,
-    playlists: state.playlists.playlists,
-    theme: state.themes.currentTheme
-  }
-}
+const mapStateToProps = state => ({
+  user: state.feathers.user,
+  playlists: state.playlists.playlists,
+  theme: state.themes.currentTheme
+})
 
 export default connect(
   mapStateToProps,

@@ -37,8 +37,8 @@ export const reauthenticate = () => dispatch => {
         dispatch(
           authenticate({ user })
         )
-        return !!payload.userId
       })
+      return !!payload.userId
     }).catch((e) => {
       // console.log('error:', e)
       return false

@@ -46,11 +46,9 @@ const mapDispatchToProps = dispatch => ({
   }
 })
 
-const mapStateToProps = state => {
-  return {
-    user: state.feathers.user
-  }
-}
+const mapStateToProps = state => ({
+  user: state.feathers.user
+})
 
 export default connect(
   mapStateToProps,

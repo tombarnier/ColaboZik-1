@@ -24,7 +24,8 @@ const Inputs = styled.View`
 class AddMusic extends Component {
   static propTypes = {
     navigation: PropTypes.object,
-    actions: PropTypes.object
+    actions: PropTypes.object,
+    theme: PropTypes.object
   }
 
   state = {
@@ -35,6 +36,7 @@ class AddMusic extends Component {
     const { actions, navigation } = this.props
     const { link } = this.state
     const playlist = navigation.getParam('playlist', undefined)
+
     if (!playlist) navigation.goBack()
 
     actions.musics.createMusic({
@@ -47,7 +49,7 @@ class AddMusic extends Component {
 
   render() {
     const { theme } = this.props
-    
+
     return (
       <BackgroundView>
         <Inputs>
@@ -57,7 +59,8 @@ class AddMusic extends Component {
           </Form>
         </Inputs>
 
-        <Button block style={{backgroundColor: theme.color.button }} onPress={this._validAdding}>
+        <Button block style={{ backgroundColor: theme.color.button }}
+                onPress={this._validAdding}>
           <Text>Ajouter</Text>
         </Button>
       </BackgroundView>
@@ -71,11 +74,9 @@ const mapDispatchToProps = dispatch => ({
   }
 })
 
-const mapStateToProps = state => {
-  return {
-    theme: state.themes.currentTheme
-  }
-}
+const mapStateToProps = state => ({
+  theme: state.themes.currentTheme
+})
 
 export default connect(
   mapStateToProps,
