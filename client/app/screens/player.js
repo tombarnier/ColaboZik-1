@@ -1,13 +1,13 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { Dimensions, View } from 'react-native'
+import { View } from 'react-native'
 import { Fab, Icon } from 'native-base'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import YouTube from 'react-native-youtube'
 
-import { API_KEY_YT } from '../../config'
+import MusicPlayer from '../components/musicPlayer'
+
 import allTheActions from '../actions'
 
 const BackgroundView = styled.View`
@@ -20,8 +20,6 @@ const TitleText = styled.Text`
   font-size: 18px;
   margin: 0px 100px;
 `
-
-const youtubeHeight = Dimensions.get('window').width / (16 / 9)
 
 class Player extends Component {
 
@@ -86,20 +84,7 @@ class Player extends Component {
 
     return (
       <BackgroundView>
-        <YouTube
-          videoId={url}           // The YouTube video ID
-          play={true}
-          fullscreen={false}      // control whether the video should play in fullscreen or inline
-          loop={false}
-          apiKey={API_KEY_YT}
-          onChangeState={(e) => { // control whether the video should loop when ended
-            if (e.state === 'ended') this.next('forward')
-          }}
-          onError={() => {
-            this.next('forward')
-          }}
-          style={{ alignSelf: 'stretch', height: youtubeHeight }}
-        />
+        <MusicPlayer url={url} next={this.next}/>
         <View>
           <Fab
             style={{ backgroundColor: theme.color.button }}
