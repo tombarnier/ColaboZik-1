@@ -12,7 +12,7 @@ import allTheActions from '../actions'
 
 const BackgroundView = styled.View`
   flex: 1;
-  background-color: ${props => props.theme.color.secondary};
+  background-color: ${props => props.theme.color.background};
 `
 
 const ScrollMusic = styled.ScrollView`
@@ -22,6 +22,7 @@ const ScrollMusic = styled.ScrollView`
 class Playlist extends Component {
   static propTypes = {
     navigation: PropTypes.object,
+    theme: PropTypes.object,
     actions: PropTypes.object,
     musics: PropTypes.array
   }
@@ -40,7 +41,7 @@ class Playlist extends Component {
   }
 
   render() {
-    const { navigation, musics } = this.props
+    const { navigation, musics, theme } = this.props
     const playlist = navigation.getParam('playlist', undefined)
     if (!playlist) navigation.navigate('Home')
 
@@ -52,14 +53,14 @@ class Playlist extends Component {
         </ScrollMusic>
 
         <Fab
-          style={{ backgroundColor: '#5067FF' }}
+          style={{ backgroundColor: theme.color.button }}
           position="bottomRight"
           onPress={() => navigation.navigate('AddMusic', { playlist })}>
           <Icon name="add"/>
         </Fab>
 
         <Fab
-          style={{ backgroundColor: '#5067FF' }}
+          style={{ backgroundColor: theme.color.button }}
           position="bottomLeft"
           onPress={() => navigation.navigate('Player', { playlist })}>
           <Icon name="play"/>
@@ -77,7 +78,8 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = state => {
   return {
-    musics: state.musics.musics
+    musics: state.musics.musics,
+    theme: state.themes.currentTheme
   }
 }
 

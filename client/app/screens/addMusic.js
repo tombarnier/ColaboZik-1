@@ -12,7 +12,7 @@ import allTheActions from '../actions'
 const BackgroundView = styled.View`
   flex: 1;
   padding: 10px;
-  background-color: ${props => props.theme.color.secondary};
+  background-color: ${props => props.theme.color.background};
   justify-content: center;
   align-items: center;
 `
@@ -47,6 +47,8 @@ class AddMusic extends Component {
   }
 
   render() {
+    const { theme } = this.props
+    
     return (
       <BackgroundView>
         <Inputs>
@@ -56,7 +58,7 @@ class AddMusic extends Component {
           </Form>
         </Inputs>
 
-        <Button block success onPress={this._validAdding}>
+        <Button block style={{backgroundColor: theme.color.button }} onPress={this._validAdding}>
           <Text>Ajouter</Text>
         </Button>
       </BackgroundView>
@@ -71,7 +73,9 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const mapStateToProps = state => {
-  return state
+  return {
+    theme: state.themes.currentTheme
+  }
 }
 
 export default connect(

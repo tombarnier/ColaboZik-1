@@ -12,7 +12,7 @@ import allTheActions from '../actions'
 const BackgroundView = styled.View`
   flex: 1;
   padding: 10px;
-  background-color: ${props => props.theme.color.secondary};
+  background-color: ${props => props.theme.color.background};
   justify-content: center;
   align-items: center;
 `
@@ -43,6 +43,8 @@ class Login extends Component {
   }
 
   render() {
+    const { theme } = this.props
+    
     return (
       <BackgroundView>
         <H1>Connexion</H1>
@@ -57,7 +59,7 @@ class Login extends Component {
           </Form>
         </Inputs>
 
-        <Button block info onPress={this.submit}>
+        <Button block style={{backgroundColor: theme.color.button }} onPress={this.submit}>
           <Text>Se connecter</Text>
         </Button>
       </BackgroundView>
@@ -73,7 +75,8 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = state => {
   return {
-    user: state.feathers.user
+    user: state.feathers.user,
+    theme: state.themes.currentTheme
   }
 }
 

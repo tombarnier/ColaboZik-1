@@ -7,17 +7,22 @@ import { store } from './app/config/store'
 
 
 type Props = {}
-export default class App extends Component<Props> {
-  render() {
-    let currentTheme = {
-      color: {
-        primary: '#FFF',
-        secondary: '#EAEAEA'
-      }
-    }
+export default class App extends Component {
+  state = {
+    connectedTheme: store.getState('themes')
+  }
+
+  componentDidMount () {
+    store.subscribe(() =>
+      this.setState({ connectedTheme: store.getState('themes') })
+    )
+  }
+
+  render () {
+    const { connectedTheme } = this.state
     return (
       <Provider store={store}>
-        <ThemeProvider theme={currentTheme}>
+        <ThemeProvider theme={connectedTheme.themes.currentTheme}>
           <StackNavigator/>
         </ThemeProvider>
       </Provider>
