@@ -5,7 +5,6 @@ import { ThemeProvider } from 'styled-components'
 import StackNavigator from './app/config/routes'
 import { store } from './app/config/store'
 
-
 type Props = {}
 export default class App extends Component {
   state = {
@@ -20,6 +19,7 @@ export default class App extends Component {
 
   render () {
     const { connectedTheme } = this.state
+
     return (
       <Provider store={store}>
         <ThemeProvider theme={connectedTheme.themes.currentTheme}>

@@ -2,8 +2,8 @@ import { Fab, Icon } from 'native-base'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { Text } from 'react-native'
-import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import styled from 'styled-components'
 
 import PlaylistsList from '../components/playlistsList'
@@ -61,13 +61,11 @@ const mapDispatchToProps = dispatch => ({
   }
 })
 
-const mapStateToProps = state => {
-  return {
-    user: state.feathers.user,
-    playlists: state.playlists.playlists,
-    theme: state.themes.currentTheme
-  }
-}
+const mapStateToProps = state => ({
+  user: state.feathers.user,
+  playlists: state.playlists.playlists,
+  theme: state.themes.currentTheme
+})
 
 export default connect(
   mapStateToProps,

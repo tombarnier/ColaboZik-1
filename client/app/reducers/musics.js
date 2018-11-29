@@ -1,6 +1,5 @@
 import { ADD_MUSIC, ADD_MUSICS, DISLIKE_MUSIC, REMOVE_MUSIC, REMOVE_MUSICS } from '../actions/musics'
 
-
 const initialState = {
   musics: []
 }

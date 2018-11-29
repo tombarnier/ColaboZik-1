@@ -1,6 +1,5 @@
 import { AUTHENTICATE } from '../actions/feathers'
 
-
 const initialState = {
   user: null,
   playlists: []

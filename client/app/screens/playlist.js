@@ -76,12 +76,10 @@ const mapDispatchToProps = dispatch => ({
   }
 })
 
-const mapStateToProps = state => {
-  return {
-    musics: state.musics.musics,
-    theme: state.themes.currentTheme
-  }
-}
+const mapStateToProps = state => ({
+  musics: state.musics.musics,
+  theme: state.themes.currentTheme
+})
 
 export default connect(
   mapStateToProps,

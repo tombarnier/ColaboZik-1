@@ -1,9 +1,8 @@
 import { H1, Spinner } from 'native-base'
 import PropTypes from 'prop-types'
 import React from 'react'
-import { StatusBar } from 'react-native'
-import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import styled from 'styled-components'
 
 import { displayName as appName } from '../../app.json'
@@ -47,11 +46,9 @@ const mapDispatchToProps = dispatch => ({
   }
 })
 
-const mapStateToProps = state => {
-  return {
-    user: state.feathers.user
-  }
-}
+const mapStateToProps = state => ({
+  user: state.feathers.user
+})
 
 export default connect(
   mapStateToProps,

@@ -26,7 +26,8 @@ class AddPlaylist extends Component {
   static propTypes = {
     navigation: PropTypes.object,
     actions: PropTypes.object,
-    user: PropTypes.object
+    user: PropTypes.object,
+    theme: PropTypes.object
   }
 
   state = {
@@ -66,7 +67,8 @@ class AddPlaylist extends Component {
           </Form>
         </Inputs>
 
-        <Button block style={{backgroundColor: theme.color.button }} onPress={this._validAdding}>
+        <Button block style={{ backgroundColor: theme.color.button }}
+                onPress={this._validAdding}>
           <Text>Ajouter</Text>
         </Button>
       </BackgroundView>
@@ -74,18 +76,16 @@ class AddPlaylist extends Component {
   }
 }
 
-  const mapDispatchToProps = dispatch => ({
-    actions: {
-      playlists: bindActionCreators(allTheActions.playlists, dispatch),
-    }
-  })
-
-const mapStateToProps = state => {
-  return {
-    user: state.feathers.user,
-    theme: state.themes.currentTheme
+const mapDispatchToProps = dispatch => ({
+  actions: {
+    playlists: bindActionCreators(allTheActions.playlists, dispatch)
   }
-}
+})
+
+const mapStateToProps = state => ({
+  user: state.feathers.user,
+  theme: state.themes.currentTheme
+})
 
 export default connect(
   mapStateToProps,
