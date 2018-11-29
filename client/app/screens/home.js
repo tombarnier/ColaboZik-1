@@ -12,7 +12,7 @@ import allTheActions from '../actions'
 
 const BackgroundView = styled.View`
   flex: 1;
-  background-color: ${props => props.theme.color.secondary};
+  background-color: ${props => props.theme.color.background};
 `
 
 const ScrollPlaylists = styled.ScrollView`
@@ -22,18 +22,20 @@ const ScrollPlaylists = styled.ScrollView`
 class Home extends Component {
   static propTypes = {
     navigation: PropTypes.object,
+    theme: PropTypes.object,
     actions: PropTypes.object,
     playlists: PropTypes.array,
     user: PropTypes.object
   }
 
   componentDidMount() {
+    console.log(this.props)
     const { actions, user } = this.props
     actions.playlists.loadPlaylists()
   }
 
   render() {
-    const { navigation, playlists } = this.props
+    const { navigation, playlists, theme } = this.props
 
     return (
       <BackgroundView>
@@ -43,7 +45,7 @@ class Home extends Component {
         </ScrollPlaylists>
 
         <Fab
-          style={{ backgroundColor: '#5067FF' }}
+          style={{ backgroundColor: theme.color.button }}
           position="bottomRight"
           onPress={() => navigation.navigate('AddPlaylist')}>
           <Icon name="add"/>
@@ -62,7 +64,8 @@ const mapDispatchToProps = dispatch => ({
 const mapStateToProps = state => {
   return {
     user: state.feathers.user,
-    playlists: state.playlists.playlists
+    playlists: state.playlists.playlists,
+    theme: state.themes.currentTheme
   }
 }
 

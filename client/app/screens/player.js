@@ -12,7 +12,7 @@ import allTheActions from '../actions'
 
 const BackgroundView = styled.View`
   flex: 1;
-  background-color: ${props => props.theme.color.secondary};
+  background-color: ${props => props.theme.color.background};
 `
 
 const TitleText = styled.Text`
@@ -27,6 +27,7 @@ class Player extends Component {
 
   static propTypes = {
     navigation: PropTypes.object,
+    theme: PropTypes.object,
     actions: PropTypes.object,
     musics: PropTypes.array
   }
@@ -80,6 +81,7 @@ class Player extends Component {
   }
 
   render() {
+    const { theme } = this.props
     const { title, url } = this.state
 
     return (
@@ -100,13 +102,13 @@ class Player extends Component {
         />
         <View>
           <Fab
-            style={{ backgroundColor: '#5067FF' }}
+            style={{ backgroundColor: theme.color.button }}
             position='topRight'
             onPress={() => this.next('forward')}>
             <Icon name='skip-forward'/>
           </Fab>
           <Fab
-            style={{ backgroundColor: '#5067FF' }}
+            style={{ backgroundColor: theme.color.button }}
             position='topLeft'
             onPress={() => this.next('backward')}>
             <Icon name='skip-backward'/>
@@ -126,7 +128,8 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = state => {
   return {
-    musics: state.musics.musics
+    musics: state.musics.musics,
+    theme: state.themes.currentTheme
   }
 }
 

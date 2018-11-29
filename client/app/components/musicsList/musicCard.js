@@ -2,6 +2,7 @@ import { Body, Card, CardItem, Left, Text, Thumbnail } from 'native-base'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import { connect } from 'react-redux'
 
 import DislikeButton from './dislikeButton'
 
@@ -9,23 +10,23 @@ const RightCard = styled.View`
   align-items: center;
 `
 
-export default class MusicCard extends Component {
+class MusicCard extends Component {
   static propTypes = {
     music: PropTypes.object,
     actions: PropTypes.object
   }
 
   render() {
-    const { music } = this.props
+    const { music, theme } = this.props
     const { title, thumbnail, dislike } = music
 
     return (
-      <Card>
+      <Card style={{ backgroundColor: theme.color.cards }}>
         <CardItem>
           <Left>
             <Thumbnail square large source={{ uri: thumbnail }}/>
             <Body header>
-              <Text>{title}</Text>
+              <Text style={{ color: theme.color.font }}>{title}</Text>
             </Body>
           </Left>
 
@@ -38,3 +39,13 @@ export default class MusicCard extends Component {
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    theme: state.themes.currentTheme
+  }
+}
+
+export default connect(
+  mapStateToProps
+)(MusicCard)

@@ -2,24 +2,25 @@ import { Card, CardItem, Text } from 'native-base'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { TouchableOpacity } from 'react-native'
+import { connect } from 'react-redux'
 
 import TagsList from '../tagsList'
 
-export default class PlaylistCard extends Component {
+class PlaylistCard extends Component {
   static propTypes = {
     navigation: PropTypes.object,
     playlist: PropTypes.object
   }
 
   render() {
-    const { navigation, playlist } = this.props
+    const { navigation, playlist, theme } = this.props
     const { name, tags } = playlist
 
     return (
-      <Card>
+      <Card style={{ backgroundColor: theme.color.cards }}>
         <TouchableOpacity onPress={() => navigation.navigate('Playlist', { playlist })}>
           <CardItem header bordered>
-            <Text>{name}</Text>
+            <Text style={{ color: theme.color.font }}>{name}</Text>
           </CardItem>
 
           <CardItem bordered>
@@ -30,3 +31,13 @@ export default class PlaylistCard extends Component {
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    theme: state.themes.currentTheme
+  }
+}
+
+export default connect(
+  mapStateToProps
+)(PlaylistCard)

@@ -11,7 +11,7 @@ import allTheActions from '../actions'
 
 const AuthLoadingContainer = styled.View`
   flex: 1;
-  background-color: ${props => props.theme.color.secondary};
+  background-color: ${props => props.theme.color.background};
   justify-content: center;
   align-items: center;
 `
