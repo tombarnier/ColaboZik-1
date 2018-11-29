@@ -33,12 +33,12 @@ export const reauthenticate = () => dispatch => {
   return app.authenticate()
     .then(response => app.passport.verifyJWT(response.accessToken))
     .then(payload => {
-      app.service('users').get(payload.userId).then((user) => {
+      return app.service('users').get(payload.userId).then((user) => {
         dispatch(
           authenticate({ user })
         )
+        return !!payload.userId
       })
-      return !!payload.userId
     }).catch((e) => {
       // console.log('error:', e)
       return false
@@ -54,12 +54,12 @@ export const login = (email, password) => dispatch => {
   return app.authenticate(payload)
     .then(response => app.passport.verifyJWT(response.accessToken))
     .then(payload => {
-      app.service('users').get(payload.userId).then((user) => {
+      return app.service('users').get(payload.userId).then((user) => {
         dispatch(
           authenticate({ user })
         )
+        return !!payload.userId
       })
-      return !!payload.userId
     }).catch((e) => {
       // console.log('error:', e)
       return false
