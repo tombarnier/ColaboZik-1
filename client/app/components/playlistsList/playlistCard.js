@@ -13,7 +13,7 @@ class PlaylistCard extends Component {
     theme: PropTypes.object
   }
 
-  _playlistSelect = () => {
+  _playlistPress = () => {
     const { playlist, navigation } = this.props
 
     navigation.navigate('Playlist', { playlist })
@@ -25,7 +25,7 @@ class PlaylistCard extends Component {
 
     return (
       <Card style={{ backgroundColor: theme.color.cards }}>
-        <TouchableOpacity onPress={this._playlistSelect}>
+        <TouchableOpacity onPress={this._playlistPress}>
           <CardItem header bordered>
             <Text style={{ color: theme.color.font }}>{name}</Text>
           </CardItem>
