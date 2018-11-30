@@ -92,8 +92,8 @@ export const createMusic = (music) => dispatch =>
 export const deleteMusic = (music) => dispatch =>
   app.service('musics').remove(music)
 
-export const downvoteMusic = (music, user) => dispatch => {
-  if (music.dislike.length >= 2) {
+export const downvoteMusic = (music, playlist, user) => dispatch => {
+  if (music.dislike.length >= playlist.members.length / 2) {
     dispatch(
       deleteMusic(music._id)
     )

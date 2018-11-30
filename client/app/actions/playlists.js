@@ -3,6 +3,8 @@ import { app } from './feathers'
 export const ADD_PLAYlISTS = 'ADD_PLAYlISTS'
 export const ADD_PLAYlIST = 'ADD_PLAYlIST'
 export const REMOVE_PLAYlIST = 'REMOVE_PLAYlIST'
+export const SELECT_PLAYLIST = 'SELECT_PLAYLIST'
+export const DESELECT_PLAYLIST = 'DESELECT_PLAYLIST'
 
 export const addPlaylists = payload => ({
   type: ADD_PLAYlISTS,
@@ -17,6 +19,15 @@ export const addPlaylist = payload => ({
 export const removePlaylist = payload => ({
   type: REMOVE_PLAYlIST,
   id: payload.id
+})
+
+export const selectPlaylist = payload => ({
+  type: SELECT_PLAYLIST,
+  id: payload._id
+})
+
+export const deselectPlaylist = () => ({
+  type: DESELECT_PLAYLIST
 })
 
 export const loadPlaylists = (user) => dispatch => {

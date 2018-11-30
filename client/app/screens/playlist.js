@@ -24,26 +24,29 @@ class Playlist extends Component {
     navigation: PropTypes.object,
     theme: PropTypes.object,
     actions: PropTypes.object,
-    musics: PropTypes.array
+    musics: PropTypes.array,
+    playlists: PropTypes.array
   }
 
   componentDidMount() {
     const { navigation, actions } = this.props
     const playlist = navigation.getParam('playlist', undefined)
 
+    if (!playlist) navigation.goBack()
+
+    actions.playlists.selectPlaylist(playlist)
     actions.musics.loadMusic(playlist._id)
   }
 
   componentWillUnmount() {
     const { actions } = this.props
 
+    actions.playlists.deselectPlaylist()
     actions.musics.unloadMusic()
   }
 
   render() {
     const { navigation, musics, theme } = this.props
-    const playlist = navigation.getParam('playlist', undefined)
-    if (!playlist) navigation.navigate('Home')
 
     return (
       <BackgroundView>
@@ -55,14 +58,14 @@ class Playlist extends Component {
         <Fab
           style={{ backgroundColor: theme.color.button }}
           position="bottomRight"
-          onPress={() => navigation.navigate('AddMusic', { playlist })}>
+          onPress={() => navigation.navigate('AddMusic')}>
           <Icon name="add"/>
         </Fab>
 
         <Fab
           style={{ backgroundColor: theme.color.button }}
           position="bottomLeft"
-          onPress={() => navigation.navigate('Player', { playlist })}>
+          onPress={() => navigation.navigate('Player')}>
           <Icon name="play"/>
         </Fab>
       </BackgroundView>
@@ -72,7 +75,8 @@ class Playlist extends Component {
 
 const mapDispatchToProps = dispatch => ({
   actions: {
-    musics: bindActionCreators(allTheActions.musics, dispatch)
+    musics: bindActionCreators(allTheActions.musics, dispatch),
+    playlists: bindActionCreators(allTheActions.playlists, dispatch)
   }
 })
 
