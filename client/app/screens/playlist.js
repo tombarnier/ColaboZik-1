@@ -44,6 +44,18 @@ class Playlist extends Component {
     actions.musics.unloadMusic()
   }
 
+  _addMusicPress = () => {
+    const { navigation } = this.props
+
+    navigation.navigate('AddMusic')
+  }
+
+  _playerPress = () => {
+    const { navigation } = this.props
+
+    navigation.navigate('Player')
+  }
+
   render() {
     const { navigation, musics, theme } = this.props
 
@@ -57,14 +69,14 @@ class Playlist extends Component {
         <Fab
           style={{ backgroundColor: theme.color.button }}
           position="bottomRight"
-          onPress={() => navigation.navigate('AddMusic')}>
+          onPress={this._addMusicPress}>
           <Icon name="add"/>
         </Fab>
 
         <Fab
           style={{ backgroundColor: theme.color.button }}
           position="bottomLeft"
-          onPress={() => navigation.navigate('Player')}>
+          onPress={this._playerPress}>
           <Icon name="play"/>
         </Fab>
       </BackgroundView>
