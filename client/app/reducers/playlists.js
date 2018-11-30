@@ -1,4 +1,4 @@
-import { ADD_PLAYlIST, ADD_PLAYlISTS, DESELECT_PLAYLIST, REMOVE_PLAYlIST, SELECT_PLAYLIST } from '../actions/playlists'
+import { ADD_PLAYLIST, ADD_PLAYLISTS, DESELECT_PLAYLIST, REMOVE_PLAYLIST, SELECT_PLAYLIST } from '../actions/playlists'
 
 const initialState = {
   playlists: [],
@@ -7,17 +7,17 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-  case ADD_PLAYlISTS:
+  case ADD_PLAYLISTS:
     return {
       ...state,
       playlists: action.playlists
     }
-  case ADD_PLAYlIST:
+  case ADD_PLAYLIST:
     return {
       ...state,
       playlists: [...state.playlists, action.playlist]
     }
-  case REMOVE_PLAYlIST:
+  case REMOVE_PLAYLIST:
     return {
       ...state,
       playlists: state.playlists.filter((playlist) => playlist._id !== action.id)
