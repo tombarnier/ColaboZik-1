@@ -31,19 +31,33 @@ class Playlist extends Component {
     const { navigation, actions } = this.props
     const playlist = navigation.getParam('playlist', undefined)
 
+    if (!playlist) navigation.goBack()
+
+    actions.playlists.selectPlaylist(playlist)
     actions.musics.loadMusic(playlist._id)
   }
 
   componentWillUnmount() {
     const { actions } = this.props
 
+    actions.playlists.deselectPlaylist()
     actions.musics.unloadMusic()
+  }
+
+  _addMusicPress = () => {
+    const { navigation } = this.props
+
+    navigation.navigate('AddMusic')
+  }
+
+  _playerPress = () => {
+    const { navigation } = this.props
+
+    navigation.navigate('Player')
   }
 
   render() {
     const { navigation, musics, theme } = this.props
-    const playlist = navigation.getParam('playlist', undefined)
-    if (!playlist) navigation.navigate('Home')
 
     return (
       <BackgroundView>
@@ -55,14 +69,14 @@ class Playlist extends Component {
         <Fab
           style={{ backgroundColor: theme.color.button }}
           position="bottomRight"
-          onPress={() => navigation.navigate('AddMusic', { playlist })}>
+          onPress={this._addMusicPress}>
           <Icon name="add"/>
         </Fab>
 
         <Fab
           style={{ backgroundColor: theme.color.button }}
           position="bottomLeft"
-          onPress={() => navigation.navigate('Player', { playlist })}>
+          onPress={this._playerPress}>
           <Icon name="play"/>
         </Fab>
       </BackgroundView>
@@ -72,7 +86,8 @@ class Playlist extends Component {
 
 const mapDispatchToProps = dispatch => ({
   actions: {
-    musics: bindActionCreators(allTheActions.musics, dispatch)
+    musics: bindActionCreators(allTheActions.musics, dispatch),
+    playlists: bindActionCreators(allTheActions.playlists, dispatch)
   }
 })
 

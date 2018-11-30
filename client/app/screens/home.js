@@ -34,6 +34,12 @@ class Home extends Component {
     actions.playlists.loadPlaylists(user)
   }
 
+  _addPlaylistPress = () => {
+    const { navigation } = this.props
+
+    navigation.navigate('AddPlaylist')
+  }
+
   render() {
     const { navigation, playlists, theme } = this.props
 
@@ -47,7 +53,7 @@ class Home extends Component {
         <Fab
           style={{ backgroundColor: theme.color.button }}
           position="bottomRight"
-          onPress={() => navigation.navigate('AddPlaylist')}>
+          onPress={this._addPlaylistPress}>
           <Icon name="add"/>
         </Fab>
       </BackgroundView>

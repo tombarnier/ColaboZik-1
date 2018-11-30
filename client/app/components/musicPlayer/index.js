@@ -10,11 +10,11 @@ const youtubeHeight = Dimensions.get('window').width / (16 / 9)
 export default class MusicPlayer extends Component {
   static propTypes = {
     url: PropTypes.string,
-    next: PropTypes.func
+    forward: PropTypes.func
   }
 
   render() {
-    const { url, next } = this.props
+    const { url, forward } = this.props
 
     return (
       <YouTube
@@ -24,11 +24,9 @@ export default class MusicPlayer extends Component {
         loop={false}
         apiKey={API_KEY_YT}
         onChangeState={(e) => { // control whether the video should loop when ended
-          if (e.state === 'ended') next('forward')
+          if (e.state === 'ended') forward()
         }}
-        onError={() => {
-          next('forward')
-        }}
+        onError={forward}
         style={{ alignSelf: 'stretch', height: youtubeHeight }}
       />
     )

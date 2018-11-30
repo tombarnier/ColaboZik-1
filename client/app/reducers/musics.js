@@ -1,4 +1,4 @@
-import { ADD_MUSIC, ADD_MUSICS, DISLIKE_MUSIC, REMOVE_MUSIC, REMOVE_MUSICS } from '../actions/musics'
+import { ADD_MUSIC, ADD_MUSICS, REMOVE_MUSIC, REMOVE_MUSICS, UPDATE_MUSIC } from '../actions/musics'
 
 const initialState = {
   musics: []
@@ -24,13 +24,12 @@ export default (state = initialState, action) => {
   case REMOVE_MUSIC:
     return {
       ...state,
-      musics: state.musics.filter((music) => music._id !== action.id)
+      musics: state.musics.filter(music => music._id !== action.id)
     }
-  case DISLIKE_MUSIC:
-    state.musics.map((music) => music._id === action.id ? action.music : music)
+  case UPDATE_MUSIC:
     return {
       ...state,
-      musics: state.musics.map((music) => music._id === action.id ? action.music : music)
+      musics: state.musics.map(music => music._id === action.id ? action.music : music)
     }
   default:
     return state

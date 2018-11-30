@@ -26,6 +26,7 @@ class AddMusic extends Component {
   static propTypes = {
     navigation: PropTypes.object,
     actions: PropTypes.object,
+    playlist: PropTypes.object,
     theme: PropTypes.object
   }
 
@@ -34,9 +35,8 @@ class AddMusic extends Component {
   }
 
   _validAdding = () => {
-    const { actions, navigation } = this.props
+    const { actions, navigation, playlist } = this.props
     const { link } = this.state
-    const playlist = navigation.getParam('playlist', undefined)
 
     if (!playlist) navigation.goBack()
 
@@ -76,6 +76,7 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const mapStateToProps = state => ({
+  playlist: state.playlists.currentPlaylist,
   theme: state.themes.currentTheme
 })
 

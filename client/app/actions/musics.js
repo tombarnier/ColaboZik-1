@@ -2,28 +2,29 @@ import { app } from './feathers'
 
 export const ADD_MUSIC = 'ADD_MUSIC'
 export const ADD_MUSICS = 'ADD_MUSICS'
-export const DISLIKE_MUSIC = 'DISLIKE_MUSIC'
 export const REMOVE_MUSIC = 'REMOVE_MUSIC'
 export const REMOVE_MUSICS = 'REMOVE_MUSICS'
+export const UPDATE_MUSIC = 'UPDATE_MUSIC'
 
-export const addMusics = payload => ({
-  type: ADD_MUSICS,
-  musics: payload.musics
-})
 export const addMusic = payload => ({
   type: ADD_MUSIC,
   music: payload.music
 })
-
-export const removeMusics = () => ({
-  type: REMOVE_MUSICS
+export const addMusics = payload => ({
+  type: ADD_MUSICS,
+  musics: payload.musics
 })
+
 export const removeMusic = payload => ({
   type: REMOVE_MUSIC,
   id: payload.id
 })
-export const dislikeMusic = payload => ({
-  type: DISLIKE_MUSIC,
+export const removeMusics = () => ({
+  type: REMOVE_MUSICS
+})
+
+export const updateMusic = payload => ({
+  type: UPDATE_MUSIC,
   id: payload._id,
   music: payload
 })
@@ -47,13 +48,12 @@ export const loadMusic = (playlistId) => dispatch => {
 
   updateListener = (music) => {
     dispatch(
-      loadMusic(music.playlist)
+      updateMusic(music)
     )
   }
 
   app.service('musics').on('created', createdListener)
   app.service('musics').on('removed', removedListener)
-  app.service('musics').on('updated', updateListener)
   app.service('musics').on('patched', updateListener)
 
   return app.service('musics').find(
@@ -62,7 +62,7 @@ export const loadMusic = (playlistId) => dispatch => {
         playlist: playlistId,
         $limit: 100,
         $sort: {
-          createdAt: -1
+          createdAt: 1
         }
       }
     }
@@ -79,7 +79,6 @@ export const loadMusic = (playlistId) => dispatch => {
 export const unloadMusic = () => dispatch => {
   app.service('musics').removeListener('created', createdListener)
   app.service('musics').removeListener('removed', removedListener)
-  app.service('musics').removeListener('updated', updateListener)
   app.service('musics').removeListener('patched', updateListener)
   dispatch(
     removeMusics()
@@ -92,22 +91,19 @@ export const createMusic = (music) => dispatch =>
 export const deleteMusic = (music) => dispatch =>
   app.service('musics').remove(music)
 
-export const downvoteMusic = (music, user) => dispatch => {
-  if (music.dislike.length >= 2) {
-    dispatch(
-      deleteMusic(music._id)
-    )
-  } else {
-    if (!music.dislike.includes(user._id)) music.dislike.push(user._id)
-    return app.service('musics')
-      .patch(music._id, { dislike: music.dislike })
-      .then(() => {
+export const downvoteMusic = (music, playlist, user) => dispatch => {
+  if (!music.dislike.includes(user._id)) {
+    app.service('musics').patch(music._id, {
+      dislike: [...music.dislike, user._id]
+    }).then((musicUpdated) => {
+      if (musicUpdated.dislike.length >= playlist.members.length / 2) {
         dispatch(
-          dislikeMusic(music)
+          deleteMusic(musicUpdated._id)
         )
-      }).catch((e) => {
-        // console.log('error', e)
-        return false
-      })
+      }
+    }).catch((e) => {
+      // console.log('error', e)
+      return false
+    })
   }
 }

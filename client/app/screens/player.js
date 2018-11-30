@@ -78,24 +78,27 @@ class Player extends Component {
     })
   }
 
+  forward = () => this.next('forward')
+  backward = () => this.next('backward')
+
   render() {
     const { theme } = this.props
     const { title, url } = this.state
 
     return (
       <BackgroundView>
-        <MusicPlayer url={url} next={this.next}/>
+        <MusicPlayer url={url} forward={this.forward}/>
         <View>
           <Fab
             style={{ backgroundColor: theme.color.button }}
             position='topRight'
-            onPress={() => this.next('forward')}>
+            onPress={this.forward}>
             <Icon name='skip-forward'/>
           </Fab>
           <Fab
             style={{ backgroundColor: theme.color.button }}
             position='topLeft'
-            onPress={() => this.next('backward')}>
+            onPress={this.backward}>
             <Icon name='skip-backward'/>
           </Fab>
           <TitleText>{title}</TitleText>
