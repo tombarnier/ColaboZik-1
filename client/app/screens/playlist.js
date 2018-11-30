@@ -24,8 +24,7 @@ class Playlist extends Component {
     navigation: PropTypes.object,
     theme: PropTypes.object,
     actions: PropTypes.object,
-    musics: PropTypes.array,
-    playlists: PropTypes.array
+    musics: PropTypes.array
   }
 
   componentDidMount() {
