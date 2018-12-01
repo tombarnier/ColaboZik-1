@@ -22,6 +22,10 @@ const Inputs = styled.View`
   margin: 40px 0;
 `
 
+const StyledButton = styled(Button)`
+  background-color: ${props => props.theme.color.button};
+`
+
 class Login extends Component {
   static propTypes = {
     navigation: PropTypes.object,
@@ -45,8 +49,6 @@ class Login extends Component {
   }
 
   render() {
-    const { theme } = this.props
-
     return (
       <BackgroundView>
         <H1>Connexion</H1>
@@ -61,10 +63,9 @@ class Login extends Component {
           </Form>
         </Inputs>
 
-        <Button block style={{backgroundColor: theme.color.button }}
-                onPress={this.submit}>
+        <StyledButton block onPress={this.submit}>
           <Text>Se connecter</Text>
-        </Button>
+        </StyledButton>
       </BackgroundView>
     )
   }

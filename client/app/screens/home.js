@@ -19,6 +19,10 @@ const ScrollPlaylists = styled.ScrollView`
   padding: 10px;
 `
 
+const StyledFab = styled(Fab)`
+  background-color: ${props => props.theme.color.button};
+`
+
 class Home extends Component {
   static propTypes = {
     navigation: PropTypes.object,
@@ -50,12 +54,9 @@ class Home extends Component {
           <Text/>
         </ScrollPlaylists>
 
-        <Fab
-          style={{ backgroundColor: theme.color.button }}
-          position="bottomRight"
-          onPress={this._addPlaylistPress}>
+        <StyledFab position="bottomRight" onPress={this._addPlaylistPress}>
           <Icon name="add"/>
-        </Fab>
+        </StyledFab>
       </BackgroundView>
     )
   }

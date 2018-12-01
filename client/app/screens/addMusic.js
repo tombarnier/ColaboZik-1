@@ -22,6 +22,10 @@ const Inputs = styled.View`
   margin-bottom: 40px;
 `
 
+const StyledButton = styled(Button)`
+  background-color: ${props => props.theme.color.button};
+`
+
 class AddMusic extends Component {
   static propTypes = {
     navigation: PropTypes.object,
@@ -49,8 +53,6 @@ class AddMusic extends Component {
   }
 
   render() {
-    const { theme } = this.props
-
     return (
       <BackgroundView>
         <Inputs>
@@ -60,10 +62,9 @@ class AddMusic extends Component {
           </Form>
         </Inputs>
 
-        <Button block style={{ backgroundColor: theme.color.button }}
-                onPress={this._validAdding}>
+        <StyledButton block onPress={this._validAdding}>
           <Text>Ajouter</Text>
-        </Button>
+        </StyledButton>
       </BackgroundView>
     )
   }
