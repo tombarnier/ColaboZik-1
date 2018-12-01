@@ -22,7 +22,7 @@ const Inputs = styled.View`
   margin: 40px 0;
 `
 
-const ButtonLogin = styled(Button)`
+const StyledButton = styled(Button)`
   background-color: ${props => props.theme.color.button};
 `
 
@@ -63,9 +63,9 @@ class Login extends Component {
           </Form>
         </Inputs>
 
-        <ButtonLogin block onPress={this.submit}>
+        <StyledButton block onPress={this.submit}>
           <Text>Se connecter</Text>
-        </ButtonLogin>
+        </StyledButton>
       </BackgroundView>
     )
   }
