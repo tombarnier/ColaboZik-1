@@ -5,6 +5,15 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
 import TagsList from '../tagsList'
+import styled from 'styled-components'
+
+const StyledCard = styled(Card)`
+  background-color: ${props => props.theme.color.cards};
+`
+
+const StyledText = styled(Text)`
+  color: ${props => props.theme.color.font};
+`
 
 class PlaylistCard extends Component {
   static propTypes = {
@@ -20,21 +29,21 @@ class PlaylistCard extends Component {
   }
 
   render() {
-    const { playlist, theme } = this.props
+    const { playlist } = this.props
     const { name, tags } = playlist
 
     return (
-      <Card style={{ backgroundColor: theme.color.cards }}>
+      <StyledCard>
         <TouchableOpacity onPress={this._playlistPress}>
           <CardItem header bordered>
-            <Text style={{ color: theme.color.font }}>{name}</Text>
+            <StyledText>{name}</StyledText>
           </CardItem>
 
           <CardItem bordered>
             <TagsList tags={tags}/>
           </CardItem>
         </TouchableOpacity>
-      </Card>
+      </StyledCard>
     )
   }
 }

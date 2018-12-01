@@ -21,6 +21,10 @@ const TitleText = styled.Text`
   margin: 0px 100px;
 `
 
+const StyledFab = styled(Fab)`
+  background-color: ${props => props.theme.color.button};
+`
+
 class Player extends Component {
 
   static propTypes = {
@@ -89,18 +93,12 @@ class Player extends Component {
       <BackgroundView>
         <MusicPlayer url={url} forward={this.forward}/>
         <View>
-          <Fab
-            style={{ backgroundColor: theme.color.button }}
-            position='topRight'
-            onPress={this.forward}>
+          <StyledFab position='topRight' onPress={this.forward}>
             <Icon name='skip-forward'/>
-          </Fab>
-          <Fab
-            style={{ backgroundColor: theme.color.button }}
-            position='topLeft'
-            onPress={this.backward}>
+          </StyledFab>
+          <StyledFab position='topLeft' onPress={this.backward}>
             <Icon name='skip-backward'/>
-          </Fab>
+          </StyledFab>
           <TitleText>{title}</TitleText>
         </View>
       </BackgroundView>

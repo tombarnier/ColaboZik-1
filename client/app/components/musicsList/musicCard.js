@@ -6,6 +6,18 @@ import styled from 'styled-components'
 
 import DislikeButton from './dislikeButton'
 
+const StyledCard = styled(Card)`
+  background-color: ${props => props.theme.color.cards};
+`
+
+const StyledText = styled(Text)`
+  color: ${props => props.theme.color.font};
+`
+
+const Counter = styled(Text)`
+  color: ${props => props.music.dislike.length > 0 ? 'red' : props.theme.color.font };
+`
+
 const RightCard = styled.View`
   align-items: center;
 `
@@ -16,26 +28,32 @@ class MusicCard extends Component {
     theme: PropTypes.object
   }
 
+  _dislikeCounter = () => {
+    const { dislike } = this.props.music
+
+    return dislike.length === 0 ? '0' : `-${dislike.length}`
+  }
+
   render() {
-    const { music, theme } = this.props
-    const { title, thumbnail, dislike } = music
+    const { music } = this.props
+    const { title, thumbnail } = music
 
     return (
-      <Card style={{ backgroundColor: theme.color.cards }}>
+      <StyledCard>
         <CardItem>
           <Left>
             <Thumbnail square large source={{ uri: thumbnail }}/>
             <Body header>
-              <Text style={{ color: theme.color.font }}>{title}</Text>
+              <StyledText>{title}</StyledText>
             </Body>
           </Left>
 
           <RightCard>
             <DislikeButton music={music}/>
-            <Text style={{ color: dislike.length > 0 ? 'red' : 'black' }}>{dislike.length > 0 ? `-${dislike.length}` : '0'}</Text>
+            <Counter>{this._dislikeCounter}</Counter>
           </RightCard>
         </CardItem>
-      </Card>
+      </StyledCard>
     )
   }
 }
