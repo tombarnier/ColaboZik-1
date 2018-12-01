@@ -10,6 +10,9 @@ import styled from 'styled-components'
 const StyledCard = styled(Card)`
   background-color: ${props => props.theme.color.cards};
 `
+const StyledCardItem = styled(CardItem)`
+  background-color: ${props => props.theme.color.cards};
+`
 
 const StyledText = styled(Text)`
   color: ${props => props.theme.color.font};
@@ -35,13 +38,13 @@ class PlaylistCard extends Component {
     return (
       <StyledCard>
         <TouchableOpacity onPress={this._playlistPress}>
-          <CardItem header bordered>
+          <StyledCardItem header bordered>
             <StyledText>{name}</StyledText>
-          </CardItem>
+          </StyledCardItem>
 
-          <CardItem bordered>
+          <StyledCardItem bordered>
             <TagsList tags={tags}/>
-          </CardItem>
+          </StyledCardItem>
         </TouchableOpacity>
       </StyledCard>
     )
