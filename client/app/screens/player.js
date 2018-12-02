@@ -26,7 +26,6 @@ const StyledFab = styled(Fab)`
 `
 
 class Player extends Component {
-
   static propTypes = {
     actions: PropTypes.object,
     musics: PropTypes.array,
@@ -61,11 +60,13 @@ class Player extends Component {
     let music
 
     if (direction === 'forward') {
+      // go back to the first music if it was the last music
       if (id === musics.length - 1)
         music = musics[0]
       else
         music = musics[id + 1]
     } else if (direction === 'backward') {
+      // go back to the last music if it was the first music
       if (id === 0)
         music = musics[musics.length - 1]
       else
