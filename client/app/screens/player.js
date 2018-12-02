@@ -86,7 +86,6 @@ class Player extends Component {
   backward = () => this.next('backward')
 
   render() {
-    const { theme } = this.props
     const { title, url } = this.state
 
     return (

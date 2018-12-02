@@ -45,7 +45,7 @@ class Home extends Component {
   }
 
   render() {
-    const { navigation, playlists, theme } = this.props
+    const { navigation, playlists } = this.props
 
     return (
       <BackgroundView>

@@ -61,7 +61,7 @@ class Playlist extends Component {
   }
 
   render() {
-    const { navigation, musics, theme } = this.props
+    const { navigation, musics } = this.props
 
     return (
       <BackgroundView>

@@ -54,8 +54,6 @@ class AddPlaylist extends Component {
   }
 
   render() {
-    const { theme } = this.props
-
     return (
       <BackgroundView>
         <Inputs>
