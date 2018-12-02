@@ -28,8 +28,8 @@ const StyledButton = styled(Button)`
 
 class Login extends Component {
   static propTypes = {
-    navigation: PropTypes.object,
     actions: PropTypes.object,
+    navigation: PropTypes.object,
     theme: PropTypes.object
   }
 
@@ -40,7 +40,7 @@ class Login extends Component {
 
   submit = () => {
     const { email, password } = this.state
-    const { navigation, actions } = this.props
+    const { actions, navigation } = this.props
 
     actions.feathers.login(email, password).then((authenticated) => {
       if (authenticated) navigation.navigate('Home')
@@ -78,8 +78,8 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const mapStateToProps = state => ({
-  user: state.feathers.user,
-  theme: state.themes.currentTheme
+  theme: state.themes.currentTheme,
+  user: state.feathers.user
 })
 
 export default connect(

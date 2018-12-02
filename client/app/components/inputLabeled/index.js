@@ -10,16 +10,16 @@ const BackgroundInput = styled.View`
 
 export default class InputLabeled extends Component {
   static propTypes = {
-    label: PropTypes.string,
-    icon: PropTypes.string,
     androidIcon: PropTypes.string,
+    icon: PropTypes.string,
     iosIcon: PropTypes.string,
     isPassword: PropTypes.bool,
+    label: PropTypes.string,
     onChange: PropTypes.func
   }
 
   render() {
-    const { label, icon, androidIcon, iosIcon, isPassword, onChange } = this.props
+    const { androidIcon, icon, iosIcon, isPassword, label, onChange } = this.props
 
     return (
       <BackgroundInput>

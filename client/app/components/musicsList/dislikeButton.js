@@ -9,14 +9,14 @@ import allTheActions from '../../actions'
 
 class DislikeButton extends Component {
   static propTypes = {
-    music: PropTypes.object,
     actions: PropTypes.object,
-    user: PropTypes.object,
-    playlist: PropTypes.object
+    music: PropTypes.object,
+    playlist: PropTypes.object,
+    user: PropTypes.object
   }
 
   _downVote = () => {
-    const { actions, user, music, playlist } = this.props
+    const { actions, music, playlist, user } = this.props
 
     actions.musics.downvoteMusic(music, playlist, user)
   }
@@ -39,8 +39,8 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const mapStateToProps = state => ({
-  user: state.feathers.user,
-  playlist: state.playlists.currentPlaylist
+  playlist: state.playlists.currentPlaylist,
+  user: state.feathers.user
 })
 
 export default connect(

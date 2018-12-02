@@ -17,8 +17,8 @@ const AuthLoadingContainer = styled.View`
 
 class AuthLoading extends React.Component {
   static propTypes = {
-    navigation: PropTypes.object,
-    actions: PropTypes.object
+    actions: PropTypes.object,
+    navigation: PropTypes.object
   }
 
   componentDidMount() {

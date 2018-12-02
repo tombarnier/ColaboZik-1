@@ -25,10 +25,10 @@ const StyledFab = styled(Fab)`
 
 class Home extends Component {
   static propTypes = {
-    navigation: PropTypes.object,
-    theme: PropTypes.object,
     actions: PropTypes.object,
+    navigation: PropTypes.object,
     playlists: PropTypes.array,
+    theme: PropTypes.object,
     user: PropTypes.object
   }
 
@@ -69,9 +69,9 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const mapStateToProps = state => ({
-  user: state.feathers.user,
   playlists: state.playlists.playlists,
-  theme: state.themes.currentTheme
+  theme: state.themes.currentTheme,
+  user: state.feathers.user
 })
 
 export default connect(

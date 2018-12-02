@@ -28,27 +28,27 @@ const StyledButton = styled(Button)`
 
 class AddPlaylist extends Component {
   static propTypes = {
-    navigation: PropTypes.object,
     actions: PropTypes.object,
-    user: PropTypes.object,
-    theme: PropTypes.object
+    navigation: PropTypes.object,
+    theme: PropTypes.object,
+    user: PropTypes.object
   }
 
   state = {
+    members: '',
     name: '',
-    tags: '',
-    members: ''
+    tags: ''
   }
 
   _validAdding = () => {
-    const { actions, user, navigation } = this.props
-    const { name, tags, members } = this.state
+    const { actions, navigation, user } = this.props
+    const { members, name, tags } = this.state
 
     actions.playlists.createPlaylist({
-      name,
-      tags,
       members,
-      owner: user.email
+      name,
+      owner: user.email,
+      tags
     })
     navigation.goBack()
   }
@@ -84,8 +84,8 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const mapStateToProps = state => ({
-  user: state.feathers.user,
-  theme: state.themes.currentTheme
+  theme: state.themes.currentTheme,
+  user: state.feathers.user
 })
 
 export default connect(
