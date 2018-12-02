@@ -7,27 +7,27 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-  case ADD_PLAYLISTS:
+  case ADD_PLAYLISTS: // Add bunch of playlists
     return {
       ...state,
       playlists: action.playlists
     }
-  case ADD_PLAYLIST:
+  case ADD_PLAYLIST: // Add playlist
     return {
       ...state,
       playlists: [...state.playlists, action.playlist]
     }
-  case REMOVE_PLAYLIST:
+  case REMOVE_PLAYLIST: // Remove playlist by id
     return {
       ...state,
       playlists: state.playlists.filter(playlist => playlist._id !== action.id)
     }
-  case SELECT_PLAYLIST:
+  case SELECT_PLAYLIST: // Set current playlist
     return {
       ...state,
       currentPlaylist: state.playlists.find(playlist => playlist._id === action.id)
     }
-  case DESELECT_PLAYLIST:
+  case DESELECT_PLAYLIST: // Unset current playlist
     return {
       ...state,
       currentPlaylist: {}

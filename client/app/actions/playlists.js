@@ -30,21 +30,27 @@ export const deselectPlaylist = () => ({
   type: DESELECT_PLAYLIST
 })
 
+// Load the playlists of the connected user
 export const loadPlaylists = (user) => dispatch => {
+  // Listen playlist creation
   app.service('playlists').on('created', (playlist) => {
     if (playlist.members.includes(user.email)) {
+      // Add created playlist to store if current user is a member of the playlist
       dispatch(
         addPlaylist({ playlist: playlist })
       )
     }
   })
+  // Listen playlist removal
   app.service('playlists').on('removed', (playlist) => {
     if (playlist.members.includes(user.email)) {
+      // Remove playlist from store
       dispatch(
         removePlaylist({ id: playlist._id })
       )
     }
   })
+  // Get all playlists
   return app.service('playlists').find({
     query: {
       $limit: 100,
@@ -53,6 +59,7 @@ export const loadPlaylists = (user) => dispatch => {
       }
     }
   }).then((response) => {
+    // Add bunch of playlists to store
     dispatch(
       addPlaylists({ playlists: response.data })
     )
@@ -62,5 +69,6 @@ export const loadPlaylists = (user) => dispatch => {
   })
 }
 
+// Create new playlist
 export const createPlaylist = (playlist) => dispatch =>
   app.service('playlists').create(playlist)

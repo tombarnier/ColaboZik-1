@@ -31,7 +31,9 @@ export const updateMusic = payload => ({
 
 let createdListener, removedListener, updateListener
 
+// Load the musics of a playlist and add listeners
 export const loadMusic = (playlistId) => dispatch => {
+  // Create the listeners for current playlist
   createdListener = (music) => {
     if (music.playlist === playlistId) {
       dispatch(
@@ -52,10 +54,12 @@ export const loadMusic = (playlistId) => dispatch => {
     )
   }
 
+  // Add listeners
   app.service('musics').on('created', createdListener)
   app.service('musics').on('removed', removedListener)
   app.service('musics').on('patched', updateListener)
 
+  // Get the playlist's musics
   return app.service('musics').find(
     {
       query: {
@@ -76,6 +80,7 @@ export const loadMusic = (playlistId) => dispatch => {
   })
 }
 
+// Unload the current playlist's musics
 export const unloadMusic = () => dispatch => {
   app.service('musics').removeListener('created', createdListener)
   app.service('musics').removeListener('removed', removedListener)
@@ -85,18 +90,22 @@ export const unloadMusic = () => dispatch => {
   )
 }
 
+// Create new music
 export const createMusic = (music) => dispatch =>
   app.service('musics').create(music)
 
+// Detele music
 export const deleteMusic = (music) => dispatch =>
   app.service('musics').remove(music)
 
+// Downvote a music
 export const downvoteMusic = (music, playlist, user) => dispatch => {
-  if (!music.dislike.includes(user._id)) {
+  if (!music.dislike.includes(user._id)) { // Check if user haven't already downvote the music
     app.service('musics').patch(music._id, {
-      dislike: [...music.dislike, user._id]
+      dislike: [...music.dislike, user._id] // Add the user id to the list of downvotes
     }).then((musicUpdated) => {
       if (musicUpdated.dislike.length >= playlist.members.length / 2) {
+        // Remove the music if more than 50% of the members have downvoted it
         dispatch(
           deleteMusic(musicUpdated._id)
         )

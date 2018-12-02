@@ -6,27 +6,27 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-  case ADD_MUSIC:
-    return {
-      ...state,
-      musics: [...state.musics, action.music]
-    }
-  case ADD_MUSICS:
+  case ADD_MUSICS: // Add bunch of musics
     return {
       ...state,
       musics: action.musics
     }
-  case REMOVE_MUSIC:
+  case ADD_MUSIC: // Add music
+    return {
+      ...state,
+      musics: [...state.musics, action.music]
+    }
+  case REMOVE_MUSIC: // Remove music by id
     return {
       ...state,
       musics: state.musics.filter(music => music._id !== action.id)
     }
-  case REMOVE_MUSICS:
+  case REMOVE_MUSICS: // Remove all musics
     return {
       ...state,
       musics: []
     }
-  case UPDATE_MUSIC:
+  case UPDATE_MUSIC: // Replace music by id
     return {
       ...state,
       musics: state.musics.map(music => music._id === action.id ? action.music : music)
