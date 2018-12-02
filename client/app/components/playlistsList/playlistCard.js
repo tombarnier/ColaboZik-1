@@ -26,7 +26,7 @@ class PlaylistCard extends Component {
   }
 
   _playlistPress = () => {
-    const { playlist, navigation } = this.props
+    const { navigation, playlist } = this.props
 
     navigation.navigate('Playlist', { playlist })
   }

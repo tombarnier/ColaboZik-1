@@ -6,8 +6,8 @@ import MusicCard from './musicCard'
 
 export default class MusicsList extends Component {
   static propTypes = {
-    navigation: PropTypes.object,
-    musics: PropTypes.array
+    musics: PropTypes.array,
+    navigation: PropTypes.object
   }
 
   _musicCard = ({ item }) =>

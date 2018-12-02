@@ -15,12 +15,12 @@ const YoutubePlayer = styled(YouTube)`
 
 export default class MusicPlayer extends Component {
   static propTypes = {
-    url: PropTypes.string,
-    forward: PropTypes.func
+    forward: PropTypes.func,
+    url: PropTypes.string
   }
 
   render() {
-    const { url, forward } = this.props
+    const { forward, url } = this.props
 
     return (
       <YoutubePlayer

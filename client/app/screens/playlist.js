@@ -25,14 +25,14 @@ const StyledFab = styled(Fab)`
 
 class Playlist extends Component {
   static propTypes = {
-    navigation: PropTypes.object,
-    theme: PropTypes.object,
     actions: PropTypes.object,
-    musics: PropTypes.array
+    musics: PropTypes.array,
+    navigation: PropTypes.object,
+    theme: PropTypes.object
   }
 
   componentDidMount() {
-    const { navigation, actions } = this.props
+    const { actions, navigation } = this.props
     const playlist = navigation.getParam('playlist', undefined)
 
     if (!playlist) navigation.goBack()
@@ -61,7 +61,7 @@ class Playlist extends Component {
   }
 
   render() {
-    const { navigation, musics, theme } = this.props
+    const { musics, navigation } = this.props
 
     return (
       <BackgroundView>

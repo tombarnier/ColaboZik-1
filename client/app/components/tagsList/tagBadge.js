@@ -11,8 +11,8 @@ const StyledBadge = styled(Badge)`
 
 class TagBadge extends Component {
   static propTypes = {
-    theme: PropTypes.object,
-    tag: PropTypes.string
+    tag: PropTypes.string,
+    theme: PropTypes.object
   }
 
   render() {

@@ -28,8 +28,8 @@ const StyledButton = styled(Button)`
 
 class AddMusic extends Component {
   static propTypes = {
-    navigation: PropTypes.object,
     actions: PropTypes.object,
+    navigation: PropTypes.object,
     playlist: PropTypes.object,
     theme: PropTypes.object
   }
@@ -45,9 +45,9 @@ class AddMusic extends Component {
     if (!playlist) navigation.goBack()
 
     actions.musics.createMusic({
+      dislike: '0',
       link,
-      playlist: playlist._id,
-      dislike: '0'
+      playlist: playlist._id
     })
     navigation.goBack()
   }

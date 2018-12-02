@@ -28,16 +28,16 @@ const StyledFab = styled(Fab)`
 class Player extends Component {
 
   static propTypes = {
-    navigation: PropTypes.object,
-    theme: PropTypes.object,
     actions: PropTypes.object,
-    musics: PropTypes.array
+    musics: PropTypes.array,
+    navigation: PropTypes.object,
+    theme: PropTypes.object
   }
 
   state = {
     id: 0,
-    url: '',
-    title: ''
+    title: '',
+    url: ''
   }
 
   componentDidMount() {
@@ -50,14 +50,14 @@ class Player extends Component {
     }
 
     this.setState({
-      url: musics[0].embed,
-      title: musics[0].title
+      title: musics[0].title,
+      url: musics[0].embed
     })
   }
 
   next = (direction) => {
-    const { id } = this.state
     const { musics } = this.props
+    const { id } = this.state
     let music
 
     if (direction === 'forward') {
@@ -77,8 +77,8 @@ class Player extends Component {
 
     this.setState({
       id: musics.indexOf(music),
-      url: music.embed,
-      title: music.title
+      title: music.title,
+      url: music.embed
     })
   }
 
@@ -86,7 +86,6 @@ class Player extends Component {
   backward = () => this.next('backward')
 
   render() {
-    const { theme } = this.props
     const { title, url } = this.state
 
     return (

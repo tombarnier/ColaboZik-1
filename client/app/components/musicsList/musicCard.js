@@ -26,7 +26,7 @@ class MusicCard extends Component {
 
   render() {
     const { music, theme } = this.props
-    const { title, thumbnail, dislike } = music
+    const { dislike, thumbnail, title } = music
 
     return (
       <StyledCard>

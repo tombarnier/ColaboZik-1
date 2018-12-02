@@ -1,8 +1,8 @@
 import { ADD_PLAYLIST, ADD_PLAYLISTS, DESELECT_PLAYLIST, REMOVE_PLAYLIST, SELECT_PLAYLIST } from '../actions/playlists'
 
 const initialState = {
-  playlists: [],
-  currentPlaylist: {}
+  currentPlaylist: {},
+  playlists: []
 }
 
 export default (state = initialState, action) => {

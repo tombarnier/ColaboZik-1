@@ -8,9 +8,9 @@ import socketio from 'feathers-socketio/client'
 import { API_URL } from '../../config'
 
 const options = {
-  transports: ['websocket'],
+  pingInterval: 5000,
   pingTimeout: 3000,
-  pingInterval: 5000
+  transports: ['websocket']
 }
 
 const socket = io(API_URL, options)

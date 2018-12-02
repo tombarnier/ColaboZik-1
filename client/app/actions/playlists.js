@@ -1,19 +1,19 @@
 import { app } from './feathers'
 
-export const ADD_PLAYLISTS = 'ADD_PLAYLISTS'
 export const ADD_PLAYLIST = 'ADD_PLAYLIST'
+export const ADD_PLAYLISTS = 'ADD_PLAYLISTS'
 export const REMOVE_PLAYLIST = 'REMOVE_PLAYLIST'
 export const SELECT_PLAYLIST = 'SELECT_PLAYLIST'
 export const DESELECT_PLAYLIST = 'DESELECT_PLAYLIST'
 
-export const addPlaylists = payload => ({
-  type: ADD_PLAYLISTS,
-  playlists: payload.playlists
-})
-
 export const addPlaylist = payload => ({
   type: ADD_PLAYLIST,
   playlist: payload.playlist
+})
+
+export const addPlaylists = payload => ({
+  type: ADD_PLAYLISTS,
+  playlists: payload.playlists
 })
 
 export const removePlaylist = payload => ({
