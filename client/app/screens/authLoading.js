@@ -24,7 +24,9 @@ class AuthLoading extends React.Component {
   componentDidMount() {
     const { actions, navigation } = this.props
 
+    // Try to reauthenticate using stored JWT
     actions.feathers.reauthenticate().then((authenticated) => {
+      // Redirect user to login if not authenticated, else redirect to home
       navigation.navigate(authenticated ? 'Connected' : 'Disconnected')
     })
   }

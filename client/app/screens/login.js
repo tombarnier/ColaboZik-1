@@ -42,6 +42,7 @@ class Login extends Component {
     const { email, password } = this.state
     const { actions, navigation } = this.props
 
+    // Try to authenticate using form credentials
     actions.feathers.login(email, password).then((authenticated) => {
       if (authenticated) navigation.navigate('Home')
       else alert('Invalid credentials')
