@@ -10,7 +10,9 @@ import { API_URL } from '../../config'
 const options = {
   transports: ['websocket'],
   pingTimeout: 3000,
-  pingInterval: 5000
+  pingInterval: 5000,
+  forceNew: true,
+  origins: '*:*'
 }
 
 const socket = io(API_URL, options)
