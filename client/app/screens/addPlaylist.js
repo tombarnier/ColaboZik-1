@@ -22,36 +22,38 @@ const Inputs = styled.View`
   margin-bottom: 40px;
 `
 
+const StyledButton = styled(Button)`
+  background-color: ${props => props.theme.color.button};
+`
+
 class AddPlaylist extends Component {
   static propTypes = {
-    navigation: PropTypes.object,
     actions: PropTypes.object,
-    user: PropTypes.object,
-    theme: PropTypes.object
+    navigation: PropTypes.object,
+    theme: PropTypes.object,
+    user: PropTypes.object
   }
 
   state = {
+    members: '',
     name: '',
-    tags: '',
-    members: ''
+    tags: ''
   }
 
   _validAdding = () => {
-    const { actions, user, navigation } = this.props
-    const { name, tags, members } = this.state
+    const { actions, navigation, user } = this.props
+    const { members, name, tags } = this.state
 
     actions.playlists.createPlaylist({
-      name,
-      tags,
       members,
-      owner: user.email
+      name,
+      owner: user.email,
+      tags
     })
     navigation.goBack()
   }
 
   render() {
-    const { theme } = this.props
-
     return (
       <BackgroundView>
         <Inputs>
@@ -67,10 +69,9 @@ class AddPlaylist extends Component {
           </Form>
         </Inputs>
 
-        <Button block style={{ backgroundColor: theme.color.button }}
-                onPress={this._validAdding}>
+        <StyledButton block onPress={this._validAdding}>
           <Text>Ajouter</Text>
-        </Button>
+        </StyledButton>
       </BackgroundView>
     )
   }
@@ -83,8 +84,8 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const mapStateToProps = state => ({
-  user: state.feathers.user,
-  theme: state.themes.currentTheme
+  theme: state.themes.currentTheme,
+  user: state.feathers.user
 })
 
 export default connect(

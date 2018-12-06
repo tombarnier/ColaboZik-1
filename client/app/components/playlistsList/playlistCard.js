@@ -5,6 +5,18 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
 import TagsList from '../tagsList'
+import styled from 'styled-components'
+
+const StyledCard = styled(Card)`
+  background-color: ${props => props.theme.color.cards};
+`
+const StyledCardItem = styled(CardItem)`
+  background-color: ${props => props.theme.color.cards};
+`
+
+const StyledText = styled(Text)`
+  color: ${props => props.theme.color.font};
+`
 
 class PlaylistCard extends Component {
   static propTypes = {
@@ -13,22 +25,28 @@ class PlaylistCard extends Component {
     theme: PropTypes.object
   }
 
+  _playlistPress = () => {
+    const { navigation, playlist } = this.props
+
+    navigation.navigate('Playlist', { playlist })
+  }
+
   render() {
-    const { navigation, playlist, theme } = this.props
+    const { playlist } = this.props
     const { name, tags } = playlist
 
     return (
-      <Card style={{ backgroundColor: theme.color.cards }}>
-        <TouchableOpacity onPress={() => navigation.navigate('Playlist', { playlist })}>
-          <CardItem header bordered>
-            <Text style={{ color: theme.color.font }}>{name}</Text>
-          </CardItem>
+      <StyledCard>
+        <TouchableOpacity onPress={this._playlistPress}>
+          <StyledCardItem header bordered>
+            <StyledText>{name}</StyledText>
+          </StyledCardItem>
 
-          <CardItem bordered>
+          <StyledCardItem bordered>
             <TagsList tags={tags}/>
-          </CardItem>
+          </StyledCardItem>
         </TouchableOpacity>
-      </Card>
+      </StyledCard>
     )
   }
 }

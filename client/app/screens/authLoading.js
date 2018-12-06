@@ -17,14 +17,16 @@ const AuthLoadingContainer = styled.View`
 
 class AuthLoading extends React.Component {
   static propTypes = {
-    navigation: PropTypes.object,
-    actions: PropTypes.object
+    actions: PropTypes.object,
+    navigation: PropTypes.object
   }
 
   componentDidMount() {
     const { actions, navigation } = this.props
 
+    // Try to reauthenticate using stored JWT
     actions.feathers.reauthenticate().then((authenticated) => {
+      // Redirect user to login if not authenticated, else redirect to home
       navigation.navigate(authenticated ? 'Connected' : 'Disconnected')
     })
   }

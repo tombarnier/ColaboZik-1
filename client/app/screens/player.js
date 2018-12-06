@@ -21,19 +21,22 @@ const TitleText = styled.Text`
   margin: 0px 100px;
 `
 
-class Player extends Component {
+const StyledFab = styled(Fab)`
+  background-color: ${props => props.theme.color.button};
+`
 
+class Player extends Component {
   static propTypes = {
-    navigation: PropTypes.object,
-    theme: PropTypes.object,
     actions: PropTypes.object,
-    musics: PropTypes.array
+    musics: PropTypes.array,
+    navigation: PropTypes.object,
+    theme: PropTypes.object
   }
 
   state = {
     id: 0,
-    url: '',
-    title: ''
+    title: '',
+    url: ''
   }
 
   componentDidMount() {
@@ -46,22 +49,24 @@ class Player extends Component {
     }
 
     this.setState({
-      url: musics[0].embed,
-      title: musics[0].title
+      title: musics[0].title,
+      url: musics[0].embed
     })
   }
 
   next = (direction) => {
-    const { id } = this.state
     const { musics } = this.props
+    const { id } = this.state
     let music
 
     if (direction === 'forward') {
+      // go back to the first music if it was the last music
       if (id === musics.length - 1)
         music = musics[0]
       else
         music = musics[id + 1]
     } else if (direction === 'backward') {
+      // go back to the last music if it was the first music
       if (id === 0)
         music = musics[musics.length - 1]
       else
@@ -73,31 +78,27 @@ class Player extends Component {
 
     this.setState({
       id: musics.indexOf(music),
-      url: music.embed,
-      title: music.title
+      title: music.title,
+      url: music.embed
     })
   }
 
+  forward = () => this.next('forward')
+  backward = () => this.next('backward')
+
   render() {
-    const { theme } = this.props
     const { title, url } = this.state
 
     return (
       <BackgroundView>
-        <MusicPlayer url={url} next={this.next}/>
+        <MusicPlayer url={url} forward={this.forward}/>
         <View>
-          <Fab
-            style={{ backgroundColor: theme.color.button }}
-            position='topRight'
-            onPress={() => this.next('forward')}>
+          <StyledFab position='topRight' onPress={this.forward}>
             <Icon name='skip-forward'/>
-          </Fab>
-          <Fab
-            style={{ backgroundColor: theme.color.button }}
-            position='topLeft'
-            onPress={() => this.next('backward')}>
+          </StyledFab>
+          <StyledFab position='topLeft' onPress={this.backward}>
             <Icon name='skip-backward'/>
-          </Fab>
+          </StyledFab>
           <TitleText>{title}</TitleText>
         </View>
       </BackgroundView>

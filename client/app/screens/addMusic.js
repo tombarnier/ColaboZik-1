@@ -1,85 +1,84 @@
-import { bindActionCreators } from 'redux'
-import { Button, Form, Text } from 'native-base'
+import { Button, Form } from 'native-base'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import { Text } from 'react-native'
+import YTSearch from 'youtube-api-search'
 
 import InputLabeled from '../components/inputLabeled'
+import VideosList from '../components/videosList'
 
-import allTheActions from '../actions'
+import { API_KEY_YT } from '../../config'
 
 const BackgroundView = styled.View`
   flex: 1;
-  padding: 10px;
   background-color: ${props => props.theme.color.background};
-  justify-content: center;
-  align-items: center;
+`
+
+const ScrollPlaylists = styled.ScrollView`
+  padding: 10px;
 `
 
 const Inputs = styled.View`
   width: 100%;
-  margin-bottom: 40px;
+  padding: 10px;
+`
+
+const StyledButton = styled(Button)`
+  background-color: ${props => props.theme.color.button};
 `
 
 class AddMusic extends Component {
   static propTypes = {
     navigation: PropTypes.object,
-    actions: PropTypes.object,
     theme: PropTypes.object
   }
 
   state = {
-    link: ''
+    search: '',
+    videos: []
   }
 
-  _validAdding = () => {
-    const { actions, navigation } = this.props
-    const { link } = this.state
-    const playlist = navigation.getParam('playlist', undefined)
+  _handleChange = search => this.setState({ search })
 
-    if (!playlist) navigation.goBack()
+  _handleKeyDown = e => {
+    if (e.nativeEvent.key === 'Enter') this._search()
+  }
 
-    actions.musics.createMusic({
-      link,
-      playlist: playlist._id,
-      dislike: '0'
-    })
-    navigation.goBack()
+  _search = () => {
+    const { search } = this.state
+
+    YTSearch({
+      key: API_KEY_YT,
+      term: search
+    }, (videos) => this.setState({ videos }))
   }
 
   render() {
-    const { theme } = this.props
-
+    const { navigation } = this.props
     return (
       <BackgroundView>
         <Inputs>
           <Form>
-            <InputLabeled label='Lien Youtube' icon='link'
-                          onChange={link => this.setState({ link })}/>
+            <InputLabeled label='Recherche Youtube' icon='search'
+                          onChange={this._handleChange}
+                          onSubmit={this._search}/>
           </Form>
         </Inputs>
-
-        <Button block style={{ backgroundColor: theme.color.button }}
-                onPress={this._validAdding}>
-          <Text>Ajouter</Text>
-        </Button>
+        <ScrollPlaylists>
+          <VideosList videos={this.state.videos} navigation={navigation}/>
+          <Text/>
+        </ScrollPlaylists>
       </BackgroundView>
     )
   }
 }
-
-const mapDispatchToProps = dispatch => ({
-  actions: {
-    musics: bindActionCreators(allTheActions.musics, dispatch)
-  }
-})
 
 const mapStateToProps = state => ({
   theme: state.themes.currentTheme
 })
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(AddMusic)

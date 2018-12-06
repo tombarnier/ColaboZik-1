@@ -19,12 +19,16 @@ const ScrollPlaylists = styled.ScrollView`
   padding: 10px;
 `
 
+const StyledFab = styled(Fab)`
+  background-color: ${props => props.theme.color.button};
+`
+
 class Home extends Component {
   static propTypes = {
-    navigation: PropTypes.object,
-    theme: PropTypes.object,
     actions: PropTypes.object,
+    navigation: PropTypes.object,
     playlists: PropTypes.array,
+    theme: PropTypes.object,
     user: PropTypes.object
   }
 
@@ -34,8 +38,14 @@ class Home extends Component {
     actions.playlists.loadPlaylists(user)
   }
 
+  _addPlaylistPress = () => {
+    const { navigation } = this.props
+
+    navigation.navigate('AddPlaylist')
+  }
+
   render() {
-    const { navigation, playlists, theme } = this.props
+    const { navigation, playlists } = this.props
 
     return (
       <BackgroundView>
@@ -44,12 +54,9 @@ class Home extends Component {
           <Text/>
         </ScrollPlaylists>
 
-        <Fab
-          style={{ backgroundColor: theme.color.button }}
-          position="bottomRight"
-          onPress={() => navigation.navigate('AddPlaylist')}>
+        <StyledFab position="bottomRight" onPress={this._addPlaylistPress}>
           <Icon name="add"/>
-        </Fab>
+        </StyledFab>
       </BackgroundView>
     )
   }
@@ -62,9 +69,9 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const mapStateToProps = state => ({
-  user: state.feathers.user,
   playlists: state.playlists.playlists,
-  theme: state.themes.currentTheme
+  theme: state.themes.currentTheme,
+  user: state.feathers.user
 })
 
 export default connect(

@@ -9,6 +9,7 @@ import styled from 'styled-components'
 import MusicsList from '../components/musicsList'
 
 import allTheActions from '../actions'
+import MenuHeader from '../components/menuHeader'
 
 const BackgroundView = styled.View`
   flex: 1;
@@ -19,31 +20,55 @@ const ScrollMusic = styled.ScrollView`
   padding: 10px;
 `
 
+const StyledFab = styled(Fab)`
+  background-color: ${props => props.theme.color.button};
+`
+
 class Playlist extends Component {
   static propTypes = {
-    navigation: PropTypes.object,
-    theme: PropTypes.object,
     actions: PropTypes.object,
-    musics: PropTypes.array
+    musics: PropTypes.array,
+    navigation: PropTypes.object,
+    theme: PropTypes.object
   }
 
+  static navigationOptions = ({ navigation }) => ({
+    headerRight: (
+      <MenuHeader navigation={navigation}/>
+    )
+  })
+
   componentDidMount() {
-    const { navigation, actions } = this.props
+    const { actions, navigation } = this.props
     const playlist = navigation.getParam('playlist', undefined)
 
+    if (!playlist) navigation.goBack()
+
+    actions.playlists.selectPlaylist(playlist)
     actions.musics.loadMusic(playlist._id)
   }
 
   componentWillUnmount() {
     const { actions } = this.props
 
+    actions.playlists.deselectPlaylist()
     actions.musics.unloadMusic()
   }
 
+  _addMusicPress = () => {
+    const { navigation } = this.props
+
+    navigation.navigate('AddMusic')
+  }
+
+  _playerPress = () => {
+    const { navigation } = this.props
+
+    navigation.navigate('Player')
+  }
+
   render() {
-    const { navigation, musics, theme } = this.props
-    const playlist = navigation.getParam('playlist', undefined)
-    if (!playlist) navigation.navigate('Home')
+    const { musics, navigation } = this.props
 
     return (
       <BackgroundView>
@@ -52,19 +77,17 @@ class Playlist extends Component {
           <Text/>
         </ScrollMusic>
 
-        <Fab
-          style={{ backgroundColor: theme.color.button }}
+        <StyledFab
           position="bottomRight"
-          onPress={() => navigation.navigate('AddMusic', { playlist })}>
+          onPress={this._addMusicPress}>
           <Icon name="add"/>
-        </Fab>
+        </StyledFab>
 
-        <Fab
-          style={{ backgroundColor: theme.color.button }}
+        <StyledFab
           position="bottomLeft"
-          onPress={() => navigation.navigate('Player', { playlist })}>
+          onPress={this._playerPress}>
           <Icon name="play"/>
-        </Fab>
+        </StyledFab>
       </BackgroundView>
     )
   }
@@ -72,7 +95,8 @@ class Playlist extends Component {
 
 const mapDispatchToProps = dispatch => ({
   actions: {
-    musics: bindActionCreators(allTheActions.musics, dispatch)
+    musics: bindActionCreators(allTheActions.musics, dispatch),
+    playlists: bindActionCreators(allTheActions.playlists, dispatch)
   }
 })
 

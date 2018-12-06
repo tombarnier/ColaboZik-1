@@ -16,13 +16,15 @@
     "prop-types": "^15.6.2",
     "react": "16.6.1",
     "react-native": "0.57.5",
+    "react-native-material-menu": "^0.4.2",
     "react-native-youtube": "^1.1.0",
     "react-navigation": "^2.18.2",
     "react-redux": "^5.1.1",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
     "socket.io-client": "^2.1.1",
-    "styled-components": "^4.0.3"
+    "styled-components": "^4.0.3",
+    "youtube-api-search": "0.0.5"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",

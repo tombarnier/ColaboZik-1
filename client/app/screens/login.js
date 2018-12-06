@@ -22,10 +22,14 @@ const Inputs = styled.View`
   margin: 40px 0;
 `
 
+const StyledButton = styled(Button)`
+  background-color: ${props => props.theme.color.button};
+`
+
 class Login extends Component {
   static propTypes = {
-    navigation: PropTypes.object,
     actions: PropTypes.object,
+    navigation: PropTypes.object,
     theme: PropTypes.object
   }
 
@@ -36,8 +40,9 @@ class Login extends Component {
 
   submit = () => {
     const { email, password } = this.state
-    const { navigation, actions } = this.props
+    const { actions, navigation } = this.props
 
+    // Try to authenticate using form credentials
     actions.feathers.login(email, password).then((authenticated) => {
       if (authenticated) navigation.navigate('Home')
       else alert('Invalid credentials')
@@ -45,8 +50,6 @@ class Login extends Component {
   }
 
   render() {
-    const { theme } = this.props
-
     return (
       <BackgroundView>
         <H1>Connexion</H1>
@@ -61,10 +64,9 @@ class Login extends Component {
           </Form>
         </Inputs>
 
-        <Button block style={{backgroundColor: theme.color.button }}
-                onPress={this.submit}>
+        <StyledButton block onPress={this.submit}>
           <Text>Se connecter</Text>
-        </Button>
+        </StyledButton>
       </BackgroundView>
     )
   }
@@ -77,8 +79,8 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const mapStateToProps = state => ({
-  user: state.feathers.user,
-  theme: state.themes.currentTheme
+  theme: state.themes.currentTheme,
+  user: state.feathers.user
 })
 
 export default connect(

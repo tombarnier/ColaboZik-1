@@ -7,7 +7,7 @@ import themes from './themes'
 
 export default combineReducers({
   feathers,
-  playlists,
   musics,
+  playlists,
   themes
 })

@@ -6,6 +6,14 @@ import styled from 'styled-components'
 
 import DislikeButton from './dislikeButton'
 
+const StyledCard = styled(Card)`
+  background-color: ${props => props.theme.color.cards};
+`
+
+const StyledText = styled(Text)`
+  color: ${props => props.theme.color.font};
+`
+
 const RightCard = styled.View`
   align-items: center;
 `
@@ -18,24 +26,29 @@ class MusicCard extends Component {
 
   render() {
     const { music, theme } = this.props
-    const { title, thumbnail, dislike } = music
+    const { dislike, thumbnail, title } = music
 
     return (
-      <Card style={{ backgroundColor: theme.color.cards }}>
+      <StyledCard>
         <CardItem>
           <Left>
             <Thumbnail square large source={{ uri: thumbnail }}/>
             <Body header>
-              <Text style={{ color: theme.color.font }}>{title}</Text>
+              <StyledText>{title}</StyledText>
             </Body>
           </Left>
 
           <RightCard>
             <DislikeButton music={music}/>
-            <Text style={{ color: dislike.length > 0 ? 'red' : 'black' }}>{dislike.length > 0 ? `-${dislike.length}` : '0'}</Text>
+            <Text style={{
+              color:
+                dislike.length > 0 ? 'red' : theme.color.font
+            }}>
+              {dislike.length === 0 ? '0' : `-${dislike.length}`}
+            </Text>
           </RightCard>
         </CardItem>
-      </Card>
+      </StyledCard>
     )
   }
 }

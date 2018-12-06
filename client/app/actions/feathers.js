@@ -8,8 +8,9 @@ import socketio from 'feathers-socketio/client'
 import { API_URL } from '../../config'
 
 const options = {
-  transports: ['websocket'],
+  pingInterval: 5000,
   pingTimeout: 3000,
+  transports: ['websocket'],
   pingInterval: 5000,
   forceNew: true,
   origins: '*:*'
@@ -17,6 +18,7 @@ const options = {
 
 const socket = io(API_URL, options)
 
+// Create configure and export feathers client app
 export const app = feathers()
   .configure(socketio(socket))
   .configure(hooks())
@@ -31,15 +33,17 @@ export const authenticate = payload => ({
   user: payload.user
 })
 
+// Try to reauthenticate using JWT stored in AsyncStorage
 export const reauthenticate = () => dispatch => {
   return app.authenticate()
-    .then(response => app.passport.verifyJWT(response.accessToken))
+    .then(response => app.passport.verifyJWT(response.accessToken)) // Verify JWT
     .then(payload => {
       return app.service('users').get(payload.userId).then((user) => {
+        // Dispatch authenticate with current user data
         dispatch(
           authenticate({ user })
         )
-        return !!payload.userId
+        return !!payload.userId // Return true if user is a user is find, else return false
       })
     }).catch((e) => {
       // console.log('error:', e)
@@ -47,20 +51,23 @@ export const reauthenticate = () => dispatch => {
     })
 }
 
+// Try to authenticate using email and password
 export const login = (email, password) => dispatch => {
+  // Create payload using user email and password
   const payload = {
     strategy: 'local',
     email,
     password
   }
   return app.authenticate(payload)
-    .then(response => app.passport.verifyJWT(response.accessToken))
+    .then(response => app.passport.verifyJWT(response.accessToken)) // Verify JWT
     .then(payload => {
       return app.service('users').get(payload.userId).then((user) => {
+        // Dispatch authenticate with current user data
         dispatch(
           authenticate({ user })
         )
-        return !!payload.userId
+        return !!payload.userId // Return true if user is a user is find, else return false
       })
     }).catch((e) => {
       // console.log('error:', e)

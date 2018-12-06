@@ -24,8 +24,10 @@
   - React Native
   - React Navigation
   - Redux
+  - Socket.io
   - Styled Components
   - Native Base
+  - React Native Youtube
   
 ### Serveur
 

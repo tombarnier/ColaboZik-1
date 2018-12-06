@@ -1,13 +1,12 @@
 import { AUTHENTICATE } from '../actions/feathers'
 
 const initialState = {
-  user: null,
-  playlists: []
+  user: null
 }
 
 export default (state = initialState, action) => {
   switch (action.type) {
-  case AUTHENTICATE:
+  case AUTHENTICATE: // Store logged in user
     return {
       ...state,
       user: action.user
