@@ -95,8 +95,8 @@ export const createMusic = (music) => dispatch =>
   app.service('musics').create(music)
 
 // Detele music
-export const deleteMusic = (music) => dispatch =>
-  app.service('musics').remove(music)
+export const deleteMusic = (musicId) => dispatch =>
+  app.service('musics').remove(musicId)
 
 // Downvote a music
 export const downvoteMusic = (music, playlist, user) => dispatch => {

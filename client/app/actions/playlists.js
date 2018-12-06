@@ -72,3 +72,7 @@ export const loadPlaylists = (user) => dispatch => {
 // Create new playlist
 export const createPlaylist = (playlist) => dispatch =>
   app.service('playlists').create(playlist)
+
+// Delete playlist
+export const deletePlaylist = (playlistId) => dispatch =>
+  app.service('playlists').remove(playlistId)

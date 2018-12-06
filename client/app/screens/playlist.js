@@ -9,6 +9,7 @@ import styled from 'styled-components'
 import MusicsList from '../components/musicsList'
 
 import allTheActions from '../actions'
+import MenuHeader from '../components/menuHeader'
 
 const BackgroundView = styled.View`
   flex: 1;
@@ -30,6 +31,12 @@ class Playlist extends Component {
     navigation: PropTypes.object,
     theme: PropTypes.object
   }
+
+  static navigationOptions = ({ navigation }) => ({
+    headerRight: (
+      <MenuHeader navigation={navigation}/>
+    )
+  })
 
   componentDidMount() {
     const { actions, navigation } = this.props
