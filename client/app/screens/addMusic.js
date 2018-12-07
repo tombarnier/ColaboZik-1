@@ -1,4 +1,4 @@
-import { Button, Form } from 'native-base'
+import { Button, Form, Spinner } from 'native-base'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import { Text } from 'react-native'
 import YTSearch from 'youtube-api-search'
 
-import InputLabeled from '../components/inputLabeled'
+import InputSearch from '../components/inputLabeled/search'
 import VideosList from '../components/videosList'
 
 import { API_KEY_YT } from '../../config'
@@ -36,6 +36,7 @@ class AddMusic extends Component {
   }
 
   state = {
+    isLoading: false,
     search: '',
     videos: []
   }
@@ -49,21 +50,24 @@ class AddMusic extends Component {
   _search = () => {
     const { search } = this.state
 
+    this.setState({ isLoading: true })
     YTSearch({
       key: API_KEY_YT,
       term: search
-    }, (videos) => this.setState({ videos }))
+    }, (videos) => this.setState({ isLoading: false, videos }))
   }
 
   render() {
     const { navigation } = this.props
+    const { isLoading } = this.state
     return (
       <BackgroundView>
         <Inputs>
           <Form>
-            <InputLabeled label='Recherche Youtube' icon='search'
-                          onChange={this._handleChange}
-                          onSubmit={this._search}/>
+            <InputSearch label='Recherche Youtube' icon='search'
+                         onChange={this._handleChange}
+                         onSubmit={this._search}/>
+            <Spinner style={{ display: isLoading ? 'flex' : 'none' }} color='blue'/>
           </Form>
         </Inputs>
         <ScrollPlaylists>

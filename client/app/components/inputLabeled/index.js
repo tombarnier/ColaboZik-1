@@ -15,12 +15,11 @@ export default class InputLabeled extends Component {
     iosIcon: PropTypes.string,
     isPassword: PropTypes.bool,
     label: PropTypes.string,
-    onChange: PropTypes.func,
-    onSubmit: PropTypes.func
+    onChange: PropTypes.func
   }
 
   render() {
-    const { androidIcon, icon, iosIcon, isPassword, label, onChange, onSubmit } = this.props
+    const { androidIcon, icon, iosIcon, isPassword, label, onChange } = this.props
 
     return (
       <BackgroundInput>
@@ -28,8 +27,7 @@ export default class InputLabeled extends Component {
           <Icon active name={icon} android={androidIcon} ios={iosIcon}/>
           <Input placeholder={label}
                  secureTextEntry={isPassword}
-                 onChangeText={onChange}
-                 onSubmitEditing={onSubmit}/>
+                 onChangeText={onChange}/>
         </Item>
       </BackgroundInput>
     )
