@@ -19,6 +19,7 @@ const TitleText = styled.Text`
   text-align: center;
   font-size: 18px;
   margin: 0px 100px;
+  color: ${props => props.theme.color.font};
 `
 
 const StyledFab = styled(Fab)`

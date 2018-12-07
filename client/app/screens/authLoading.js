@@ -15,6 +15,10 @@ const AuthLoadingContainer = styled.View`
   align-items: center;
 `
 
+const Title = styled(H1)`
+  color: ${props => props.theme.color.font};
+`
+
 class AuthLoading extends React.Component {
   static propTypes = {
     actions: PropTypes.object,
@@ -34,7 +38,7 @@ class AuthLoading extends React.Component {
   render() {
     return (
       <AuthLoadingContainer>
-        <H1>{appName}</H1>
+        <Title>{appName}</Title>
         <Spinner color='blue'/>
       </AuthLoadingContainer>
     )
@@ -49,6 +53,7 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const mapStateToProps = state => ({
+  theme: state.themes.currentTheme,
   user: state.feathers.user
 })
 

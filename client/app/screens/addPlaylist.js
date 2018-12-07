@@ -63,8 +63,8 @@ class AddPlaylist extends Component {
             <InputLabeled label='Tags' icon='tags'
                           androidIcon='md-pricetags' iosIcon='ios-pricetags'
                           onChange={tags => this.setState({ tags })}/>
-            <InputLabeled label='Members' icon='tags'
-                          androidIcon='md-pricetags' iosIcon='ios-pricetags'
+            <InputLabeled label='Members' icon='people'
+                          androidIcon='md-people' iosIcon='ios-people'
                           onChange={members => this.setState({ members })}/>
           </Form>
         </Inputs>

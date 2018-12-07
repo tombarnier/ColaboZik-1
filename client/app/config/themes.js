@@ -17,3 +17,16 @@ export const themeDark = {
     tags: '#1abc9c'
   }
 }
+
+export const themeDarkBlue = {
+  color: {
+    background: '#36393F',
+    button: '#0096CF',
+    // cards: '#2F3136',
+    cards: '#2A2C31',
+    font: '#FFF',
+    tags: '#1ABC9C',
+    red: '#F04747',
+    border: '#474A4F'
+  }
+}

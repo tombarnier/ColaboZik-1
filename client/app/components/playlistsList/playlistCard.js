@@ -9,9 +9,11 @@ import styled from 'styled-components'
 
 const StyledCard = styled(Card)`
   background-color: ${props => props.theme.color.cards};
+  border-color: ${props => props.theme.color.border};
 `
 const StyledCardItem = styled(CardItem)`
   background-color: ${props => props.theme.color.cards};
+  border-color: ${props => props.theme.color.border};
 `
 
 const StyledText = styled(Text)`

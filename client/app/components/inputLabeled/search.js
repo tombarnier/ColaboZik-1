@@ -6,7 +6,12 @@ import styled from 'styled-components'
 
 const BackgroundInput = styled.View`
   background-color: ${props => props.theme.color.cards};
+  border-color: ${props => props.theme.color.border};
   margin-top: 10px;
+`
+
+const StyledInput = styled(Input)`
+  color: ${props => props.theme.color.font};  
 `
 
 export default class InputSearch extends Component {
@@ -44,7 +49,7 @@ export default class InputSearch extends Component {
           <TouchableOpacity onPress={onSubmit}>
             <Icon active name='search'/>
           </TouchableOpacity>
-          <Input ref={input => this.textInput = input}
+          <StyledInput ref={input => this.textInput = input}
                  autoFocus
                  placeholder={label}
                  secureTextEntry={isPassword}
