@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 
 const BackgroundInput = styled.View`
-  background-color: ${props => props.theme.color.cards};
+  background-color: ${props => props.theme.color.foreground};
   border-color: ${props => props.theme.color.border};
   margin-top: 10px;
 `
@@ -14,11 +14,11 @@ const StyledItem = styled(Item)`
 `
 
 const StyledInput = styled(Input)`
-  color: ${props => props.theme.color.font};  
+  color: ${props => props.theme.color.text};  
 `
 
 const StyledIcon = styled(Icon)`
-  color: ${props => props.theme.color.font};  
+  color: ${props => props.theme.color.text};  
 `
 
 export default class InputLabeled extends Component {

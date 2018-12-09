@@ -13,8 +13,16 @@ const AlignCenter = styled.View`
   align-items: center;
 `
 
+const StyledMenu = styled(Menu)`
+  background-color: ${props => props.theme.color.foreground};
+`
+
+const StyledMenuItem = styled(MenuItem)`
+  color: ${props => props.theme.color.text};
+`
+
 const StyledIcon = styled(Icon)`
-  color: ${props => props.theme.color.font};
+  color: ${props => props.theme.color.text};
 `
 
 class MenuHeader extends Component {
@@ -45,7 +53,7 @@ class MenuHeader extends Component {
 
     return (
       <AlignCenter>
-        <Menu
+        <StyledMenu
           ref={this.setMenuRef}
           button={<Button transparent>
             <TouchableOpacity onPress={this.showMenu}>
@@ -56,7 +64,7 @@ class MenuHeader extends Component {
           <MenuItem onPress={this._deletePress}>Supprimer</MenuItem>
           <MenuDivider/>
           <MenuItem onPress={this.hideMenu} disabled>Disabled</MenuItem>
-        </Menu>
+        </StyledMenu>
       </AlignCenter>
     )
   }

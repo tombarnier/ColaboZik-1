@@ -5,6 +5,8 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
 
+import StatusBarTranslucent from '../components/StatusBar'
+
 import { displayName as appName } from '../../app.json'
 import allTheActions from '../actions'
 
@@ -16,13 +18,14 @@ const AuthLoadingContainer = styled.View`
 `
 
 const Title = styled(H1)`
-  color: ${props => props.theme.color.font};
+  color: ${props => props.theme.color.text};
 `
 
 class AuthLoading extends React.Component {
   static propTypes = {
     actions: PropTypes.object,
-    navigation: PropTypes.object
+    navigation: PropTypes.object,
+    theme: PropTypes.object
   }
 
   componentDidMount() {
@@ -36,10 +39,13 @@ class AuthLoading extends React.Component {
   }
 
   render() {
+    const { theme } = this.props
+
     return (
       <AuthLoadingContainer>
+        <StatusBarTranslucent/>
         <Title>{appName}</Title>
-        <Spinner color='blue'/>
+        <Spinner color={theme.color.primary}/>
       </AuthLoadingContainer>
     )
   }

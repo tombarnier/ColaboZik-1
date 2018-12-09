@@ -11,13 +11,13 @@ export default class App extends Component {
     connectedTheme: store.getState('themes')
   }
 
-  componentDidMount () {
+  componentDidMount() {
     store.subscribe(() =>
       this.setState({ connectedTheme: store.getState('themes') })
     )
   }
 
-  render () {
+  render() {
     const { connectedTheme } = this.state
 
     return (

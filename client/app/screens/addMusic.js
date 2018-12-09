@@ -25,10 +25,6 @@ const Inputs = styled.View`
   padding: 10px;
 `
 
-const StyledButton = styled(Button)`
-  background-color: ${props => props.theme.color.button};
-`
-
 class AddMusic extends Component {
   static propTypes = {
     navigation: PropTypes.object,
@@ -58,7 +54,7 @@ class AddMusic extends Component {
   }
 
   render() {
-    const { navigation } = this.props
+    const { navigation, theme } = this.props
     const { isLoading } = this.state
     return (
       <BackgroundView>
@@ -67,7 +63,8 @@ class AddMusic extends Component {
             <InputSearch label='Recherche Youtube' icon='search'
                          onChange={this._handleChange}
                          onSubmit={this._search}/>
-            <Spinner style={{ display: isLoading ? 'flex' : 'none' }} color='blue'/>
+            <Spinner style={{ display: isLoading ? 'flex' : 'none' }}
+                     color={theme.color.primary}/>
           </Form>
         </Inputs>
         <ScrollPlaylists>

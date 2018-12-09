@@ -21,7 +21,7 @@ const ScrollMusic = styled.ScrollView`
 `
 
 const StyledFab = styled(Fab)`
-  background-color: ${props => props.theme.color.button};
+  background-color: ${props => props.theme.color.primary};
 `
 
 class Playlist extends Component {

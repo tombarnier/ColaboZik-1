@@ -5,7 +5,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 
 const StyledBadge = styled(Badge)`
-  background-color: ${props => props.theme.color.tags};
+  background-color: ${props => props.theme.color.secondary};
   margin: 0 4px 4px 0;
 `
 

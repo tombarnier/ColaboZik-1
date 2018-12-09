@@ -5,13 +5,21 @@ import { TouchableOpacity } from 'react-native'
 import styled from 'styled-components'
 
 const BackgroundInput = styled.View`
-  background-color: ${props => props.theme.color.cards};
+  background-color: ${props => props.theme.color.foreground};
   border-color: ${props => props.theme.color.border};
   margin-top: 10px;
 `
 
+const StyledItem = styled(Item)`
+  border-color: ${props => props.theme.color.border};
+`
+
 const StyledInput = styled(Input)`
-  color: ${props => props.theme.color.font};  
+  color: ${props => props.theme.color.text};  
+`
+
+const StyledIcon = styled(Icon)`
+  color: ${props => props.theme.color.text};  
 `
 
 export default class InputSearch extends Component {
@@ -45,9 +53,9 @@ export default class InputSearch extends Component {
 
     return (
       <BackgroundInput>
-        <Item regular>
+        <StyledItem regular>
           <TouchableOpacity onPress={onSubmit}>
-            <Icon active name='search'/>
+            <StyledIcon active name='search'/>
           </TouchableOpacity>
           <StyledInput ref={input => this.textInput = input}
                  autoFocus
@@ -56,10 +64,10 @@ export default class InputSearch extends Component {
                  onChangeText={this._getText}
                  onSubmitEditing={onSubmit}/>
           <TouchableOpacity onPress={this._clearText}>
-            <Icon active name='close'
+            <StyledIcon active name='close'
                   style={{ display: text === '' ? 'none' : 'flex' }}/>
           </TouchableOpacity>
-        </Item>
+        </StyledItem>
       </BackgroundInput>
     )
   }

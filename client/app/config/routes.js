@@ -1,5 +1,6 @@
 import { createStackNavigator, createSwitchNavigator } from 'react-navigation'
 import React from 'react'
+import { StatusBar } from 'react-native'
 
 import { displayName as appName } from '../../app.json'
 import { store } from '../config/store'
@@ -14,8 +15,7 @@ import Playlist from '../screens/playlist'
 
 
 const optionsGeneral = {
-  headerMode: 'none',
-  mode: 'modal'
+  headerMode: 'none'
 }
 
 const optionsColor = {
@@ -23,9 +23,11 @@ const optionsColor = {
     const { color } = store.getState('themes').themes.currentTheme
     return {
       headerStyle: {
-        backgroundColor: color.cards
+        backgroundColor: color.foreground,
+        height: 80,
+        paddingTop: 24
       },
-      headerTintColor: color.font
+      headerTintColor: color.text
     }
   }
 }

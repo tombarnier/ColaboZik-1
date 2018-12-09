@@ -7,6 +7,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 
 import PlaylistsList from '../components/playlistsList'
+import StatusBarTranslucent from '../components/StatusBar'
 
 import allTheActions from '../actions'
 
@@ -20,7 +21,7 @@ const ScrollPlaylists = styled.ScrollView`
 `
 
 const StyledFab = styled(Fab)`
-  background-color: ${props => props.theme.color.button};
+  background-color: ${props => props.theme.color.primary};
 `
 
 class Home extends Component {
@@ -49,6 +50,7 @@ class Home extends Component {
 
     return (
       <BackgroundView>
+        <StatusBarTranslucent/>
         <ScrollPlaylists>
           <PlaylistsList playlists={playlists} navigation={navigation}/>
           <Text/>

@@ -23,7 +23,7 @@ const Inputs = styled.View`
 `
 
 const StyledButton = styled(Button)`
-  background-color: ${props => props.theme.color.button};
+  background-color: ${props => props.theme.color.primary};
 `
 
 class AddPlaylist extends Component {

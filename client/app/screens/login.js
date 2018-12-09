@@ -8,6 +8,7 @@ import styled from 'styled-components'
 import InputLabeled from '../components/inputLabeled'
 
 import allTheActions from '../actions'
+import StatusBarTranslucent from '../components/StatusBar'
 
 const BackgroundView = styled.View`
   flex: 1;
@@ -22,8 +23,12 @@ const Inputs = styled.View`
   margin: 40px 0;
 `
 
+const Title = styled(H1)`
+  color: ${props => props.theme.color.text};
+`
+
 const StyledButton = styled(Button)`
-  background-color: ${props => props.theme.color.button};
+  background-color: ${props => props.theme.color.primary};
 `
 
 class Login extends Component {
@@ -52,7 +57,9 @@ class Login extends Component {
   render() {
     return (
       <BackgroundView>
-        <H1>Connexion</H1>
+        <StatusBarTranslucent/>
+
+        <Title>Connexion</Title>
 
         <Inputs>
           <Form>

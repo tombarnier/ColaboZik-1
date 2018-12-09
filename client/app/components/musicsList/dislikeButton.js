@@ -4,8 +4,13 @@ import { connect } from 'react-redux'
 import { TouchableOpacity } from 'react-native'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
+import styled from 'styled-components'
 
 import allTheActions from '../../actions'
+
+const DangerIcon = styled(Icon)`
+  color: ${props => props.theme.color.danger};
+`
 
 class DislikeButton extends Component {
   static propTypes = {
@@ -25,7 +30,7 @@ class DislikeButton extends Component {
     return (
       <Button danger transparent>
         <TouchableOpacity onPress={this._downVote}>
-          <Icon name='thumbs-down'/>
+          <DangerIcon name='thumbs-down'/>
         </TouchableOpacity>
       </Button>
     )

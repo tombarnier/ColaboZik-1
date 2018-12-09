@@ -19,11 +19,11 @@ const TitleText = styled.Text`
   text-align: center;
   font-size: 18px;
   margin: 0px 100px;
-  color: ${props => props.theme.color.font};
+  color: ${props => props.theme.color.text};
 `
 
 const StyledFab = styled(Fab)`
-  background-color: ${props => props.theme.color.button};
+  background-color: ${props => props.theme.color.primary};
 `
 
 class Player extends Component {
