@@ -34,7 +34,7 @@
 ajouter un fichier config.js a la racine de client et écrire dedans
   ```
   export const API_URL = 'http://IP_DE_VOTRE_SERVEUR_FEATHERS'
-  export const API_KEY_YT = 'AIzaSyDSQAZU1QsJfQeB8TNmkwvh-5-K2Wq1w14x'  
+  export const API_KEY_YT = 'AIzaSyD45sa4sa1QsJfQSA8TNmkwvh-5-455AAw14x'  
   ```
   
 ### Serveur
