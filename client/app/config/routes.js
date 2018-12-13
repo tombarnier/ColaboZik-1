@@ -1,6 +1,5 @@
 import { createStackNavigator, createSwitchNavigator } from 'react-navigation'
 import React from 'react'
-import { StatusBar } from 'react-native'
 
 import { displayName as appName } from '../../app.json'
 import { store } from '../config/store'
@@ -12,6 +11,7 @@ import Home from '../screens/home'
 import Login from '../screens/login'
 import Player from '../screens/player'
 import Playlist from '../screens/playlist'
+import Settings from '../screens/settings'
 
 
 const optionsGeneral = {
@@ -23,9 +23,9 @@ const optionsColor = {
     const { color } = store.getState('themes').themes.currentTheme
     return {
       headerStyle: {
-        backgroundColor: color.foreground,
-        height: 80,
-        paddingTop: 24
+        backgroundColor: color.foreground
+        // height: 80,
+        // paddingTop: 24
       },
       headerTintColor: color.text
     }
@@ -62,6 +62,12 @@ const LoggedUser = createStackNavigator(
       screen: Player,
       navigationOptions: {
         title: 'Player'
+      }
+    },
+    Settings: {
+      screen: Settings,
+      navigationOptions: {
+        title: 'Paramètres'
       }
     }
   },

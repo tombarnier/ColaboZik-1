@@ -1,8 +1,8 @@
 import { CHANGE_THEME } from '../actions/themes'
-import { themeDark, themeLight } from '../config/themes'
+import { themeLight } from '../config/themes'
 
 const initialState = {
-  currentTheme: themeDark
+  currentTheme: themeLight
 }
 
 export default (state = initialState, action) => {

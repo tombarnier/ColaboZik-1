@@ -27,8 +27,7 @@ const Inputs = styled.View`
 
 class AddMusic extends Component {
   static propTypes = {
-    navigation: PropTypes.object,
-    theme: PropTypes.object
+    navigation: PropTypes.object
   }
 
   state = {
@@ -76,9 +75,7 @@ class AddMusic extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  theme: state.themes.currentTheme
-})
+const mapStateToProps = state => (state)
 
 export default connect(
   mapStateToProps

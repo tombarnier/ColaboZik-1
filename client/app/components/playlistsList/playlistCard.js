@@ -1,5 +1,4 @@
 import { Card, CardItem, Text } from 'native-base'
-import { connect } from 'react-redux'
 import { TouchableOpacity } from 'react-native'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
@@ -20,11 +19,10 @@ const StyledText = styled(Text)`
   color: ${props => props.theme.color.text};
 `
 
-class PlaylistCard extends Component {
+export default class PlaylistCard extends Component {
   static propTypes = {
     navigation: PropTypes.object,
-    playlist: PropTypes.object,
-    theme: PropTypes.object
+    playlist: PropTypes.object
   }
 
   _playlistPress = () => {
@@ -52,11 +50,3 @@ class PlaylistCard extends Component {
     )
   }
 }
-
-const mapStateToProps = state => ({
-  theme: state.themes.currentTheme
-})
-
-export default connect(
-  mapStateToProps
-)(PlaylistCard)

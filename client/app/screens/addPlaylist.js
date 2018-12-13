@@ -30,7 +30,6 @@ class AddPlaylist extends Component {
   static propTypes = {
     actions: PropTypes.object,
     navigation: PropTypes.object,
-    theme: PropTypes.object,
     user: PropTypes.object
   }
 
@@ -84,7 +83,6 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const mapStateToProps = state => ({
-  theme: state.themes.currentTheme,
   user: state.feathers.user
 })
 

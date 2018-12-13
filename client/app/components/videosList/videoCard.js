@@ -34,7 +34,6 @@ class VideoCard extends Component {
     actions: PropTypes.object,
     navigation: PropTypes.object,
     playlist: PropTypes.object,
-    theme: PropTypes.object,
     video: PropTypes.object
   }
 
@@ -81,8 +80,7 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const mapStateToProps = state => ({
-  playlist: state.playlists.currentPlaylist,
-  theme: state.themes.currentTheme
+  playlist: state.playlists.currentPlaylist
 })
 
 export default connect(

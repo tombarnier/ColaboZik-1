@@ -1,5 +1,4 @@
 import { Body, Card, CardItem, Left, Text, Thumbnail } from 'native-base'
-import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import styled from 'styled-components'
@@ -24,7 +23,7 @@ const RightCard = styled.View`
   align-items: center;
 `
 
-class MusicCard extends Component {
+export default class MusicCard extends Component {
   static propTypes = {
     music: PropTypes.object,
     theme: PropTypes.object
@@ -40,7 +39,7 @@ class MusicCard extends Component {
           <Left>
             <Thumbnail square large source={{ uri: thumbnail }}/>
             <Body header>
-              <StyledText>{title}</StyledText>
+            <StyledText>{title}</StyledText>
             </Body>
           </Left>
 
@@ -58,11 +57,3 @@ class MusicCard extends Component {
     )
   }
 }
-
-const mapStateToProps = state => ({
-  theme: state.themes.currentTheme
-})
-
-export default connect(
-  mapStateToProps
-)(MusicCard)

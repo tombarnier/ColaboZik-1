@@ -1,6 +1,7 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { H1, Spinner } from 'native-base'
+import { AsyncStorage } from 'react-native'
 import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
@@ -8,6 +9,7 @@ import styled from 'styled-components'
 import StatusBarTranslucent from '../components/StatusBar'
 
 import { displayName as appName } from '../../app.json'
+import { themeDark, themeLight } from '../config/themes'
 import allTheActions from '../actions'
 
 const AuthLoadingContainer = styled.View`
@@ -31,10 +33,15 @@ class AuthLoading extends React.Component {
   componentDidMount() {
     const { actions, navigation } = this.props
 
-    // Try to reauthenticate using stored JWT
-    actions.feathers.reauthenticate().then((authenticated) => {
-      // Redirect user to login if not authenticated, else redirect to home
-      navigation.navigate(authenticated ? 'Connected' : 'Disconnected')
+    AsyncStorage.getItem('currentTheme').then(themeName => {
+      // Apply theme if is stored
+      if (themeName === 'Light') actions.themes.changeTheme(themeLight)
+      else if (themeName === 'Dark') actions.themes.changeTheme(themeDark)
+      // Try to reauthenticate using stored JWT
+      actions.feathers.reauthenticate().then(authenticated => {
+        // Redirect user to login if not authenticated, else redirect to home
+        navigation.navigate(authenticated ? 'Connected' : 'Disconnected')
+      })
     })
   }
 
@@ -43,7 +50,7 @@ class AuthLoading extends React.Component {
 
     return (
       <AuthLoadingContainer>
-        <StatusBarTranslucent/>
+        {/*<StatusBarTranslucent/>*/}
         <Title>{appName}</Title>
         <Spinner color={theme.color.primary}/>
       </AuthLoadingContainer>
@@ -54,7 +61,8 @@ class AuthLoading extends React.Component {
 
 const mapDispatchToProps = dispatch => ({
   actions: {
-    feathers: bindActionCreators(allTheActions.feathers, dispatch)
+    feathers: bindActionCreators(allTheActions.feathers, dispatch),
+    themes: bindActionCreators(allTheActions.themes, dispatch)
   }
 })
 

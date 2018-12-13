@@ -6,9 +6,9 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 
 import InputLabeled from '../components/inputLabeled'
+import StatusBarTranslucent from '../components/StatusBar'
 
 import allTheActions from '../actions'
-import StatusBarTranslucent from '../components/StatusBar'
 
 const BackgroundView = styled.View`
   flex: 1;
@@ -34,8 +34,7 @@ const StyledButton = styled(Button)`
 class Login extends Component {
   static propTypes = {
     actions: PropTypes.object,
-    navigation: PropTypes.object,
-    theme: PropTypes.object
+    navigation: PropTypes.object
   }
 
   state = {
@@ -57,7 +56,7 @@ class Login extends Component {
   render() {
     return (
       <BackgroundView>
-        <StatusBarTranslucent/>
+        {/*<StatusBarTranslucent/>*/}
 
         <Title>Connexion</Title>
 
@@ -86,7 +85,6 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const mapStateToProps = state => ({
-  theme: state.themes.currentTheme,
   user: state.feathers.user
 })
 

@@ -30,8 +30,7 @@ class Player extends Component {
   static propTypes = {
     actions: PropTypes.object,
     musics: PropTypes.array,
-    navigation: PropTypes.object,
-    theme: PropTypes.object
+    navigation: PropTypes.object
   }
 
   state = {
@@ -114,8 +113,7 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const mapStateToProps = state => ({
-  musics: state.musics.musics,
-  theme: state.themes.currentTheme
+  musics: state.musics.musics
 })
 
 export default connect(

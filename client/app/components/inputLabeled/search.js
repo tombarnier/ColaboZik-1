@@ -58,14 +58,14 @@ export default class InputSearch extends Component {
             <StyledIcon active name='search'/>
           </TouchableOpacity>
           <StyledInput ref={input => this.textInput = input}
-                 autoFocus
-                 placeholder={label}
-                 secureTextEntry={isPassword}
-                 onChangeText={this._getText}
-                 onSubmitEditing={onSubmit}/>
+                       autoFocus
+                       placeholder={label}
+                       secureTextEntry={isPassword}
+                       onChangeText={this._getText}
+                       onSubmitEditing={onSubmit}/>
           <TouchableOpacity onPress={this._clearText}>
             <StyledIcon active name='close'
-                  style={{ display: text === '' ? 'none' : 'flex' }}/>
+                        style={{ display: text === '' ? 'none' : 'flex' }}/>
           </TouchableOpacity>
         </StyledItem>
       </BackgroundInput>

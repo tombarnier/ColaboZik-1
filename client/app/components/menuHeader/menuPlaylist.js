@@ -1,17 +1,12 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { Button, Icon, Text } from 'native-base'
-import { TouchableOpacity } from 'react-native'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import Menu, { MenuItem, MenuDivider } from 'react-native-material-menu'
+import Menu, { MenuDivider, MenuItem } from 'react-native-material-menu'
 
 import allTheActions from '../../actions'
-
-const AlignCenter = styled.View`
-  align-items: center;
-`
+import MenuButton from './menuButton'
 
 const StyledMenu = styled(Menu)`
   background-color: ${props => props.theme.color.foreground};
@@ -21,16 +16,11 @@ const StyledMenuItem = styled(MenuItem)`
   color: ${props => props.theme.color.text};
 `
 
-const StyledIcon = styled(Icon)`
-  color: ${props => props.theme.color.text};
-`
-
-class MenuHeader extends Component {
+class MenuPlaylist extends Component {
   static propTypes = {
     actions: PropTypes.object,
     navigation: PropTypes.object,
-    playlist: PropTypes.object,
-    theme: PropTypes.object
+    playlist: PropTypes.object
   }
 
   _menu = null
@@ -49,23 +39,15 @@ class MenuHeader extends Component {
   }
 
   render() {
-    const { navigation } = this.props
-
     return (
-      <AlignCenter>
-        <StyledMenu
-          ref={this.setMenuRef}
-          button={<Button transparent>
-            <TouchableOpacity onPress={this.showMenu}>
-              <StyledIcon name='more'/>
-            </TouchableOpacity>
-          </Button>}
-        >
-          <MenuItem onPress={this._deletePress}>Supprimer</MenuItem>
-          <MenuDivider/>
-          <MenuItem onPress={this.hideMenu} disabled>Disabled</MenuItem>
-        </StyledMenu>
-      </AlignCenter>
+      <StyledMenu
+        ref={this.setMenuRef}
+        button={<MenuButton press={this.showMenu} icon='more'/>}>
+
+        <MenuItem onPress={this._deletePress}>Supprimer</MenuItem>
+        <MenuDivider/>
+        <MenuItem onPress={this.hideMenu} disabled>Disabled</MenuItem>
+      </StyledMenu>
     )
   }
 }
@@ -77,11 +59,10 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const mapStateToProps = state => ({
-  playlist: state.playlists.currentPlaylist,
-  theme: state.themes.currentTheme
+  playlist: state.playlists.currentPlaylist
 })
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(MenuHeader)
+)(MenuPlaylist)

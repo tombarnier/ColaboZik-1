@@ -1,5 +1,4 @@
 import { Badge, Text } from 'native-base'
-import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import styled from 'styled-components'
@@ -9,10 +8,9 @@ const StyledBadge = styled(Badge)`
   margin: 0 4px 4px 0;
 `
 
-class TagBadge extends Component {
+export default class TagBadge extends Component {
   static propTypes = {
-    tag: PropTypes.string,
-    theme: PropTypes.object
+    tag: PropTypes.string
   }
 
   render() {
@@ -25,11 +23,3 @@ class TagBadge extends Component {
     )
   }
 }
-
-const mapStateToProps = state => ({
-  theme: state.themes.currentTheme
-})
-
-export default connect(
-  mapStateToProps
-)(TagBadge)

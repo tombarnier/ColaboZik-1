@@ -1,4 +1,5 @@
 export const themeLight = {
+  name: 'Light',
   color: {
     background: '#F2F2F2',
     border: '#CCC',
@@ -12,6 +13,7 @@ export const themeLight = {
 }
 
 export const themeDark = {
+  name: 'Dark',
   color: {
     background: '#36393F',
     border: '#474A4F',
