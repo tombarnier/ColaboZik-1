@@ -8,15 +8,20 @@ import { bindActionCreators } from 'redux'
 import allTheActions from '../../actions'
 
 const StyledCard = styled(Card)`
-  background-color: ${props => props.theme.color.cards};
+  background-color: ${props => props.theme.color.foreground};
+  border-color: ${props => props.theme.color.border};
+`
+const StyledCardItem = styled(CardItem)`
+  background-color: ${props => props.theme.color.foreground};
+  border-color: ${props => props.theme.color.border};
 `
 
 const StyledText = styled(Text)`
-  color: ${props => props.theme.color.font};
+  color: ${props => props.theme.color.text};
 `
 
 const Title = styled(Text)`
-  color: ${props => props.theme.color.font};
+  color: ${props => props.theme.color.text};
   font-weight: bold;
 `
 
@@ -29,7 +34,6 @@ class VideoCard extends Component {
     actions: PropTypes.object,
     navigation: PropTypes.object,
     playlist: PropTypes.object,
-    theme: PropTypes.object,
     video: PropTypes.object
   }
 
@@ -54,7 +58,7 @@ class VideoCard extends Component {
     return (
       <StyledCard>
         <TouchableOpacity onPress={this._videoPress}>
-          <CardItem>
+          <StyledCardItem>
             <Left>
               <Thumbnail square large source={{ uri: thumbnails.medium.url }}/>
               <Body header>
@@ -62,7 +66,7 @@ class VideoCard extends Component {
               <StyledText>{channelTitle}</StyledText>
               </Body>
             </Left>
-          </CardItem>
+          </StyledCardItem>
         </TouchableOpacity>
       </StyledCard>
     )
@@ -76,8 +80,7 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const mapStateToProps = state => ({
-  playlist: state.playlists.currentPlaylist,
-  theme: state.themes.currentTheme
+  playlist: state.playlists.currentPlaylist
 })
 
 export default connect(

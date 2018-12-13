@@ -6,10 +6,10 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
+import Menu from '../components/menuHeader/menuPlaylist'
 import MusicsList from '../components/musicsList'
 
 import allTheActions from '../actions'
-import MenuHeader from '../components/menuHeader'
 
 const BackgroundView = styled.View`
   flex: 1;
@@ -21,7 +21,7 @@ const ScrollMusic = styled.ScrollView`
 `
 
 const StyledFab = styled(Fab)`
-  background-color: ${props => props.theme.color.button};
+  background-color: ${props => props.theme.color.primary};
 `
 
 class Playlist extends Component {
@@ -34,7 +34,7 @@ class Playlist extends Component {
 
   static navigationOptions = ({ navigation }) => ({
     headerRight: (
-      <MenuHeader navigation={navigation}/>
+      <Menu navigation={navigation}/>
     )
   })
 

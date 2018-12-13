@@ -6,6 +6,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 
 import InputLabeled from '../components/inputLabeled'
+import StatusBarTranslucent from '../components/StatusBar'
 
 import allTheActions from '../actions'
 
@@ -22,15 +23,18 @@ const Inputs = styled.View`
   margin: 40px 0;
 `
 
+const Title = styled(H1)`
+  color: ${props => props.theme.color.text};
+`
+
 const StyledButton = styled(Button)`
-  background-color: ${props => props.theme.color.button};
+  background-color: ${props => props.theme.color.primary};
 `
 
 class Login extends Component {
   static propTypes = {
     actions: PropTypes.object,
-    navigation: PropTypes.object,
-    theme: PropTypes.object
+    navigation: PropTypes.object
   }
 
   state = {
@@ -52,7 +56,9 @@ class Login extends Component {
   render() {
     return (
       <BackgroundView>
-        <H1>Connexion</H1>
+        {/*<StatusBarTranslucent/>*/}
+
+        <Title>Connexion</Title>
 
         <Inputs>
           <Form>
@@ -79,7 +85,6 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const mapStateToProps = state => ({
-  theme: state.themes.currentTheme,
   user: state.feathers.user
 })
 

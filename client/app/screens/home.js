@@ -6,7 +6,9 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
+import MenuButton from '../components/menuHeader/menuButton'
 import PlaylistsList from '../components/playlistsList'
+import StatusBarTranslucent from '../components/StatusBar'
 
 import allTheActions from '../actions'
 
@@ -20,7 +22,7 @@ const ScrollPlaylists = styled.ScrollView`
 `
 
 const StyledFab = styled(Fab)`
-  background-color: ${props => props.theme.color.button};
+  background-color: ${props => props.theme.color.primary};
 `
 
 class Home extends Component {
@@ -28,9 +30,16 @@ class Home extends Component {
     actions: PropTypes.object,
     navigation: PropTypes.object,
     playlists: PropTypes.array,
-    theme: PropTypes.object,
     user: PropTypes.object
   }
+
+  static navigationOptions = ({ navigation }) => ({
+    headerRight: (
+      <MenuButton press={() => {
+        navigation.navigate('Settings')
+      }} icon='settings' androidIcon='md-settings' iosIcon='ios-settings'/>
+    )
+  })
 
   componentDidMount() {
     const { actions, user } = this.props
@@ -49,6 +58,7 @@ class Home extends Component {
 
     return (
       <BackgroundView>
+        {/*<StatusBarTranslucent/>*/}
         <ScrollPlaylists>
           <PlaylistsList playlists={playlists} navigation={navigation}/>
           <Text/>
@@ -70,7 +80,6 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = state => ({
   playlists: state.playlists.playlists,
-  theme: state.themes.currentTheme,
   user: state.feathers.user
 })
 

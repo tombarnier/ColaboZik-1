@@ -7,11 +7,17 @@ import styled from 'styled-components'
 import DislikeButton from './dislikeButton'
 
 const StyledCard = styled(Card)`
-  background-color: ${props => props.theme.color.cards};
+  background-color: ${props => props.theme.color.foreground};
+  border-color: ${props => props.theme.color.border};
+`
+
+const StyledCardItem = styled(CardItem)`
+  background-color: ${props => props.theme.color.foreground};
+  border-color: ${props => props.theme.color.border};
 `
 
 const StyledText = styled(Text)`
-  color: ${props => props.theme.color.font};
+  color: ${props => props.theme.color.text};
 `
 
 const RightCard = styled.View`
@@ -30,7 +36,7 @@ class MusicCard extends Component {
 
     return (
       <StyledCard>
-        <CardItem>
+        <StyledCardItem>
           <Left>
             <Thumbnail square large source={{ uri: thumbnail }}/>
             <Body header>
@@ -42,12 +48,12 @@ class MusicCard extends Component {
             <DislikeButton music={music}/>
             <Text style={{
               color:
-                dislike.length > 0 ? 'red' : theme.color.font
+                dislike.length > 0 ? theme.color.danger : theme.color.text
             }}>
               {dislike.length === 0 ? '0' : `-${dislike.length}`}
             </Text>
           </RightCard>
-        </CardItem>
+        </StyledCardItem>
       </StyledCard>
     )
   }

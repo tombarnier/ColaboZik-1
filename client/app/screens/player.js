@@ -19,18 +19,18 @@ const TitleText = styled.Text`
   text-align: center;
   font-size: 18px;
   margin: 0px 100px;
+  color: ${props => props.theme.color.text};
 `
 
 const StyledFab = styled(Fab)`
-  background-color: ${props => props.theme.color.button};
+  background-color: ${props => props.theme.color.primary};
 `
 
 class Player extends Component {
   static propTypes = {
     actions: PropTypes.object,
     musics: PropTypes.array,
-    navigation: PropTypes.object,
-    theme: PropTypes.object
+    navigation: PropTypes.object
   }
 
   state = {
@@ -113,8 +113,7 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const mapStateToProps = state => ({
-  musics: state.musics.musics,
-  theme: state.themes.currentTheme
+  musics: state.musics.musics
 })
 
 export default connect(

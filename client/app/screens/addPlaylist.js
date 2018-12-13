@@ -23,14 +23,13 @@ const Inputs = styled.View`
 `
 
 const StyledButton = styled(Button)`
-  background-color: ${props => props.theme.color.button};
+  background-color: ${props => props.theme.color.primary};
 `
 
 class AddPlaylist extends Component {
   static propTypes = {
     actions: PropTypes.object,
     navigation: PropTypes.object,
-    theme: PropTypes.object,
     user: PropTypes.object
   }
 
@@ -63,8 +62,8 @@ class AddPlaylist extends Component {
             <InputLabeled label='Tags' icon='tags'
                           androidIcon='md-pricetags' iosIcon='ios-pricetags'
                           onChange={tags => this.setState({ tags })}/>
-            <InputLabeled label='Members' icon='tags'
-                          androidIcon='md-pricetags' iosIcon='ios-pricetags'
+            <InputLabeled label='Members' icon='people'
+                          androidIcon='md-people' iosIcon='ios-people'
                           onChange={members => this.setState({ members })}/>
           </Form>
         </Inputs>
@@ -84,7 +83,6 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const mapStateToProps = state => ({
-  theme: state.themes.currentTheme,
   user: state.feathers.user
 })
 
