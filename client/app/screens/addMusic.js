@@ -1,4 +1,4 @@
-import { Button, Form, Spinner } from 'native-base'
+import { Form, Spinner } from 'native-base'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
@@ -27,7 +27,8 @@ const Inputs = styled.View`
 
 class AddMusic extends Component {
   static propTypes = {
-    navigation: PropTypes.object
+    navigation: PropTypes.object,
+    theme: PropTypes.object
   }
 
   state = {
@@ -75,7 +76,9 @@ class AddMusic extends Component {
   }
 }
 
-const mapStateToProps = state => (state)
+const mapStateToProps = state => ({
+  theme: state.themes.currentTheme
+})
 
 export default connect(
   mapStateToProps
