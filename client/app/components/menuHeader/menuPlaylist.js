@@ -7,6 +7,7 @@ import Menu, { MenuDivider, MenuItem } from 'react-native-material-menu'
 
 import allTheActions from '../../actions'
 import MenuButton from './menuButton'
+import ModalConfirm from './modalConfirm'
 
 const StyledMenu = styled(Menu)`
   background-color: ${props => props.theme.color.foreground};
@@ -23,22 +24,34 @@ class MenuPlaylist extends Component {
     playlist: PropTypes.object
   }
 
+  state = {
+    isModalDelete: false
+  }
+
+  showModalDelete = (bool) => this.setState({ isModalDelete: bool })
+
   _menu = null
   setMenuRef = ref => this._menu = ref
   hideMenu = () => this._menu.hide()
   showMenu = () => this._menu.show()
 
   _deletePress = () => {
+    // this.hideMenu()
+    this.showModalDelete(true)
+  }
+
+  deleteConfirm = () => {
     const { actions, navigation, playlist } = this.props
 
-    this.hideMenu()
-    navigation.goBack()
     actions.playlists.deletePlaylist(playlist._id)
-
-    alert(`Delete playlist ${playlist.name}`)
+    this.showModalDelete(false)
+    navigation.goBack()
   }
 
   render() {
+    const { playlist } = this.props
+    const { isModalDelete } = this.state
+
     return (
       <StyledMenu
         ref={this.setMenuRef}
@@ -47,6 +60,11 @@ class MenuPlaylist extends Component {
         <MenuItem onPress={this._deletePress}>Supprimer</MenuItem>
         <MenuDivider/>
         <MenuItem onPress={this.hideMenu} disabled>Disabled</MenuItem>
+
+        <ModalConfirm text={`Supprimer la playlist ${playlist.name}`}
+                      isVisible={isModalDelete}
+                      confirm={this.deleteConfirm}
+                      toggle={this.showModalDelete}/>
       </StyledMenu>
     )
   }

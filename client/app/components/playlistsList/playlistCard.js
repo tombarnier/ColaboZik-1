@@ -10,6 +10,7 @@ const StyledCard = styled(Card)`
   background-color: ${props => props.theme.color.foreground};
   border-color: ${props => props.theme.color.border};
 `
+
 const StyledCardItem = styled(CardItem)`
   background-color: ${props => props.theme.color.foreground};
   border-color: ${props => props.theme.color.border};

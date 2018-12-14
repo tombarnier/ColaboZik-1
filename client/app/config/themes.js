@@ -7,7 +7,7 @@ export const themeLight = {
     danger: '#ED1727',
     foreground: '#FFF',
     primary: '#5067FF',
-    secondary: '#1ABC9C',
+    secondary: '#00C4B3', // Vert Jade RATP
     text: '#000'
   }
 }
@@ -21,7 +21,6 @@ export const themeDark = {
     // foreground: '#2F3136',
     foreground: '#2A2C31',
     primary: '#0096CF',
-    // secondary: '#00C4B3', // Vert Jade RATP
     secondary: '#1ABC9C',
     text: '#FFF'
   }

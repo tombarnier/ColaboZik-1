@@ -30,7 +30,6 @@ const StyledText = styled(Text)`
   color: ${props => props.theme.color.text};
 `
 
-
 const StyledIcon = styled(Icon)`
   color: ${props => props.theme.color.text};
 `

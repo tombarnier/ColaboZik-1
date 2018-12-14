@@ -11,7 +11,6 @@ const options = {
   pingInterval: 5000,
   pingTimeout: 3000,
   transports: ['websocket'],
-  pingInterval: 5000,
   forceNew: true,
   origins: '*:*'
 }
