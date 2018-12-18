@@ -15,7 +15,7 @@
   - Gestion utilisateur
   - Création de groupe pour gérer une playlist
   - Gestion des votes
-  - Lecture de playlists
+  - Lecture de playlistsaaaaaaaa
   
 ## Choix techniques
 
