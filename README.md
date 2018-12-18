@@ -42,6 +42,8 @@ ajouter un fichier config.js a la racine de client et écrire dedans
   - Feathers
   - NeDB
   
+added jenkins maybe
+  
 ## Licence
 
 ```text
